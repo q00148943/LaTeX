@@ -1,0 +1,19 @@
+COMMAND     PID    USER   FD   TYPE DEVICE SIZE/OFF     NODE NAME
+tcpserver 12629 vampire  cwd    DIR    8,5     4096 10879432 /home/vampire/Ubuntu One
+tcpserver 12629 vampire  rtd    DIR    8,5     4096        2 /
+tcpserver 12629 vampire  txt    REG    8,5    10254 10890457 /home/vampire/Ubuntu One/tcpserver
+tcpserver 12629 vampire  mem    REG    8,5  1775080  3542720 /lib/i386-linux-gnu/libc-2.17.so
+tcpserver 12629 vampire  mem    REG    8,5   134376  3542721 /lib/i386-linux-gnu/ld-2.17.so
+tcpserver 12629 vampire    0u   CHR  136,4      0t0        7 /dev/pts/4
+tcpserver 12629 vampire    1u   CHR  136,4      0t0        7 /dev/pts/4
+tcpserver 12629 vampire    2u   CHR  136,4      0t0        7 /dev/pts/4
+tcpserver 12629 vampire    3u  IPv4 407481      0t0      TCP *:8899 (LISTEN)
+tcpserver 12629 vampire 1016u  IPv4 412846      0t0      TCP can't identify protocol
+tcpserver 12629 vampire 1017u  IPv4 412847      0t0      TCP can't identify protocol
+tcpserver 12629 vampire 1018u  IPv4 412848      0t0      TCP can't identify protocol
+tcpserver 12629 vampire 1019u  IPv4 412849      0t0      TCP can't identify protocol
+tcpserver 12629 vampire 1020u  IPv4 412850      0t0      TCP can't identify protocol
+tcpserver 12629 vampire 1021u  IPv4 412851      0t0      TCP can't identify protocol
+tcpserver 12629 vampire 1022u  IPv4 412852      0t0      TCP can't identify protocol
+tcpserver 12629 vampire 1023u  IPv4 412853      0t0      TCP can't identify protocol
+

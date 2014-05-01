@@ -1,0 +1,787 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% Name: XeTeX+xeCJK日常使用模板
+% Author: Lox Freeman
+% Email: xiaohanyu1988@gmail.com
+% 、
+% 本文档可以自由转载、修改，希望能给广大TeXer的中文之路提供一些方便。
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\documentclass[a4paper, 11pt, titlepage]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% xeCJK相关宏包%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{xltxtra,fontspec,xunicode}
+
+\usepackage[slantfont, boldfont, CJKchecksingle]{xeCJK}
+\CJKsetecglue{\hskip 0.15em plus 0.05em minus 0.05em}
+% slanfont: 允许斜体
+% boldfont: 允许粗体
+% CJKnormalspaces: 仅忽略汉字之间的空白,但保留中英文之间的空白。
+% CJKchecksingle: 避免单个汉字单独占一行。
+% CJKaddspaces: [备选]忽略汉字之间的空白,并且自动在中英文转换时插入空白。
+
+%\CJKlanguage{zh-cn}                 % 中文标点特殊处理
+\XeTeXlinebreaklocale "zh"           % 针对中文进行断行
+\XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
+% 给予TeX断行一定自由度
+%%%%%%%%%%%%%%%%%%%%%%%%% xeCJK%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%% 日常所用宏包、通通放在一起%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 什么常用的宏包都可以放这里。下面是我常用的宏包，每个都给出了简要注释
+\usepackage[top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
+% 控制页边距
+\usepackage{enumerate}               % 控制项目列表
+\usepackage{multicol}                % 多栏显示
+
+\usepackage[%
+pdfstartview=FitH,%
+CJKbookmarks=true,%
+bookmarks=true,%
+bookmarksnumbered=true,%
+bookmarksopen=true,%
+colorlinks=true,%
+citecolor=blue,%
+linkcolor=blue,%
+anchorcolor=green,%
+urlcolor=blue%
+]{hyperref}
+
+% \usepackage[margin=12mm]{geometry}
+
+\usepackage{titlesec}                % 控制标题
+\usepackage{titletoc}                % 控制目录
+\usepackage{type1cm}                 % 控制字体大小
+\usepackage{indentfirst}             % 首行缩进，用\noindent取消某段缩进
+\usepackage{bbding}                  % 一些特殊符号
+\usepackage{cite}                    % 支持引用
+\usepackage{framed,color,xcolor}            % 支持彩色文本、底色、文本框等
+\usepackage{latexsym}                % LaTeX一些特殊符号宏包
+\usepackage{amsmath}                 % AMS LaTeX宏包
+\usepackage{bm}                      % 数学公式中的黑斜体
+\usepackage{relsize}                 % 调整公式字体大小：\mathsmaller, \mathlarger
+\usepackage{soul}                    % 下划线自动回车换行
+\usepackage{attachfile}              % 添加附见使用的宏包
+\usepackage{parcolumns}              % 列排版
+% \usepackage{setspace}
+\makeindex                           % 生成索引
+
+\makeatletter
+\let\std@footnotetext\@footnotetext
+\usepackage{setspace}
+\let\@footnotetext\std@footnotetext
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%% 基本插图方法%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx}                % 图形宏包
+% \begin{figure}[htbp]               % 控制插图位置
+%   \setlength{\abovecaptionskip}{0pt}    
+%   \setlength{\belowcaptionskip}{10pt}
+%   控制图形和上下文的距离
+%   \centering                       % 使图形居中显示
+%   \includegraphics[width=0.8\textwidth]{CTeXLive2008.jpg}
+%   控制图形显示宽度为0.8\textwidth
+%   \caption{CTeXLive2008安装过程} \label{fig:CTeXLive2008}
+%   图形题目和交叉引用标签
+% \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%% 插图方法结束%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% 绘图方法%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tikz}
+\usepackage{amsmath,bm,times}
+\usepackage{verbatim}
+
+\usepackage{tabularx}
+% \usepackage{hhline}
+% \usepackage{colortbl}
+\usetikzlibrary{shapes,arrows,shadows,fit,snakes}
+\usetikzlibrary{calc}           %coordinate
+
+\ifx\du\undefined
+  \newlength{\du}
+\fi
+\setlength{\du}{15\unitlength}
+
+\newlength\Textwd
+\setlength\Textwd{3cm}
+\newcommand\Textbox[2]{%
+  \parbox[c][#1][c]{\Textwd}{\linespread{0.5}\centering#2}}
+
+\makeatletter
+\DeclareRobustCommand{\rvdots}{%
+  \vbox{
+    \baselineskip6\p@\lineskiplimit\z@
+    \kern-\p@
+    \hbox{.}\hbox{.}\hbox{.}
+  }}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%% 绘图方法结束%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% fancyhdr设置页眉页脚%%%%%%%%%%%%%%%%%%%%
+\usepackage{fancyhdr}                % 页眉页脚
+\pagestyle{fancy}                    % 页眉页脚风格
+\setlength{\headheight}{15pt}        % 有时会出现\headheight too small的warning
+% \fancyhf{}                          % 清空当前页眉页脚的默认设置
+%%%%%%%%%%%%%%%%%%%%%%%%% fancyhdr设置结束%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% xeCJK字体设置%%%%%%%%%%%%%%%%%%%%%%%%%
+\punctstyle{kaiming}                                        % 设置中文标点样式
+% 支持全角、半角、kaiming等多种方式
+% \setmainfont[Mapping=tex-text]{Adobe Garamond Pro}
+% \newfontfamily\courier{Courier New}
+\setCJKmainfont[BoldFont={Microsoft YaHei:style=Bold},ItalicFont={Microsoft YaHei}]{YouYuan}
+\setCJKsansfont{Adobe Heiti Std}
+\setCJKmonofont{Adobe Fangsong Std}
+%Microsoft YaHei
+%YouYuan
+%%%% 定义新字体%%%%
+\setCJKfamilyfont{song}{Adobe Song Std}
+\setCJKfamilyfont{kai}{Adobe Kaiti Std}
+\setCJKfamilyfont{hei}{Adobe Heiti Std}
+\setCJKfamilyfont{fangsong}{Adobe Fangsong Std}
+\setCJKfamilyfont{lisu}{LiSu}
+\setCJKfamilyfont{youyuan}{YouYuan}
+
+\newcommand{\song}{\CJKfamily{song}}                       % 自定义宋体
+\newcommand{\kai}{\CJKfamily{kai}}                         % 自定义楷体
+\newcommand{\hei}{\CJKfamily{hei}}                         % 自定义黑体
+\newcommand{\fangsong}{\CJKfamily{fangsong}}               % 自定义仿宋体
+\newcommand{\lisu}{\CJKfamily{lisu}}                       % 自定义隶书
+\newcommand{\youyuan}{\CJKfamily{youyuan}}                 % 自定义幼圆
+%%%%%%%%%%%%%%%%%%%%%%%%% xeCJK字体设置结束%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% listings宏包粘贴源码%%%%%%%%%%%%%%%%%%%%
+\usepackage{listings}                % 方便粘贴源代码，部分代码高亮功能
+\lstloadlanguages{}                  % 所要粘贴代码的编程语言
+
+\include{rgb}
+
+\newfontfamily\listingsfont[Scale=0.9]{YaHei Consolas Hybrid}
+\newfontfamily\listingsfontinline[Scale=0.9]{YaHei Consolas Hybrid}
+
+\definecolor{sh_keyword}{rgb}{0.06, 0.10, 0.98}   % #101AF9
+%\definecolor{orange}{RGB}{255,127,0}
+\definecolor{shadecolor}{rgb}{0.83, 0.83, 0.83}
+%\definecolor{shadecolor}{RGB}{236, 236, 236}
+
+\definecolor{monokai-grey-dark}{RGB}{39, 40, 34}   % #272822
+\definecolor{monokai-yellow-light}{RGB}{248, 248, 246}   % #F8F8F2
+
+\definecolor{monokai-green}{RGB}{166, 226, 42}
+
+\def\lstsmallmath{\leavevmode\ifmmode \scriptstyle \else  \fi}
+\def\lstsmallmathend{\leavevmode\ifmmode  \else  \fi}
+
+\renewcommand{\lstlistingname}{代码}
+
+\lstset {
+  language=c++,
+  backgroundcolor=\color{monokai-grey-dark},
+%  frame=shadowbox,
+  breaklines,
+  rulesepcolor=\color{red!20!green!20!blue!20},
+  showspaces=false,showtabs=false,tabsize=4,
+  numberstyle=\tiny\color{black},numbers=left,
+  basicstyle= \listingsfont\color{monokai-yellow-light},
+  stringstyle=\color{dark green},
+  keywordstyle = \color{monokai-green}\bfseries,
+  commentstyle=\tiny\color{forest green}\itshape,
+  captionpos=b,
+  showspaces=false,showtabs=false, showstringspaces=false,
+  xleftmargin=0.7cm, xrightmargin=0.5cm,
+  lineskip=-0.3em,
+  breaklines=tr,
+  escapebegin={\lstsmallmath}, escapeend={\lstsmallmathend},
+  extendedchars=false
+}
+
+\lstnewenvironment{acol}[1][]{\lstset{language={[x86masm]Assembler},#1}}{}
+\newenvironment{parcolumenv}[1] {\begin{spacing}{#1}}{\end{spacing}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% listings宏包设置结束%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% 一些关于中文文档的重定义%%%%%%%%%%%%%%%%%
+
+%%%% 数学公式定理的重定义%%%%
+\newtheorem{example}{例}                                   % 整体编号
+\newtheorem{algorithm}{算法}
+\newtheorem{theorem}{定理}[section]                        % 按 section 编号
+\newtheorem{definition}{定义}
+\newtheorem{axiom}{公理}
+\newtheorem{property}{性质}
+\newtheorem{proposition}{命题}
+\newtheorem{lemma}{引理}
+\newtheorem{corollary}{推论}
+\newtheorem{remark}{注解}
+\newtheorem{condition}{条件}
+\newtheorem{conclusion}{结论}
+\newtheorem{assumption}{假设}
+
+%%%% 章节等名称重定义%%%%
+\renewcommand{\contentsname}{目录}     
+\renewcommand{\indexname}{索引}
+\renewcommand{\listfigurename}{插图目录}
+\renewcommand{\listtablename}{表格目录}
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+\renewcommand{\appendixname}{附录}
+
+%%%% 设置chapter、section与subsection的格式%%%%
+\titleformat{\chapter}{\centering\huge}{第\thechapter{}章}{1em}{\textbf}
+\titleformat{\section}{\centering\LARGE}{\thesection}{1em}{\textbf}
+\titleformat{\subsection}{\Large}{\thesubsection}{1em}{\textbf}
+%%%%%%%%%%%%%%%%%%%%%%%%% 中文重定义结束%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% 一些个性设置%%%%%%%%%%%%%%%%%%%%%%
+% \renewcommand{\baselinestretch}{1.3}     % 效果同\linespread{1.3}
+% \pagenumbering{arabic}                   % 设定页码方式，包括arabic、roman等方式
+% \sloppy                                  % 有时LaTeX无从断行，产生overfull的错误，
+% 这条命令降低LaTeX断行标准
+\setlength{\parskip}{0.5\baselineskip}     % 设定段间距
+\linespread{1.6}                           % 设定行距
+\newcommand{\pozhehao}{\kern0.3ex\rule[0.8ex]{2em}{0.1ex}\kern0.3ex}
+% 中文破折号，据说来自清华模板
+
+\newcommand*{\TitleFont}{\usefont{\encodingdefault}{\rmdefault}{b}{n}\fontsize{32}{40}\selectfont}
+% 标题字体设置
+
+\renewcommand{\today}{\number\year 年 \number\month 月 \number\day 日}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% 个性设置结束%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% 正文部分%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\setlength{\parindent}{2em}
+% 设定首行缩进为2em。注意此设置一定要在document环境之中。
+% 这可能与\setlength作用范围相关
+
+\title{\TitleFont 一个拒绝服务问题的定位}
+\author{\href{mailto:foolswonder@gmail.com}{秦新良}}
+\date{\today}
+
+\maketitle
+
+\tableofcontents
+\newpage
+
+\section{问题现象}
+幸福的TR5总是相似的，不幸的TR5各有各的不幸。不过话说回来，没有哪个TR5是幸福的，每个版本的TR5都得“惊一番天地、泣一番鬼神。”
+
+这次版本的TR5前，测试部开始对产品作安全性测试，测试主要针对产品的HTTPS协议作攻击测试。测试的目标是，在持续的攻击测试下，进程不会重启且正常对外提供服务。测试的场景为，四套测试集，共100W测试用例，测试集内的用例串行执行，测试集之间的用例并行执行，每个用例为一短连接；除此之外，再加上正常的业务话务。
+
+按照上面的场景执行用例1小时后，业务进程出现拒绝服务。
+
+\section{问题定位}
+\subsection{分析问题}
+进程出现拒绝服务，首先想到的是进程的资源耗尽，常见的有内存、CPU、文件描述符等。对于这种短连接的测试场景，首先想到的是文件描述符，即socket资源耗尽。登录业务单板，通过lsof命令查看进程打开的文件描述符，结果令人大迭眼镜，如下所示：
+\lstinputlisting[]{lsof.txt}
+
+从lsof的结果可以看出，当前进程打开的文件描述符已经达到了1023，该值是单个进程能打开文件描述符的最大值\footnote{虽然我们的进程提供网络服务，但实际的应用场景中，并不会有大量的连接，且单个进程限制了最大在线的连接数为100，所以最大文件描述符使用系统的默认值1024。}。后续客户端新来的连接，由于服务端进程已没有可用的文件描述符，无法再接受这些连接，导致进程最终出现拒绝服务。
+
+\subsection{重现问题}
+从目前的测试场景、问题现象和已收集的信息基本可以判断进程中存在socket资源泄露，而且初步判断为HTTPS服务相关的线程中存在资源泄露。为了证实这一判断，便先把进程重启\footnote{还有一个原因是，问题已经出现，光靠这一结果也是没办法定位的，只能重现出问题，找出问题必现的条件，才能进一步分析。}，执行同样的测试用例重现问题。
+
+但很不幸，在相同的测试场景下，问题没有重现，这对定位问题来说是非常不利的。一般来说，只要是能重现的问题，基本上就不是问题了。怕就怕问题只出现一次，后面再不重现。
+
+用例连续执行两天后，问题还是没有重现。期间通过在网上搜索资料和写模拟测试程序\footnote{一个简单的tcpserver和tcpclient，server只accept，client端connect成功后立即close。}验证，确定lsof的结果中出现“can't identify protocol”确实是因为服务端没有关闭socket导致。但通过strace跟踪处理HTTPS请求的线程，并没有发现accept和close不成对出现的情况。
+
+在毫无头绪的情况下，便又开始重新分析问题产生前后环境上的操作日志，发现在测试套开始执行前，测试人员修改过一个软件参数，该参数也是和HTTPS相关的\footnote{控制业务是走HTTPS还是HTTP通道。}，但是是另一种业务的配置参数，跟本次测试的业务不相关，而且是冷配置，但测试人员在修改该参数后、执行用例前，并没有重启进程，即当时问题出现时，该参数并没有生效。
+
+有了这上面的线索后，便试着把该参数改回默认值，重启进程，继续执行用例，结果问题竟然重现了。
+
+\subsection{定位问题}
+问题重现了，可以说问题已经解决大半了。
+
+通过进一步的分析发现，出现该问题的场景跟本次测试执行的用例毫无关联，这也是导致该问题难定位的重要原因，因为之前所有重现问题和分析问题的重点都放在了跟测试用例相关的场景中。那真正的场景是怎么样的？下面分别从服务端和客户端两方面来说明\footnote{一个巴掌拍不响。}。
+
+首先来看服务端的连接管理。服务端对最大连接数做了限制，最大支持100个连接同时在线，但对100个之后的连接，并不会直接拒绝，而是把这些多出来的连接也接收过来，缓存到一个队列里\footnote{这么处理是为了提高HTTP短连接的性能。}（该队列默认可以缓存0xFFFFFFFE个socket），但不对这些连接做任何处理，即不会对新接收的socket上的事件做任何处理，直到前100个连接中有释放，才会从该队列中取出一个连接来处理。整个流程如图\ref{fig1}所示。
+\begin{figure}[!htb]
+  \setlength{\abovecaptionskip}{0pt}
+  \begin{center}
+    \begin{singlespace}
+      \begin{tikzpicture}
+        \pgftransformxscale{1.000000}
+        \pgftransformyscale{-1.000000}
+        \definecolor{dialinecolor}{rgb}{0.000000, 0.000000, 0.000000}
+        \pgfsetstrokecolor{dialinecolor}
+        \definecolor{dialinecolor}{rgb}{1.000000, 1.000000, 1.000000}
+        \pgfsetfillcolor{dialinecolor}
+        \pgfsetlinewidth{0.040000\du}
+        \pgfsetdash{{\pgflinewidth}{0.200000\du}}{0cm}
+        \pgfsetdash{{\pgflinewidth}{0.200000\du}}{0cm}
+        \pgfsetmiterjoin
+        \definecolor{dialinecolor}{rgb}{0.847059, 0.898039, 0.898039}
+        \pgfsetfillcolor{dialinecolor}
+        \fill (15.273200\du,-14.010000\du)--(15.273200\du,-1.450000\du)--(36.680000\du,-1.450000\du)--(36.680000\du,-14.010000\du)--cycle;
+        \definecolor{dialinecolor}{rgb}{0.000000, 0.000000, 0.000000}
+        \pgfsetstrokecolor{dialinecolor}
+        \draw (15.273200\du,-14.010000\du)--(15.273200\du,-1.450000\du)--(36.680000\du,-1.450000\du)--(36.680000\du,-14.010000\du)--cycle;
+        \pgfsetlinewidth{0.040000\du}
+        \pgfsetdash{{1.000000\du}{0.200000\du}{0.200000\du}{0.200000\du}{0.200000\du}{0.200000\du}}{0cm}
+        \pgfsetdash{{1.000000\du}{0.200000\du}{0.200000\du}{0.200000\du}{0.200000\du}{0.200000\du}}{0cm}
+        \pgfsetmiterjoin
+        \definecolor{dialinecolor}{rgb}{0.847059, 0.898039, 0.898039}
+        \pgfsetfillcolor{dialinecolor}
+        \fill (23.920000\du,-13.230000\du)--(23.920000\du,-2.120000\du)--(35.760000\du,-2.120000\du)--(35.760000\du,-13.230000\du)--cycle;
+        \definecolor{dialinecolor}{rgb}{0.000000, 0.000000, 0.000000}
+        \pgfsetstrokecolor{dialinecolor}
+        \draw (23.920000\du,-13.230000\du)--(23.920000\du,-2.120000\du)--(35.760000\du,-2.120000\du)--(35.760000\du,-13.230000\du)--cycle;
+        \pgfsetlinewidth{0.029160\du}
+        \pgfsetdash{}{0pt}
+        \pgfsetdash{}{0pt}
+        \pgfsetmiterjoin
+        \pgfsetbuttcap
+        {
+          \definecolor{dialinecolor}{rgb}{0.000000, 0.000000, 0.000000}
+          \pgfsetfillcolor{dialinecolor}
+          % was here!!!
+          \pgfsetarrowsend{stealth}
+          \definecolor{dialinecolor}{rgb}{0.000000, 0.000000, 0.000000}
+          \pgfsetstrokecolor{dialinecolor}
+          \pgfpathmoveto{\pgfpoint{19.993585\du}{-3.314357\du}}
+          \pgfpathcurveto{\pgfpoint{27.210465\du}{-0.460677\du}}{\pgfpoint{20.150000\du}{-14.125000\du}}{\pgfpoint{27.019985\du}{-12.057840\du}}
+          \pgfusepath{stroke}
+        }
+        % setfont left to latex
+        \definecolor{dialinecolor}{rgb}{0.000000, 0.000000, 0.000000}
+        \pgfsetstrokecolor{dialinecolor}
+        \node at (25.206600\du,-12.980000\du){\tiny \textbf{Application}};
+        % setfont left to latex
+        \definecolor{dialinecolor}{rgb}{0.000000, 0.000000, 0.000000}
+        \pgfsetstrokecolor{dialinecolor}
+        \node at (26.990000\du,-12.455000\du){\tiny \textbf{SOAP stack queue}};
+        \pgfsetlinewidth{0.029160\du}
+        \pgfsetdash{}{0pt}
+        \pgfsetdash{}{0pt}
+        \pgfsetmiterjoin
+        \definecolor{dialinecolor}{rgb}{0.564706, 0.933333, 0.564706}
+        \pgfsetfillcolor{dialinecolor}
+        \fill (17.984800\du,-12.040640\du)--(17.984800\du,-10.267717\du)--(22.007971\du,-10.267717\du)--(22.007971\du,-12.040640\du)--cycle;
+        \definecolor{dialinecolor}{rgb}{0.000000, 0.000000, 0.000000}
+        \pgfsetstrokecolor{dialinecolor}
+        \draw (17.984800\du,-12.040640\du)--(17.984800\du,-10.267717\du)--(22.007971\du,-10.267717\du)--(22.007971\du,-12.040640\du)--cycle;
+        \pgfsetlinewidth{0.029160\du}
+        \pgfsetdash{}{0pt}
+        \pgfsetdash{}{0pt}
+        \pgfsetmiterjoin
+        \definecolor{dialinecolor}{rgb}{0.564706, 0.933333, 0.564706}
+        \pgfsetfillcolor{dialinecolor}
+        \fill (17.982000\du,-5.087280\du)--(17.982000\du,-3.314357\du)--(22.005171\du,-3.314357\du)--(22.005171\du,-5.087280\du)--cycle;
+        \definecolor{dialinecolor}{rgb}{0.000000, 0.000000, 0.000000}
+        \pgfsetstrokecolor{dialinecolor}
+        \draw (17.982000\du,-5.087280\du)--(17.982000\du,-3.314357\du)--(22.005171\du,-3.314357\du)--(22.005171\du,-5.087280\du)--cycle;
+        \pgfsetlinewidth{0.029160\du}
+        \pgfsetdash{}{0pt}
+        \pgfsetdash{}{0pt}
+        \pgfsetmiterjoin
+        \definecolor{dialinecolor}{rgb}{0.564706, 0.933333, 0.564706}
+        \pgfsetfillcolor{dialinecolor}
+        \fill (17.984800\du,-10.328960\du)--(17.984800\du,-8.556037\du)--(22.007971\du,-8.556037\du)--(22.007971\du,-10.328960\du)--cycle;
+        \definecolor{dialinecolor}{rgb}{0.000000, 0.000000, 0.000000}
+        \pgfsetstrokecolor{dialinecolor}
+        \draw (17.984800\du,-10.328960\du)--(17.984800\du,-8.556037\du)--(22.007971\du,-8.556037\du)--(22.007971\du,-10.328960\du)--cycle;
+        \pgfsetlinewidth{0.029160\du}
+        \pgfsetdash{}{0pt}
+        \pgfsetdash{}{0pt}
+        \pgfsetmiterjoin
+        \definecolor{dialinecolor}{rgb}{0.564706, 0.933333, 0.564706}
+        \pgfsetfillcolor{dialinecolor}
+        \fill (17.984800\du,-8.617200\du)--(17.984800\du,-6.844277\du)--(22.007971\du,-6.844277\du)--(22.007971\du,-8.617200\du)--cycle;
+        \definecolor{dialinecolor}{rgb}{0.000000, 0.000000, 0.000000}
+        \pgfsetstrokecolor{dialinecolor}
+        \draw (17.984800\du,-8.617200\du)--(17.984800\du,-6.844277\du)--(22.007971\du,-6.844277\du)--(22.007971\du,-8.617200\du)--cycle;
+        \pgfsetlinewidth{0.029160\du}
+        \pgfsetdash{}{0pt}
+        \pgfsetdash{}{0pt}
+        \pgfsetmiterjoin
+        \definecolor{dialinecolor}{rgb}{0.564706, 0.933333, 0.564706}
+        \pgfsetfillcolor{dialinecolor}
+        \fill (17.982000\du,-6.847200\du)--(17.982000\du,-5.074277\du)--(22.005171\du,-5.074277\du)--(22.005171\du,-6.847200\du)--cycle;
+        \definecolor{dialinecolor}{rgb}{0.000000, 0.000000, 0.000000}
+        \pgfsetstrokecolor{dialinecolor}
+        \draw (17.982000\du,-6.847200\du)--(17.982000\du,-5.074277\du)--(22.005171\du,-5.074277\du)--(22.005171\du,-6.847200\du)--cycle;
+        \pgfsetlinewidth{0.029160\du}
+        \pgfsetdash{}{0pt}
+        \pgfsetdash{}{0pt}
+        \pgfsetmiterjoin
+        \definecolor{dialinecolor}{rgb}{1.000000, 0.752941, 0.796078}
+        \pgfsetfillcolor{dialinecolor}
+        \fill (25.008400\du,-12.057840\du)--(25.008400\du,-10.284917\du)--(29.031571\du,-10.284917\du)--(29.031571\du,-12.057840\du)--cycle;
+        \definecolor{dialinecolor}{rgb}{0.000000, 0.000000, 0.000000}
+        \pgfsetstrokecolor{dialinecolor}
+        \draw (25.008400\du,-12.057840\du)--(25.008400\du,-10.284917\du)--(29.031571\du,-10.284917\du)--(29.031571\du,-12.057840\du)--cycle;
+        \pgfsetlinewidth{0.029160\du}
+        \pgfsetdash{}{0pt}
+        \pgfsetdash{}{0pt}
+        \pgfsetmiterjoin
+        \definecolor{dialinecolor}{rgb}{1.000000, 0.752941, 0.796078}
+        \pgfsetfillcolor{dialinecolor}
+        \fill (25.011200\du,-5.107520\du)--(25.011200\du,-3.334597\du)--(29.034371\du,-3.334597\du)--(29.034371\du,-5.107520\du)--cycle;
+        \definecolor{dialinecolor}{rgb}{0.000000, 0.000000, 0.000000}
+        \pgfsetstrokecolor{dialinecolor}
+        \draw (25.011200\du,-5.107520\du)--(25.011200\du,-3.334597\du)--(29.034371\du,-3.334597\du)--(29.034371\du,-5.107520\du)--cycle;
+        \pgfsetlinewidth{0.029160\du}
+        \pgfsetdash{}{0pt}
+        \pgfsetdash{}{0pt}
+        \pgfsetmiterjoin
+        \definecolor{dialinecolor}{rgb}{1.000000, 0.752941, 0.796078}
+        \pgfsetfillcolor{dialinecolor}
+        \fill (25.008400\du,-10.346160\du)--(25.008400\du,-8.573237\du)--(29.031571\du,-8.573237\du)--(29.031571\du,-10.346160\du)--cycle;
+        \definecolor{dialinecolor}{rgb}{0.000000, 0.000000, 0.000000}
+        \pgfsetstrokecolor{dialinecolor}
+        \draw (25.008400\du,-10.346160\du)--(25.008400\du,-8.573237\du)--(29.031571\du,-8.573237\du)--(29.031571\du,-10.346160\du)--cycle;
+        \pgfsetlinewidth{0.029160\du}
+        \pgfsetdash{}{0pt}
+        \pgfsetdash{}{0pt}
+        \pgfsetmiterjoin
+        \definecolor{dialinecolor}{rgb}{1.000000, 0.752941, 0.796078}
+        \pgfsetfillcolor{dialinecolor}
+        \fill (25.008400\du,-8.634480\du)--(25.008400\du,-6.861557\du)--(29.031571\du,-6.861557\du)--(29.031571\du,-8.634480\du)--cycle;
+        \definecolor{dialinecolor}{rgb}{0.000000, 0.000000, 0.000000}
+        \pgfsetstrokecolor{dialinecolor}
+        \draw (25.008400\du,-8.634480\du)--(25.008400\du,-6.861557\du)--(29.031571\du,-6.861557\du)--(29.031571\du,-8.634480\du)--cycle;
+        \pgfsetlinewidth{0.029160\du}
+        \pgfsetdash{}{0pt}
+        \pgfsetdash{}{0pt}
+        \pgfsetmiterjoin
+        \definecolor{dialinecolor}{rgb}{1.000000, 0.752941, 0.796078}
+        \pgfsetfillcolor{dialinecolor}
+        \fill (25.011200\du,-6.864480\du)--(25.011200\du,-5.091557\du)--(29.034371\du,-5.091557\du)--(29.034371\du,-6.864480\du)--cycle;
+        \definecolor{dialinecolor}{rgb}{0.000000, 0.000000, 0.000000}
+        \pgfsetstrokecolor{dialinecolor}
+        \draw (25.011200\du,-6.864480\du)--(25.011200\du,-5.091557\du)--(29.034371\du,-5.091557\du)--(29.034371\du,-6.864480\du)--cycle;
+        \pgfsetlinewidth{0.029160\du}
+        \pgfsetdash{}{0pt}
+        \pgfsetdash{}{0pt}
+        \pgfsetmiterjoin
+        \definecolor{dialinecolor}{rgb}{0.117647, 0.564706, 1.000000}
+        \pgfsetfillcolor{dialinecolor}
+        \fill (31.435360\du,-8.618800\du)--(31.435360\du,-6.845877\du)--(35.458531\du,-6.845877\du)--(35.458531\du,-8.618800\du)--cycle;
+        \definecolor{dialinecolor}{rgb}{0.000000, 0.000000, 0.000000}
+        \pgfsetstrokecolor{dialinecolor}
+        \draw (31.435360\du,-8.618800\du)--(31.435360\du,-6.845877\du)--(35.458531\du,-6.845877\du)--(35.458531\du,-8.618800\du)--cycle;
+        \pgfsetlinewidth{0.036000\du}
+        \pgfsetdash{}{0pt}
+        \pgfsetdash{}{0pt}
+        \pgfsetmiterjoin
+        \pgfsetbuttcap
+        {
+          \definecolor{dialinecolor}{rgb}{0.000000, 0.000000, 0.000000}
+          \pgfsetfillcolor{dialinecolor}
+          % was here!!!
+          \pgfsetarrowsend{stealth}
+          {\pgfsetcornersarced{\pgfpoint{0.000000\du}{0.000000\du}}\definecolor{dialinecolor}{rgb}{0.000000, 0.000000, 0.000000}
+            \pgfsetstrokecolor{dialinecolor}
+            \draw (14.004102\du,-7.508161\du)--(16.772160\du,-7.508161\du)--(16.772160\du,-12.638400\du)--(19.996385\du,-12.638400\du)--(19.996385\du,-12.040640\du);
+          }}
+        \pgfsetlinewidth{0.029160\du}
+        \pgfsetdash{}{0pt}
+        \pgfsetdash{}{0pt}
+        \pgfsetmiterjoin
+        \pgfsetbuttcap
+        {
+          \definecolor{dialinecolor}{rgb}{0.000000, 0.000000, 0.000000}
+          \pgfsetfillcolor{dialinecolor}
+          % was here!!!
+          \pgfsetarrowsend{stealth}
+          {\pgfsetcornersarced{\pgfpoint{0.000000\du}{0.000000\du}}\definecolor{dialinecolor}{rgb}{0.000000, 0.000000, 0.000000}
+            \pgfsetstrokecolor{dialinecolor}
+            \draw (27.022785\du,-3.334597\du)--(27.022785\du,-2.736800\du)--(30.156400\du,-2.736800\du)--(30.156400\du,-7.732339\du)--(31.435360\du,-7.732339\du);
+          }}
+        \pgfsetlinewidth{0.040000\du}
+        \pgfsetdash{}{0pt}
+        \pgfsetdash{}{0pt}
+        \pgfsetbuttcap
+        \pgfsetmiterjoin
+        \pgfsetlinewidth{0.000400\du}
+        \pgfsetbuttcap
+        \pgfsetmiterjoin
+        \pgfsetdash{}{0pt}
+        \definecolor{dialinecolor}{rgb}{0.717647, 0.717647, 0.615686}
+        \pgfsetfillcolor{dialinecolor}
+        \pgfpathmoveto{\pgfpoint{12.235840\du}{-7.347456\du}}
+        \pgfpathlineto{\pgfpoint{13.834581\du}{-7.347456\du}}
+        \pgfpathlineto{\pgfpoint{13.834581\du}{-7.051990\du}}
+        \pgfpathlineto{\pgfpoint{12.235840\du}{-7.051990\du}}
+        \pgfpathlineto{\pgfpoint{12.235840\du}{-7.347456\du}}
+        \pgfusepath{fill}
+        \pgfsetbuttcap
+        \pgfsetmiterjoin
+        \pgfsetdash{}{0pt}
+        \definecolor{dialinecolor}{rgb}{0.286275, 0.286275, 0.211765}
+        \pgfsetstrokecolor{dialinecolor}
+        \pgfpathmoveto{\pgfpoint{12.235840\du}{-7.347456\du}}
+        \pgfpathlineto{\pgfpoint{13.834581\du}{-7.347456\du}}
+        \pgfpathlineto{\pgfpoint{13.834581\du}{-7.051990\du}}
+        \pgfpathlineto{\pgfpoint{12.235840\du}{-7.051990\du}}
+        \pgfpathlineto{\pgfpoint{12.235840\du}{-7.347456\du}}
+        \pgfusepath{stroke}
+        \pgfsetbuttcap
+        \pgfsetmiterjoin
+        \pgfsetdash{}{0pt}
+        \definecolor{dialinecolor}{rgb}{0.788235, 0.788235, 0.713726}
+        \pgfsetfillcolor{dialinecolor}
+        \pgfpathmoveto{\pgfpoint{12.235840\du}{-7.347456\du}}
+        \pgfpathlineto{\pgfpoint{12.405361\du}{-7.508161\du}}
+        \pgfpathlineto{\pgfpoint{14.004102\du}{-7.508161\du}}
+        \pgfpathlineto{\pgfpoint{13.834581\du}{-7.347456\du}}
+        \pgfpathlineto{\pgfpoint{12.235840\du}{-7.347456\du}}
+        \pgfusepath{fill}
+        \pgfsetbuttcap
+        \pgfsetmiterjoin
+        \pgfsetdash{}{0pt}
+        \definecolor{dialinecolor}{rgb}{0.286275, 0.286275, 0.211765}
+        \pgfsetstrokecolor{dialinecolor}
+        \pgfpathmoveto{\pgfpoint{12.235840\du}{-7.347456\du}}
+        \pgfpathlineto{\pgfpoint{12.405361\du}{-7.508161\du}}
+        \pgfpathlineto{\pgfpoint{14.004102\du}{-7.508161\du}}
+        \pgfpathlineto{\pgfpoint{13.834581\du}{-7.347456\du}}
+        \pgfpathlineto{\pgfpoint{12.235840\du}{-7.347456\du}}
+        \pgfusepath{stroke}
+        \pgfsetlinewidth{0.042400\du}
+        \pgfsetbuttcap
+        \pgfsetmiterjoin
+        \pgfsetdash{}{0pt}
+        \definecolor{dialinecolor}{rgb}{0.000000, 0.000000, 0.000000}
+        \pgfsetstrokecolor{dialinecolor}
+        \pgfpathmoveto{\pgfpoint{13.745160\du}{-7.212947\du}}
+        \pgfpathlineto{\pgfpoint{13.361533\du}{-7.212947\du}}
+        \pgfusepath{stroke}
+        \pgfsetlinewidth{0.000400\du}
+        \pgfsetbuttcap
+        \pgfsetmiterjoin
+        \pgfsetdash{}{0pt}
+        \definecolor{dialinecolor}{rgb}{0.478431, 0.478431, 0.352941}
+        \pgfsetfillcolor{dialinecolor}
+        \pgfpathmoveto{\pgfpoint{13.834581\du}{-7.051990\du}}
+        \pgfpathlineto{\pgfpoint{14.004102\du}{-7.222015\du}}
+        \pgfpathlineto{\pgfpoint{14.004102\du}{-7.508161\du}}
+        \pgfpathlineto{\pgfpoint{13.834581\du}{-7.347456\du}}
+        \pgfpathlineto{\pgfpoint{13.834581\du}{-7.051990\du}}
+        \pgfusepath{fill}
+        \pgfsetbuttcap
+        \pgfsetmiterjoin
+        \pgfsetdash{}{0pt}
+        \definecolor{dialinecolor}{rgb}{0.286275, 0.286275, 0.211765}
+        \pgfsetstrokecolor{dialinecolor}
+        \pgfpathmoveto{\pgfpoint{13.834581\du}{-7.051990\du}}
+        \pgfpathlineto{\pgfpoint{14.004102\du}{-7.222015\du}}
+        \pgfpathlineto{\pgfpoint{14.004102\du}{-7.508161\du}}
+        \pgfpathlineto{\pgfpoint{13.834581\du}{-7.347456\du}}
+        \pgfpathlineto{\pgfpoint{13.834581\du}{-7.051990\du}}
+        \pgfusepath{stroke}
+        \pgfsetbuttcap
+        \pgfsetmiterjoin
+        \pgfsetdash{}{0pt}
+        \definecolor{dialinecolor}{rgb}{0.788235, 0.788235, 0.713726}
+        \pgfsetfillcolor{dialinecolor}
+        \pgfpathmoveto{\pgfpoint{12.244908\du}{-6.864584\du}}
+        \pgfpathlineto{\pgfpoint{12.423246\du}{-7.088010\du}}
+        \pgfpathlineto{\pgfpoint{13.655991\du}{-7.088010\du}}
+        \pgfpathlineto{\pgfpoint{13.477654\du}{-6.864584\du}}
+        \pgfpathlineto{\pgfpoint{12.244908\du}{-6.864584\du}}
+        \pgfusepath{fill}
+        \pgfsetbuttcap
+        \pgfsetmiterjoin
+        \pgfsetdash{}{0pt}
+        \definecolor{dialinecolor}{rgb}{0.286275, 0.286275, 0.211765}
+        \pgfsetstrokecolor{dialinecolor}
+        \pgfpathmoveto{\pgfpoint{12.244908\du}{-6.864584\du}}
+        \pgfpathlineto{\pgfpoint{12.423246\du}{-7.088010\du}}
+        \pgfpathlineto{\pgfpoint{13.655991\du}{-7.088010\du}}
+        \pgfpathlineto{\pgfpoint{13.477654\du}{-6.864584\du}}
+        \pgfpathlineto{\pgfpoint{12.244908\du}{-6.864584\du}}
+        \pgfusepath{stroke}
+        \pgfsetbuttcap
+        \pgfsetmiterjoin
+        \pgfsetdash{}{0pt}
+        \definecolor{dialinecolor}{rgb}{0.478431, 0.478431, 0.352941}
+        \pgfsetfillcolor{dialinecolor}
+        \pgfpathmoveto{\pgfpoint{13.477654\du}{-6.820000\du}}
+        \pgfpathlineto{\pgfpoint{13.655991\du}{-7.007406\du}}
+        \pgfpathlineto{\pgfpoint{13.655991\du}{-7.088010\du}}
+        \pgfpathlineto{\pgfpoint{13.477654\du}{-6.864584\du}}
+        \pgfpathlineto{\pgfpoint{13.477654\du}{-6.820000\du}}
+        \pgfusepath{fill}
+        \pgfsetbuttcap
+        \pgfsetmiterjoin
+        \pgfsetdash{}{0pt}
+        \definecolor{dialinecolor}{rgb}{0.286275, 0.286275, 0.211765}
+        \pgfsetstrokecolor{dialinecolor}
+        \pgfpathmoveto{\pgfpoint{13.477654\du}{-6.820000\du}}
+        \pgfpathlineto{\pgfpoint{13.655991\du}{-7.007406\du}}
+        \pgfpathlineto{\pgfpoint{13.655991\du}{-7.088010\du}}
+        \pgfpathlineto{\pgfpoint{13.477654\du}{-6.864584\du}}
+        \pgfpathlineto{\pgfpoint{13.477654\du}{-6.820000\du}}
+        \pgfusepath{stroke}
+        \pgfsetbuttcap
+        \pgfsetmiterjoin
+        \pgfsetdash{}{0pt}
+        \definecolor{dialinecolor}{rgb}{0.717647, 0.717647, 0.615686}
+        \pgfsetfillcolor{dialinecolor}
+        \pgfpathmoveto{\pgfpoint{12.244908\du}{-6.864584\du}}
+        \pgfpathlineto{\pgfpoint{13.477654\du}{-6.864584\du}}
+        \pgfpathlineto{\pgfpoint{13.477654\du}{-6.820000\du}}
+        \pgfpathlineto{\pgfpoint{12.244908\du}{-6.820000\du}}
+        \pgfpathlineto{\pgfpoint{12.244908\du}{-6.864584\du}}
+        \pgfusepath{fill}
+        \pgfsetbuttcap
+        \pgfsetmiterjoin
+        \pgfsetdash{}{0pt}
+        \definecolor{dialinecolor}{rgb}{0.286275, 0.286275, 0.211765}
+        \pgfsetstrokecolor{dialinecolor}
+        \pgfpathmoveto{\pgfpoint{12.244908\du}{-6.864584\du}}
+        \pgfpathlineto{\pgfpoint{13.477654\du}{-6.864584\du}}
+        \pgfpathlineto{\pgfpoint{13.477654\du}{-6.820000\du}}
+        \pgfpathlineto{\pgfpoint{12.244908\du}{-6.820000\du}}
+        \pgfpathlineto{\pgfpoint{12.244908\du}{-6.864584\du}}
+        \pgfusepath{stroke}
+        \pgfsetbuttcap
+        \pgfsetmiterjoin
+        \pgfsetdash{}{0pt}
+        \definecolor{dialinecolor}{rgb}{0.000000, 0.000000, 0.000000}
+        \pgfsetfillcolor{dialinecolor}
+        \pgfpathmoveto{\pgfpoint{12.476898\du}{-7.382972\du}}
+        \pgfpathlineto{\pgfpoint{12.611155\du}{-7.508161\du}}
+        \pgfpathlineto{\pgfpoint{13.745160\du}{-7.508161\du}}
+        \pgfpathlineto{\pgfpoint{13.620475\du}{-7.382972\du}}
+        \pgfpathlineto{\pgfpoint{12.476898\du}{-7.382972\du}}
+        \pgfusepath{fill}
+        \pgfsetbuttcap
+        \pgfsetmiterjoin
+        \pgfsetdash{}{0pt}
+        \definecolor{dialinecolor}{rgb}{0.000000, 0.000000, 0.000000}
+        \pgfsetstrokecolor{dialinecolor}
+        \pgfpathmoveto{\pgfpoint{12.476898\du}{-7.382972\du}}
+        \pgfpathlineto{\pgfpoint{12.611155\du}{-7.508161\du}}
+        \pgfpathlineto{\pgfpoint{13.745160\du}{-7.508161\du}}
+        \pgfpathlineto{\pgfpoint{13.620475\du}{-7.382972\du}}
+        \pgfpathlineto{\pgfpoint{12.476898\du}{-7.382972\du}}
+        \pgfusepath{stroke}
+        \pgfsetbuttcap
+        \pgfsetmiterjoin
+        \pgfsetdash{}{0pt}
+        \definecolor{dialinecolor}{rgb}{0.788235, 0.788235, 0.713726}
+        \pgfsetfillcolor{dialinecolor}
+        \pgfpathmoveto{\pgfpoint{12.467830\du}{-8.303879\du}}
+        \pgfpathlineto{\pgfpoint{12.593271\du}{-8.420000\du}}
+        \pgfpathlineto{\pgfpoint{13.727780\du}{-8.420000\du}}
+        \pgfpathlineto{\pgfpoint{13.602339\du}{-8.303879\du}}
+        \pgfpathlineto{\pgfpoint{12.467830\du}{-8.303879\du}}
+        \pgfusepath{fill}
+        \pgfsetbuttcap
+        \pgfsetmiterjoin
+        \pgfsetdash{}{0pt}
+        \definecolor{dialinecolor}{rgb}{0.286275, 0.286275, 0.211765}
+        \pgfsetstrokecolor{dialinecolor}
+        \pgfpathmoveto{\pgfpoint{12.467830\du}{-8.303879\du}}
+        \pgfpathlineto{\pgfpoint{12.593271\du}{-8.420000\du}}
+        \pgfpathlineto{\pgfpoint{13.727780\du}{-8.420000\du}}
+        \pgfpathlineto{\pgfpoint{13.602339\du}{-8.303879\du}}
+        \pgfpathlineto{\pgfpoint{12.467830\du}{-8.303879\du}}
+        \pgfusepath{stroke}
+        \pgfsetbuttcap
+        \pgfsetmiterjoin
+        \pgfsetdash{}{0pt}
+        \definecolor{dialinecolor}{rgb}{0.717647, 0.717647, 0.615686}
+        \pgfsetfillcolor{dialinecolor}
+        \pgfpathmoveto{\pgfpoint{12.467830\du}{-8.303879\du}}
+        \pgfpathlineto{\pgfpoint{13.611407\du}{-8.303879\du}}
+        \pgfpathlineto{\pgfpoint{13.611407\du}{-7.401108\du}}
+        \pgfpathlineto{\pgfpoint{12.467830\du}{-7.401108\du}}
+        \pgfpathlineto{\pgfpoint{12.467830\du}{-8.303879\du}}
+        \pgfusepath{fill}
+        \pgfsetbuttcap
+        \pgfsetmiterjoin
+        \pgfsetdash{}{0pt}
+        \definecolor{dialinecolor}{rgb}{0.286275, 0.286275, 0.211765}
+        \pgfsetstrokecolor{dialinecolor}
+        \pgfpathmoveto{\pgfpoint{12.467830\du}{-8.303879\du}}
+        \pgfpathlineto{\pgfpoint{13.610903\du}{-8.303879\du}}
+        \pgfpathlineto{\pgfpoint{13.610903\du}{-7.401360\du}}
+        \pgfpathlineto{\pgfpoint{12.467830\du}{-7.401360\du}}
+        \pgfpathlineto{\pgfpoint{12.467830\du}{-8.303879\du}}
+        \pgfusepath{stroke}
+        \pgfsetbuttcap
+        \pgfsetmiterjoin
+        \pgfsetdash{}{0pt}
+        \definecolor{dialinecolor}{rgb}{1.000000, 1.000000, 1.000000}
+        \pgfsetfillcolor{dialinecolor}
+        \pgfpathmoveto{\pgfpoint{12.566067\du}{-8.188010\du}}
+        \pgfpathlineto{\pgfpoint{13.512918\du}{-8.188010\du}}
+        \pgfpathlineto{\pgfpoint{13.512918\du}{-7.490529\du}}
+        \pgfpathlineto{\pgfpoint{12.566067\du}{-7.490529\du}}
+        \pgfpathlineto{\pgfpoint{12.566067\du}{-8.188010\du}}
+        \pgfusepath{fill}
+        \pgfsetbuttcap
+        \pgfsetmiterjoin
+        \pgfsetdash{}{0pt}
+        \definecolor{dialinecolor}{rgb}{0.286275, 0.286275, 0.211765}
+        \pgfsetstrokecolor{dialinecolor}
+        \pgfpathmoveto{\pgfpoint{12.566067\du}{-8.188010\du}}
+        \pgfpathlineto{\pgfpoint{13.512918\du}{-8.188010\du}}
+        \pgfpathlineto{\pgfpoint{13.512918\du}{-7.490781\du}}
+        \pgfpathlineto{\pgfpoint{12.566067\du}{-7.490781\du}}
+        \pgfpathlineto{\pgfpoint{12.566067\du}{-8.188010\du}}
+        \pgfusepath{stroke}
+        \pgfsetbuttcap
+        \pgfsetmiterjoin
+        \pgfsetdash{}{0pt}
+        \definecolor{dialinecolor}{rgb}{0.478431, 0.478431, 0.352941}
+        \pgfsetfillcolor{dialinecolor}
+        \pgfpathmoveto{\pgfpoint{13.602339\du}{-7.409673\du}}
+        \pgfpathlineto{\pgfpoint{13.727780\du}{-7.534861\du}}
+        \pgfpathlineto{\pgfpoint{13.727780\du}{-8.420000\du}}
+        \pgfpathlineto{\pgfpoint{13.602339\du}{-8.303879\du}}
+        \pgfpathlineto{\pgfpoint{13.602339\du}{-7.409673\du}}
+        \pgfusepath{fill}
+        \pgfsetbuttcap
+        \pgfsetmiterjoin
+        \pgfsetdash{}{0pt}
+        \definecolor{dialinecolor}{rgb}{0.286275, 0.286275, 0.211765}
+        \pgfsetstrokecolor{dialinecolor}
+        \pgfpathmoveto{\pgfpoint{13.602339\du}{-7.409673\du}}
+        \pgfpathlineto{\pgfpoint{13.727780\du}{-7.534861\du}}
+        \pgfpathlineto{\pgfpoint{13.727780\du}{-8.420000\du}}
+        \pgfpathlineto{\pgfpoint{13.602339\du}{-8.303879\du}}
+        \pgfpathlineto{\pgfpoint{13.602339\du}{-7.409673\du}}
+        \pgfusepath{stroke}
+        % setfont left to latex
+        \definecolor{dialinecolor}{rgb}{0.000000, 0.000000, 0.000000}
+        \pgfsetstrokecolor{dialinecolor}
+        \node at (13.120000\du,-8.960000\du){$client$};
+        % setfont left to latex
+        \definecolor{dialinecolor}{rgb}{0.000000, 0.000000, 0.000000}
+        \pgfsetstrokecolor{dialinecolor}
+        \node at (19.990000\du,-12.975000\du){\tiny \textbf{TCP stack queue}};
+        % setfont left to latex
+        \definecolor{dialinecolor}{rgb}{0.000000, 0.000000, 0.000000}
+        \pgfsetstrokecolor{dialinecolor}
+        \node at (16.476600\du,-13.580000\du){$server$};
+        \node at (33.500000\du,-9.055000\du){\tiny \textbf{service process}};
+        \node at (19.950000\du,-7.950000\du){\vdots};
+        \node at (26.990000\du,-7.950000\du){\vdots};
+      \end{tikzpicture}
+    \end{singlespace}
+  \end{center}
+  \caption{服务端连接处理流程}
+  \label{fig1}
+\end{figure}
+
+客户端则是固定和服务端建立10个长连接；连接建立后，通过心跳消息来维护链路。如果心跳消息在一定时间内没有响应，就认为连接有问题，会马上将连接断连再重连。
+
+在实际的环境配置中，客户端配置了12个进程，共需建立120个连接，这就导致有20个连接因为服务端不处理，最终会心跳超时。超时后，客户端关闭该连接后继续重连，这样反反复复，直到服务端的socket资源耗尽，出现拒绝服务（因为有其它业务也需要建立链路，但由于socket资源耗尽，连接无法建立）。
+
+\section{修改方案}
+修改方案很简单，调整连接缓存队列大小即可。
+
+\section{问题总结}
+定位该问题的难点在于问题的重现，除此之外就是服务端对于底层链路的管理和维护是通过第三方库来完成的，由公司统一发布，代码不属于我们的维护范畴，这也在一定程度上对问题的定位带来了因难。
+
+图\ref{fig1}中，之所以把TCP协议栈的队列池也画出来，是因为在问题解决后的验证过程中，发现既使服务端进程的连接数已经达到最大连接数，但如果客户端继续跟服务器建链，链路还是能建的起来，通过netstat查看监听端口上的连接数，大于服务器进程的最大连接数，而通过lsof查看则没有这一现象。这是因为TCP的三次握手是不需要服务端进程参与的，服务进程只需要起端口监听就可以了。TCP协议栈会自动完成三次握手，并将完成三次握手的连接放到自己的队列池中，然后如果服务进程调用accept的话，协议栈就从该队列池返回一个连接给服务进程。TCP协议栈最大缓存的连接数是服务进程在起监听时调用listen函数时通过backlog参数指定的。关于该参数的说明，参见\href{http://www.cppblog.com/thisisbin/archive/2010/02/07/107444.html}{这里}。
+
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%% 正文部分结束%%%%%%%%%%%%%%%%%%%%%%
+
