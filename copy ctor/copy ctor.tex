@@ -1,0 +1,288 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% Name: XeTeX+xeCJK日常使用模板
+% Author: Lox Freeman
+% Email: xiaohanyu1988@gmail.com
+% 、
+% 本文档可以自由转载、修改，希望能给广大TeXer的中文之路提供一些方便。
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\documentclass[a4paper, 11pt, titlepage]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% xeCJK相关宏包%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{xltxtra,fontspec,xunicode}
+
+\usepackage[slantfont, boldfont, CJKchecksingle]{xeCJK}
+\CJKsetecglue{\hskip 0.15em plus 0.05em minus 0.05em}
+% slanfont: 允许斜体
+% boldfont: 允许粗体
+% CJKnormalspaces: 仅忽略汉字之间的空白,但保留中英文之间的空白。
+% CJKchecksingle: 避免单个汉字单独占一行。
+% CJKaddspaces: [备选]忽略汉字之间的空白,并且自动在中英文转换时插入空白。
+
+% \CJKlanguage{zh-cn}                 % 中文标点特殊处理
+\XeTeXlinebreaklocale "zh"           % 针对中文进行断行
+\XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
+% 给予TeX断行一定自由度
+%%%%%%%%%%%%%%%%%%%%%%%%% xeCJK%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%% 日常所用宏包、通通放在一起%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 什么常用的宏包都可以放这里。下面是我常用的宏包，每个都给出了简要注释
+\usepackage[top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
+% 控制页边距
+\usepackage{enumerate}               % 控制项目列表
+\usepackage{multicol}                % 多栏显示
+
+\usepackage[%
+pdfstartview=FitH,%
+CJKbookmarks=true,%
+bookmarks=true,%
+bookmarksnumbered=true,%
+bookmarksopen=true,%
+colorlinks=true,%
+citecolor=blue,%
+linkcolor=blue,%
+anchorcolor=green,%
+urlcolor=blue%
+]{hyperref}
+
+% \usepackage[margin=12mm]{geometry}
+
+\usepackage{titlesec}                % 控制标题
+\usepackage{titletoc}                % 控制目录
+\usepackage{type1cm}                 % 控制字体大小
+\usepackage{indentfirst}             % 首行缩进，用\noindent取消某段缩进
+\usepackage{bbding}                  % 一些特殊符号
+\usepackage{cite}                    % 支持引用
+\usepackage{framed,color,xcolor}            % 支持彩色文本、底色、文本框等
+\usepackage{latexsym}                % LaTeX一些特殊符号宏包
+\usepackage{amsmath}                 % AMS LaTeX宏包
+\usepackage{bm}                      % 数学公式中的黑斜体
+\usepackage{relsize}                 % 调整公式字体大小：\mathsmaller, \mathlarger
+\usepackage{soul}                    % 下划线自动回车换行
+\usepackage{attachfile}              % 添加附见使用的宏包
+\usepackage{parcolumns}              % 列排版
+% \usepackage{setspace}
+\makeindex                           % 生成索引
+
+\makeatletter
+\let\std@footnotetext\@footnotetext
+\usepackage{setspace}
+\let\@footnotetext\std@footnotetext
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%% 基本插图方法%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx}                % 图形宏包
+% \begin{figure}[htbp]               % 控制插图位置
+%   \setlength{\abovecaptionskip}{0pt}    
+%   \setlength{\belowcaptionskip}{10pt}
+%   控制图形和上下文的距离
+%   \centering                       % 使图形居中显示
+%   \includegraphics[width=0.8\textwidth]{CTeXLive2008.jpg}
+%   控制图形显示宽度为0.8\textwidth
+%   \caption{CTeXLive2008安装过程} \label{fig:CTeXLive2008}
+%   图形题目和交叉引用标签
+% \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%% 插图方法结束%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% 绘图方法%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tikz}
+\usepackage{amsmath,bm,times}
+\usepackage{verbatim}
+
+\usepackage{tabularx}
+% \usepackage{hhline}
+% \usepackage{colortbl}
+\usetikzlibrary{shapes,arrows,shadows,fit,snakes}
+\usetikzlibrary{calc}           %coordinate
+
+% \newlength\Textwd
+% \setlength\Textwd{3cm}
+% \newcommand\Textbox[2]{%
+% \parbox[c][#1][c]{\Textwd}{\centering#2}}
+
+\newlength\Textwd
+\setlength\Textwd{3cm}
+\newcommand\Textbox[2]{%
+  \parbox[c][#1][c]{\Textwd}{\linespread{0.5}\centering#2}}
+
+\makeatletter
+\DeclareRobustCommand{\rvdots}{%
+  \vbox{
+    \baselineskip6\p@\lineskiplimit\z@
+    \kern-\p@
+    \hbox{.}\hbox{.}\hbox{.}
+  }}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%% 绘图方法结束%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% fancyhdr设置页眉页脚%%%%%%%%%%%%%%%%%%%%
+\usepackage{fancyhdr}                % 页眉页脚
+\pagestyle{fancy}                    % 页眉页脚风格
+\setlength{\headheight}{15pt}        % 有时会出现\headheight too small的warning
+% \fancyhf{}                          % 清空当前页眉页脚的默认设置
+%%%%%%%%%%%%%%%%%%%%%%%%% fancyhdr设置结束%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% xeCJK字体设置%%%%%%%%%%%%%%%%%%%%%%%%%
+\punctstyle{kaiming}                                        % 设置中文标点样式
+% 支持全角、半角、kaiming等多种方式
+\setmainfont[Mapping=tex-text]{Adobe Garamond Pro}
+\newfontfamily\courier{Courier New}
+\setCJKmainfont[BoldFont={YaHei Consolas Hybrid},
+ItalicFont={YaHei Consolas Hybrid}]{YaHei Consolas Hybrid}
+\setCJKsansfont{Adobe Heiti Std}
+\setCJKmonofont{Adobe Fangsong Std}
+
+%%%% 定义新字体%%%%
+\setCJKfamilyfont{song}{Adobe Song Std}
+\setCJKfamilyfont{kai}{Adobe Kaiti Std}
+\setCJKfamilyfont{hei}{Adobe Heiti Std}
+\setCJKfamilyfont{fangsong}{Adobe Fangsong Std}
+\setCJKfamilyfont{lisu}{LiSu}
+\setCJKfamilyfont{youyuan}{YouYuan}
+
+\newcommand{\song}{\CJKfamily{song}}                       % 自定义宋体
+\newcommand{\kai}{\CJKfamily{kai}}                         % 自定义楷体
+\newcommand{\hei}{\CJKfamily{hei}}                         % 自定义黑体
+\newcommand{\fangsong}{\CJKfamily{fangsong}}               % 自定义仿宋体
+\newcommand{\lisu}{\CJKfamily{lisu}}                       % 自定义隶书
+\newcommand{\youyuan}{\CJKfamily{youyuan}}                 % 自定义幼圆
+%%%%%%%%%%%%%%%%%%%%%%%%% xeCJK字体设置结束%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% listings宏包粘贴源码%%%%%%%%%%%%%%%%%%%%
+\usepackage{listings}                % 方便粘贴源代码，部分代码高亮功能
+\lstloadlanguages{}                  % 所要粘贴代码的编程语言
+
+\include{rgb}
+
+\newfontfamily\listingsfont[Scale=0.9]{Consolas}
+\newfontfamily\listingsfontinline[Scale=0.9]{Consolas}
+
+\definecolor{sh_keyword}{rgb}{0.06, 0.10, 0.98}   % #101AF9
+%\definecolor{orange}{RGB}{255,127,0}
+\definecolor{shadecolor}{rgb}{0.83, 0.83, 0.83}
+%\definecolor{shadecolor}{RGB}{236, 236, 236}
+
+\def\lstsmallmath{\leavevmode\ifmmode \scriptstyle \else  \fi}
+\def\lstsmallmathend{\leavevmode\ifmmode  \else  \fi}
+
+\renewcommand{\lstlistingname}{代码}
+
+\lstset {
+  % language=[ANSI]c,
+  language=c++,
+  backgroundcolor=\color{light cyan},
+  frame=shadowbox,
+  breaklines,
+  rulesepcolor=\color{red!20!green!20!blue!20},
+  showspaces=false,showtabs=false,tabsize=4,
+  numberstyle=\tiny,numbers=left,
+  basicstyle= \listingsfont,
+  stringstyle=\color{dark green},
+  keywordstyle = \color{sh_keyword}\bfseries,
+  commentstyle=\color{forest green}\itshape,
+  captionpos=b,
+  showspaces=false,showtabs=false, showstringspaces=false,
+  xleftmargin=0.7cm, xrightmargin=0.5cm,
+  lineskip=-0.3em,
+  breaklines=tr,
+  escapebegin={\lstsmallmath}, escapeend={\lstsmallmathend},
+  extendedchars=false
+}
+
+\lstnewenvironment{acol}[1][]{\lstset{language={[x86masm]Assembler},#1}}{}
+\newenvironment{parcolumenv}[1] {\begin{spacing}{#1}}{\end{spacing}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% listings宏包设置结束%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% 一些关于中文文档的重定义%%%%%%%%%%%%%%%%%
+
+%%%% 数学公式定理的重定义%%%%
+\newtheorem{example}{例}                                   % 整体编号
+\newtheorem{algorithm}{算法}
+\newtheorem{theorem}{定理}[section]                        % 按 section 编号
+\newtheorem{definition}{定义}
+\newtheorem{axiom}{公理}
+\newtheorem{property}{性质}
+\newtheorem{proposition}{命题}
+\newtheorem{lemma}{引理}
+\newtheorem{corollary}{推论}
+\newtheorem{remark}{注解}
+\newtheorem{condition}{条件}
+\newtheorem{conclusion}{结论}
+\newtheorem{assumption}{假设}
+
+%%%% 章节等名称重定义%%%%
+\renewcommand{\contentsname}{目录}     
+\renewcommand{\indexname}{索引}
+\renewcommand{\listfigurename}{插图目录}
+\renewcommand{\listtablename}{表格目录}
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+\renewcommand{\appendixname}{附录}
+
+%%%% 设置chapter、section与subsection的格式%%%%
+\titleformat{\chapter}{\centering\huge}{第\thechapter{}章}{1em}{\textbf}
+\titleformat{\section}{\centering\LARGE}{\thesection}{1em}{\textbf}
+\titleformat{\subsection}{\Large}{\thesubsection}{1em}{\textbf}
+%%%%%%%%%%%%%%%%%%%%%%%%% 中文重定义结束%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% 一些个性设置%%%%%%%%%%%%%%%%%%%%%%
+% \renewcommand{\baselinestretch}{1.3}     % 效果同\linespread{1.3}
+% \pagenumbering{arabic}                   % 设定页码方式，包括arabic、roman等方式
+% \sloppy                                  % 有时LaTeX无从断行，产生overfull的错误，
+% 这条命令降低LaTeX断行标准
+\setlength{\parskip}{0.5\baselineskip}     % 设定段间距
+\linespread{1.6}                           % 设定行距
+\newcommand{\pozhehao}{\kern0.3ex\rule[0.8ex]{2em}{0.1ex}\kern0.3ex}
+% 中文破折号，据说来自清华模板
+
+\newcommand*{\TitleFont}{\usefont{\encodingdefault}{\rmdefault}{b}{n}\fontsize{32}{40}\selectfont}
+% 标题字体设置
+%%%%%%%%%%%%%%%%%%%%%%%%% 个性设置结束%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% 正文部分%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\setlength{\parindent}{2em}
+% 设定首行缩进为2em。注意此设置一定要在document环境之中。
+% 这可能与\setlength作用范围相关
+
+\title{\TitleFont 未定义拷贝构造函数导致进程重启}
+\author{\href{mailto:foolswonder@gmail.com}{秦新良}}
+\date{\today}
+
+\maketitle
+
+\tableofcontents
+% {\courier{\textbf{Acknowledgments}}}
+\newpage
+
+\section{问题描述}
+今天版本在测试过程中发现这样一个问题，在某个业务流程下，进程必然重启。最终定位的原因是由于某个类没有定义拷贝构造函数而引起了进程的异常退出。该问题比较隐悔，且涉及到一些编译器的默认形为，有必要记录一下，以免后续也犯同样的错误。
+
+\section{问题分析}
+进程异常退出，首先分析异常退出时进程的堆栈信息。通过分析确定异常是由于某个类在销毁时，其在构造函数中delete某个指针成员变量\footnote{该指针成员变量是新版本修改引入，未引入该变量前，业务正常。}时抛出异常，导致进程退出。释放内存系统抛出异常一般有两个原因：野指针和内存重复释放。进一步排查代码发现，该成员不可能出现野指针的情况。除此之外，那只能是内存重复释放了\footnote{两个指针指向同一片内存，内存通过其中的一个指针释放后，再通过另一个指针释放就会导致该情况。}。虽然只剩这一种情况了，但继续排查代码后，始终未发现是什么原因导致了内存的重复释放。
+
+说了这么多，你可能看的一头雾水，让我们把修改前后的代码贴出来就一目了然了。\newline
+
+\lstinputlisting[label=lst1,caption=修改前的类定义]{C1.cpp}
+\lstinputlisting[label=lst2,caption=修改后的类定义]{C2.cpp}
+
+从代码\ref{lst1}和代码\ref{lst2}的前后对比中可以看出，修改后的代码在类\emph{TDataNode}中新增了指针类型的成员变量\emph{pData}，而且为了防止类的不同对象之间调用默认的赋值运算符相互赋值导致\emph{pData}指向同一片内存，同时显式的重载了类的赋值运算符。排查代码过程中也发现，确实有一处代码使用了该赋值操作，如下：
+\begin{snugshade}
+{\color{blue}TDataNode} dataNode = dataNodeInput;
+\end{snugshade}
+\noindent而其它使用到该类的场景都是通过指针或引用操作的。这样分析看来，这个赋值操作是重点怀疑对象，但还不能确定就是它引起的。
+
+进一步重现问题和走读代码发现，该业务流程恰好会走到这个使用赋值的分支并出现异常，把代码范围缩小到这一行上之后才明白到底出了什么问题：虽然这里是调用类\emph{TDataNode}的赋值运算符将\emph{dataNodeInput}赋值给\emph{dataNode}来完成\emph{dataNode}的初始化，但在这种场景下，为了提高效率，编译器自动将该操作优化成了调用类\emph{TDataNode}的拷贝构造函数直接构造出dataNode，而不是先调用类的构造函数构造出\emph{dataNode}，再调用赋值运算符初始化dataNode。我们的代码中没有显式的定义类的拷贝构造函数，这种场景下，编译器认为类\emph{TDataNode}需要一个拷贝构造函数，于是自动生成一个默认的拷贝构造函数。而编译器默认生成的拷贝构造函数对指针成员变量的操作方式是浅拷贝，这就导致了两个对象的成员变量同时指向了一块内存，两个对象最终销毁时就出现了对同一块内存的重复释放，导致进程异常重启。
+
+\section{关于C++}
+C++语言强大而灵活，但为了支持这种强大和灵活，C++的编译器为我们做了很多工作，如生成默认构造函数、拷贝构造函数、虚函数表等。像该案例中编译器的这种优化行为并不是程序员想要的，结果导致严重的后果。如果程序员不了解编译器的这种行为，出现这种错误就再所难免，而且一旦出现，问题也极难定位。
+
+{\color{blue}最后感叹一句：C++的水真是太深了}。
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%% 正文部分结束%%%%%%%%%%%%%%%%%%%%%%
+
