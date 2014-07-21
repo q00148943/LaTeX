@@ -1,0 +1,660 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% Name: XeTeX+xeCJK日常使用模板
+% Author: Lox Freeman
+% Email: xiaohanyu1988@gmail.com
+% 、
+% 本文档可以自由转载、修改，希望能给广大TeXer的中文之路提供一些方便。
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\documentclass[a4paper, 12pt, titlepage]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% xeCJK相关宏包%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{xltxtra,fontspec,xunicode}
+\usepackage[slantfont, boldfont, CJKchecksingle]{xeCJK}
+
+\CJKsetecglue{\hskip 0.15em plus 0.05em minus 0.05em}
+% slanfont: 允许斜体
+% boldfont: 允许粗体
+% CJKnormalspaces: 仅忽略汉字之间的空白,但保留中英文之间的空白。
+% CJKchecksingle: 避免单个汉字单独占一行。
+% CJKaddspaces: [备选]忽略汉字之间的空白,并且自动在中英文转换时插入空白。
+
+% \CJKlanguage{zh-cn}                 % 中文标点特殊处理
+\XeTeXlinebreaklocale "zh"           % 针对中文进行断行
+\XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
+% 给予TeX断行一定自由度
+%%%%%%%%%%%%%%%%%%%%%%%%% xeCJK%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%% 日常所用宏包、通通放在一起%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 什么常用的宏包都可以放这里。下面是我常用的宏包，每个都给出了简要注释
+\usepackage[top=2.5cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} % 控制页边距
+\usepackage{enumerate}               % 控制项目列表
+\usepackage{multicol}                % 多栏显示
+
+\usepackage[%
+pdfstartview=FitH,%
+CJKbookmarks=true,%
+bookmarks=true,%
+bookmarksnumbered=true,%
+bookmarksopen=true,%
+colorlinks=true,%
+citecolor=seco,%
+linkcolor=seco,%
+anchorcolor=seco,%
+urlcolor=seco%
+]{hyperref}                          % 超链接相关设置
+
+\usepackage{titlesec}                % 控制标题
+\usepackage{titletoc}                % 控制目录
+\usepackage{type1cm}                 % 控制字体大小
+\usepackage{indentfirst}             % 首行缩进，用\noindent取消某段缩进
+\usepackage{bbding}                  % 一些特殊符号
+\usepackage{cite}                    % 支持引用
+\usepackage{framed,color,xcolor}     % 支持彩色文本、底色、文本框等
+\usepackage{latexsym}                % LaTeX一些特殊符号宏包
+\usepackage{amsmath}                 % AMS LaTeX宏包
+\usepackage{bm}                      % 数学公式中的黑斜体
+\usepackage{relsize}                 % 调整公式字体大小：\mathsmaller, \mathlarger
+\usepackage{soul}                    % 下划线自动回车换行
+\usepackage{attachfile}              % 添加附见使用的宏包
+\usepackage{parcolumns}              % 列排版
+% \usepackage{setspace}
+
+\makeindex                           % 生成索引
+
+\makeatletter
+\let\std@footnotetext\@footnotetext
+\usepackage{setspace}
+\let\@footnotetext\std@footnotetext
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%% 绘图方法%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx}                % 图形宏包
+\graphicspath{{./figure/}{./figures/}{./image/}{./graphics/}{./graphic/}{./pictures/}{./picture/}}
+
+\usepackage{tikz}
+\usepackage{amsmath,bm,times}
+\usepackage{verbatim}
+
+\usepackage{tabularx}
+
+\usetikzlibrary{shapes,arrows,shadows,fit,snakes,positioning}
+\usetikzlibrary{calc}           %coordinate
+
+\ifx\du\undefined
+\newlength{\du}
+\fi
+\setlength{\du}{15\unitlength}
+
+\newlength\Textwd
+\setlength\Textwd{3cm}
+\newcommand\Textbox[2]{%
+  \parbox[c][#1][c]{\Textwd}{\linespread{0.5}\centering#2}}
+
+\makeatletter
+\DeclareRobustCommand{\rvdots}{%
+  \vbox{
+    \baselineskip6\p@\lineskiplimit\z@
+    \kern-\p@
+    \hbox{.}\hbox{.}\hbox{.}
+  }}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%% 绘图方法结束%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% fancyhdr设置页眉页脚%%%%%%%%%%%%%%%%%%%%
+\usepackage{etoolbox}
+\usepackage{fancyhdr}                % 页眉页脚
+\pagestyle{fancy}                    % 页眉页脚风格
+\setlength{\headheight}{15pt}        % 有时会出现\headheight too small的warning
+
+\makeatletter
+\patchcmd{\@fancyhead}{\rlap}{\color{seco}\rlap}{}{}
+\patchcmd{\headrule}{\hrule}{\color{seco}\hrule}{}{}
+\patchcmd{\@fancyfoot}{\rlap}{\color{seco}\rlap}{}{}
+\patchcmd{\footrule}{\hrule}{\color{seco}\hrule}{}{}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%% fancyhdr设置结束%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% xeCJK字体设置%%%%%%%%%%%%%%%%%%%%%%%%%
+\setmainfont[Ligatures=TeX]{Minion Pro} % (\textrm)
+\setsansfont{Myriad Pro}                % (\textsf)
+\setmonofont{Adobe Garamond Pro}        % Palatino Linotype
+
+\setCJKmainfont[BoldFont={方正兰亭纤黑_GBK},ItalicFont={Adobe Kaiti Std}]{Adobe Kaiti Std}
+\setCJKsansfont[BoldFont={方正兰亭纤黑_GBK}]{方正兰亭纤黑_GBK}
+\setCJKmonofont{方正兰亭纤黑_GBK}
+%%%%%%%%%%%%%%%%%%%%%%%%% xeCJK字体设置结束%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% listings宏包粘贴源码%%%%%%%%%%%%%%%%%%%%
+\usepackage{listings}                % 方便粘贴源代码，部分代码高亮功能
+\lstloadlanguages{}                  % 所要粘贴代码的编程语言
+
+\newfontfamily\listingsfont{Consolas}
+\newfontfamily\listingsfontinline{Consolas}
+
+
+\definecolor{sh_keyword}{rgb}{0.06, 0.10, 0.98}   % #101AF9
+\definecolor{shadecolor}{rgb}{0.83, 0.83, 0.83}
+\definecolor{monokai-grey-dark}{RGB}{39, 40, 34}   % #272822
+\definecolor{monokai-yellow-light}{RGB}{248, 248, 246}   % #F8F8F2
+\definecolor{monokai-green}{RGB}{166, 226, 42}
+\definecolor{dark green}{rgb}{0.000000,0.392157,0.000000}
+\def\lstsmallmath{\leavevmode\ifmmode \scriptstyle \else  \fi}
+\def\lstsmallmathend{\leavevmode\ifmmode  \else  \fi}
+
+% \definecolor{seco}{RGB}{9,80,3}
+% \definecolor{seco}{RGB}{0,145,215}
+\definecolor{seco}{RGB}{0,175,152}
+\definecolor{main}{RGB}{127,191,51}
+
+\renewcommand{\lstlistingname}{代码}
+
+\lstset {
+  language=c++,
+  backgroundcolor=\color{monokai-grey-dark},
+  % frame=shadowbox,
+  % breaklines,
+  % rulesepcolor=\color{red!20!green!20!blue!20},
+  showspaces=false,showtabs=false,tabsize=4,
+  numberstyle=\tiny\color{black},numbers=left,
+  basicstyle= \small\listingsfont\color{monokai-yellow-light},
+  stringstyle=\color{dark green},
+  keywordstyle = \color{monokai-green}\bfseries,
+  commentstyle=\tiny\color{forest green}\itshape,
+  captionpos=b,
+  showspaces=false,showtabs=false, showstringspaces=false,
+  xleftmargin=0.7cm, xrightmargin=0.5cm,
+  % lineskip=-0.3em,
+  breaklines=tr,
+  escapebegin={\lstsmallmath}, escapeend={\lstsmallmathend},
+  extendedchars=false
+}
+
+\lstnewenvironment{acol}[1][]{\lstset{language={[x86masm]Assembler},#1}}{}
+\newenvironment{parcolumenv}[1] {\begin{spacing}{#1}}{\end{spacing}}
+%%%%%%%%%%%%%%%%%%%%%%%%% listings宏包设置结束%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% 一些关于中文文档的重定义%%%%%%%%%%%%%%%%%
+
+%%%% 数学公式定理的重定义%%%%
+\newtheorem{example}{例}                                   % 整体编号
+\newtheorem{algorithm}{算法}
+\newtheorem{theorem}{定理}[section]                        % 按 section 编号
+\newtheorem{definition}{定义}
+\newtheorem{axiom}{公理}
+\newtheorem{property}{性质}
+\newtheorem{proposition}{命题}
+\newtheorem{lemma}{引理}
+\newtheorem{corollary}{推论}
+\newtheorem{remark}{注解}
+\newtheorem{condition}{条件}
+\newtheorem{conclusion}{结论}
+\newtheorem{assumption}{假设}
+
+%%%% 章节等名称重定义%%%%
+\renewcommand{\contentsname}{目\hspace{2em}录}
+\renewcommand{\indexname}{索引}
+\renewcommand{\listfigurename}{插图目录}
+\renewcommand{\listtablename}{表格目录}
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+\renewcommand{\appendixname}{附\hspace{2em}录}
+
+%%%% 设置chapter、section与subsection的格式%%%%
+\titleformat{\chapter}{\centering\huge}{\color{seco}第\thechapter{}章}{1em}{\color{seco}\textbf}
+\titleformat{\section}{\centering\LARGE}{\color{seco}\thesection}{1em}{\color{seco}\textbf}
+\titleformat{\subsection}{\Large}{\color{seco}\thesubsection}{1em}{\color{seco}\textbf}
+%%%%%%%%%%%%%%%%%%%%%%%%% 中文重定义结束%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% 一些个性设置%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\parskip}{0.5\baselineskip}     % 设定段间距
+\linespread{1.6}                           % 设定行距
+\newcommand{\pozhehao}{\kern0.3ex\rule[0.8ex]{2em}{0.1ex}\kern0.3ex}% 中文破折号，据说来自清华模板
+
+\setCJKfamilyfont{title}{方正正中黑简体}
+
+\newcommand*{\TitleFont}{\usefont{\encodingdefault}{\rmdefault}{b}{n}\fontsize{32}{40}\selectfont\CJKfamily{title}\color{seco}}% 标题字体设置
+
+\renewcommand{\today}{\color{seco}\number\year 年 \number\month 月 \number\day 日}
+%%%%%%%%%%%%%%%%%%%%%%%%% 个性设置结束%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% 正文部分%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\setlength{\parindent}{2em}
+% 设定首行缩进为2em。注意此设置一定要在document环境之中。
+% 这可能与\setlength作用范围相关
+
+\title{\TitleFont 数据结构之排序\vspace{8cm}}
+\author{\href{mailto:q00148943@gmail.com}{\LARGE{秦新良}}}
+\date{\vspace{0.5cm}\today}
+
+\maketitle
+
+\tableofcontents
+\newpage
+
+
+\section{排序}
+本篇介绍常用的排序算法并给出其实现，最后对各种排序算法作比较。
+
+\subsection{插入排序}
+插入排序的一个非常形象的说明就是打牌。起牌的过程中，每次我们摸起一张牌后，都会和手中已有的牌做比较，然后将牌插到相应的位置，如图\ref{fig00}所示。
+\begin{figure}[!htbp]
+  \setlength{\abovecaptionskip}{0pt}
+  \centering
+  \includegraphics[width=0.6\textwidth]{playing_cards.jpg}
+  \caption{打牌}
+  \label{fig00}
+\end{figure}
+
+
+整个起牌的过程，就是对手中的牌的一次插入排序过程。当然，也不排除有的人对手中的牌并不排序，因为这样可以有效的防止“邻居偷窥“，这种就不在我们的举例范围之内了。
+
+代码\ref{lst1}给出了插入排序的C代码实现。该实现的时间复杂度为O(${n}^{2}$)。
+\begin{spacing}{1.0}
+  \lstinputlisting[label=lst1,caption=插入排序]{list/insert_sort.c}
+\end{spacing}
+
+为了更清楚的理解该算法，下面以排序6、5、3、2、8、7、1、4这一组数为例来说明插入排序的算法原理。
+
+初始未排序：
+\begin{figure}[!htb]
+  \setlength{\abovecaptionskip}{0pt}
+  \definecolor{sorted}{RGB}{239,126,30}
+  \definecolor{unsorted}{RGB}{0,175,152}
+  \definecolor{sorting}{RGB}{127,191,51}
+  \begin{center}
+    \begin{tikzpicture}
+      \tikzset{
+        BLOCK/.style={
+          draw,
+          align=center,
+          text height=0.4cm,
+          text width=0.8cm,
+          draw=black,
+          rectangle split part fill={unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted},
+          rectangle split, 
+          rectangle split horizontal,
+          rectangle split parts=#1, 
+        }
+      }
+
+      % \node (h1) {\footnotesize{unsorted}};
+      \node (unsorted) [BLOCK=8]{
+        \nodepart{one}\raisebox{0.6pt}{6} \strut\nodepart{two}5\strut
+        \nodepart{three}3 \strut\nodepart{four}2\strut
+        \nodepart{five}8 \strut\nodepart{six}7\strut
+        \nodepart{seven}1 \strut\nodepart{eight}4\strut};
+
+      \node[xshift=-1cm,anchor=east] at (unsorted.west) {\footnotesize $j = 0$};
+    \end{tikzpicture}
+  \end{center}
+  \caption{i = 0}
+  \label{fig0}
+\end{figure}
+
+i = 1时：
+\begin{figure}[!htb]
+  \setlength{\abovecaptionskip}{0pt}
+  \definecolor{sorted}{RGB}{239,126,30}
+  \definecolor{unsorted}{RGB}{0,175,152}
+  \definecolor{sorting}{RGB}{127,191,51}
+  \begin{center}
+    \begin{tikzpicture}
+      \tikzset{
+        BLOCK/.style={
+          draw,
+          align=center,
+          text height=0.4cm,
+          text width=0.8cm,
+          draw=black,
+          rectangle split part fill={unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted},
+          rectangle split, 
+          rectangle split horizontal,
+          rectangle split parts=#1, 
+        }
+      }
+
+      \node (node1)[BLOCK=8, rectangle split part fill={sorted,sorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted}]{
+        \nodepart{one}\raisebox{0.6pt}{5} \strut\nodepart{two}6\strut
+        \nodepart{three}3 \strut\nodepart{four}2\strut
+        \nodepart{five}8 \strut\nodepart{six}7\strut
+        \nodepart{seven}1 \strut\nodepart{eight}4\strut};
+
+      \node[xshift=-1cm,anchor=east] at (node1.west) {\footnotesize $j = 1$};
+      \draw [black, -stealth] (node1.two south) to [bend left=45] (node1.one south);
+    \end{tikzpicture}
+  \end{center}
+  \caption{i = 1}
+  \label{fig1}
+\end{figure}
+
+i = 2时：
+\begin{figure}[!htb]
+  \setlength{\abovecaptionskip}{0pt}
+  \definecolor{sorted}{RGB}{239,126,30}
+  \definecolor{unsorted}{RGB}{0,175,152}
+  \definecolor{sorting}{RGB}{127,191,51}
+  \begin{center}
+    \begin{tikzpicture}
+      \tikzset{
+        BLOCK/.style={
+          draw,
+          align=center,
+          text height=0.2cm,
+          text width=0.4cm,
+          draw=black,
+          rectangle split part fill={unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted},
+          rectangle split, 
+          rectangle split horizontal,
+          rectangle split parts=#1, 
+        }
+      }
+
+      \node (node2)[BLOCK=8, rectangle split part fill={sorted,sorting,sorting,unsorted,unsorted,unsorted,unsorted,unsorted}]{
+        \nodepart{one}\raisebox{-1.2pt}{\scriptsize 5} \strut\nodepart{two}\scriptsize 3\strut
+        \nodepart{three}\scriptsize 6 \strut\nodepart{four}\scriptsize 2\strut
+        \nodepart{five}\scriptsize 8 \strut\nodepart{six}\scriptsize 7\strut
+        \nodepart{seven}\scriptsize 1 \strut\nodepart{eight}\scriptsize 4\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (node2.west) {\scriptsize $j = 2$};
+      \draw [black, -stealth] (node2.three south) to [bend left=45] (node2.two south);
+
+      \node (node3)[BLOCK=8, right=1.8 of node2, rectangle split part fill={sorted,sorted,sorted,unsorted,unsorted,unsorted,unsorted,unsorted}]{
+        \nodepart{one}\raisebox{-1.2pt}{\scriptsize 3} \strut\nodepart{two}\scriptsize 5\strut
+        \nodepart{three}\scriptsize 6 \strut\nodepart{four}\scriptsize 2\strut
+        \nodepart{five}\scriptsize 8 \strut\nodepart{six}\scriptsize 7\strut
+        \nodepart{seven}\scriptsize 1 \strut\nodepart{eight}\scriptsize 4\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (node3.west) {\scriptsize $j = 1$};
+      \draw [black, -stealth] (node3.two south) to [bend left=45] (node3.one south);
+
+    \end{tikzpicture}
+  \end{center}
+  \caption{i = 2}
+  \label{fig2}
+\end{figure}
+
+i = 3时：
+\begin{figure}[!htb]
+  \setlength{\abovecaptionskip}{0pt}
+  \definecolor{sorted}{RGB}{239,126,30}
+  \definecolor{unsorted}{RGB}{0,175,152}
+  \definecolor{sorting}{RGB}{127,191,51}
+  \begin{center}
+    \begin{tikzpicture}
+      \tikzset{
+        BLOCK/.style={
+          draw,
+          align=center,
+          text height=0.2cm,
+          text width=0.4cm,
+          draw=black,
+          rectangle split part fill={unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted},
+          rectangle split, 
+          rectangle split horizontal,
+          rectangle split parts=#1, 
+        }
+      }
+
+      \node (node4)[BLOCK=8, rectangle split part fill={sorted,sorted,sorting,sorting,unsorted,unsorted,unsorted,unsorted}]{
+        \nodepart{one}\raisebox{-1.2pt}{\scriptsize 3} \strut\nodepart{two}\scriptsize 5\strut
+        \nodepart{three}\scriptsize 2 \strut\nodepart{four}\scriptsize 6\strut
+        \nodepart{five}\scriptsize 8 \strut\nodepart{six}\scriptsize 7\strut
+        \nodepart{seven}\scriptsize 1 \strut\nodepart{eight}\scriptsize 4\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (node4.west) {\scriptsize $j = 3$};
+      \draw [black, -stealth] (node4.four south) to [bend left=45] (node4.three south);
+
+      \node (node5)[BLOCK=8, right=1.8 of node4, rectangle split part fill={sorted,sorting,sorting,sorted,unsorted,unsorted,unsorted,unsorted}]{
+        \nodepart{one}\raisebox{-1.2pt}{\scriptsize 3} \strut\nodepart{two}\scriptsize 2\strut
+        \nodepart{three}\scriptsize 5 \strut\nodepart{four}\scriptsize 6\strut
+        \nodepart{five}\scriptsize 8 \strut\nodepart{six}\scriptsize 7\strut
+        \nodepart{seven}\scriptsize 1 \strut\nodepart{eight}\scriptsize 4\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (node5.west) {\scriptsize $j = 2$};
+      \draw [black, -stealth] (node5.three south) to [bend left=45] (node5.two south);
+
+      \node (node6)[BLOCK=8, below=1 of node4, rectangle split part fill={sorted,sorted,sorted,sorted,unsorted,unsorted,unsorted,unsorted}]{
+        \nodepart{one}\raisebox{-1.2pt}{\scriptsize 2} \strut\nodepart{two}\scriptsize 3\strut
+        \nodepart{three}\scriptsize 5 \strut\nodepart{four}\scriptsize 6\strut
+        \nodepart{five}\scriptsize 8 \strut\nodepart{six}\scriptsize 7\strut
+        \nodepart{seven}\scriptsize 1 \strut\nodepart{eight}\scriptsize 4\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (node6.west) {\scriptsize $j = 1$};
+      \draw [black, -stealth] (node6.two south) to [bend left=45] (node6.one south);
+
+    \end{tikzpicture}
+  \end{center}
+  \caption{i = 3}
+  \label{fig3}
+\end{figure}
+
+i = 4时：
+\begin{figure}[!htb]
+  \setlength{\abovecaptionskip}{0pt}
+  \definecolor{sorted}{RGB}{239,126,30}
+  \definecolor{unsorted}{RGB}{0,175,152}
+  \definecolor{sorting}{RGB}{127,191,51}
+  \begin{center}
+    \begin{tikzpicture}
+      \tikzset{
+        BLOCK/.style={
+          draw,
+          align=center,
+          text height=0.4cm,
+          text width=0.8cm,
+          draw=black,
+          rectangle split part fill={unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted},
+          rectangle split, 
+          rectangle split horizontal,
+          rectangle split parts=#1, 
+        }
+      }
+
+      \node (node7)[BLOCK=8, rectangle split part fill={sorted,sorted,sorted,sorted,sorted,unsorted,unsorted,unsorted}]{
+        \nodepart{one}\raisebox{0.6pt}{2} \strut\nodepart{two}3\strut
+        \nodepart{three}5 \strut\nodepart{four}6\strut
+        \nodepart{five}8 \strut\nodepart{six}7\strut
+        \nodepart{seven}1 \strut\nodepart{eight}4\strut};
+
+      \node[xshift=-1cm,anchor=east] at (node7.west) {\footnotesize $j = 4$};
+    \end{tikzpicture}
+  \end{center}
+  \caption{i = 4}
+  \label{fig4}
+\end{figure}
+
+i = 5时：
+\begin{figure}[!htb]
+  \setlength{\abovecaptionskip}{0pt}
+  \definecolor{sorted}{RGB}{239,126,30}
+  \definecolor{unsorted}{RGB}{0,175,152}
+  \definecolor{sorting}{RGB}{127,191,51}
+  \begin{center}
+    \begin{tikzpicture}
+      \tikzset{
+        BLOCK/.style={
+          draw,
+          align=center,
+          text height=0.4cm,
+          text width=0.8cm,
+          draw=black,
+          rectangle split part fill={unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted},
+          rectangle split, 
+          rectangle split horizontal,
+          rectangle split parts=#1, 
+        }
+      }
+
+      \node (node7)[BLOCK=8, rectangle split part fill={sorted,sorted,sorted,sorted,sorted,sorted,unsorted,unsorted}]{
+        \nodepart{one}\raisebox{0.6pt}{2} \strut\nodepart{two}3\strut
+        \nodepart{three}5 \strut\nodepart{four}6\strut
+        \nodepart{five}7 \strut\nodepart{six}8\strut
+        \nodepart{seven}1 \strut\nodepart{eight}4\strut};
+
+      \node[xshift=-1cm,anchor=east] at (node7.west) {\footnotesize $j = 5$};
+      \draw [black, -stealth] (node7.six south) to [bend left=45] (node7.five south);
+
+    \end{tikzpicture}
+  \end{center}
+  \caption{i = 5}
+  \label{fig5}
+\end{figure}
+
+i = 6时：
+\begin{figure}[!htb]
+  \setlength{\abovecaptionskip}{0pt}
+  \definecolor{sorted}{RGB}{239,126,30}
+  \definecolor{unsorted}{RGB}{0,175,152}
+  \definecolor{sorting}{RGB}{127,191,51}
+  \begin{center}
+    \begin{tikzpicture}
+      \tikzset{
+        BLOCK/.style={
+          draw,
+          align=center,
+          text height=0.2cm,
+          text width=0.4cm,
+          draw=black,
+          rectangle split part fill={unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted},
+          rectangle split, 
+          rectangle split horizontal,
+          rectangle split parts=#1, 
+        }
+      }
+
+      \node (node7)[BLOCK=8, rectangle split part fill={sorted,sorted,sorted,sorted,sorted,sorting,sorting,unsorted}]{
+        \nodepart{one}\raisebox{0.6pt}{\scriptsize 2} \strut\nodepart{two}\scriptsize 3\strut
+        \nodepart{three}\scriptsize 5 \strut\nodepart{four}\scriptsize 6\strut
+        \nodepart{five}\scriptsize 7 \strut\nodepart{six}\scriptsize 1\strut
+        \nodepart{seven}\scriptsize 8 \strut\nodepart{eight}\scriptsize 4\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (node7.west) {\scriptsize $j = 6$};
+      \draw [black, -stealth] (node7.seven south) to [bend left=45] (node7.six south);
+
+      \node (node8)[BLOCK=8, below=1 of node7, rectangle split part fill={sorted,sorted,sorted,sorted,sorting,sorting,sorted,unsorted}]{
+        \nodepart{one}\raisebox{0.6pt}{\scriptsize 2} \strut\nodepart{two}\scriptsize 3\strut
+        \nodepart{three}\scriptsize 5 \strut\nodepart{four}\scriptsize 6\strut
+        \nodepart{five}\scriptsize 1 \strut\nodepart{six}\scriptsize 7\strut
+        \nodepart{seven}\scriptsize 8 \strut\nodepart{eight}\scriptsize 4\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (node8.west) {\scriptsize $j = 5$};
+      \draw [black, -stealth] (node8.six south) to [bend left=45] (node8.five south);
+
+      \node (node9)[BLOCK=8, below=1 of node8, rectangle split part fill={sorted,sorted,sorted,sorting,sorting,sorted,sorted,unsorted}]{
+        \nodepart{one}\raisebox{0.6pt}{\scriptsize 2} \strut\nodepart{two}\scriptsize 3\strut
+        \nodepart{three}\scriptsize 5 \strut\nodepart{four}\scriptsize 1\strut
+        \nodepart{five}\scriptsize 6 \strut\nodepart{six}\scriptsize 7\strut
+        \nodepart{seven}\scriptsize 8 \strut\nodepart{eight}\scriptsize 4\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (node9.west) {\scriptsize $j = 4$};
+      \draw [black, -stealth] (node9.five south) to [bend left=45] (node9.four south);
+
+      \node (node10)[BLOCK=8, below=1 of node9, rectangle split part fill={sorted,sorted,sorting,sorting,sorted,sorted,sorted,unsorted}]{
+        \nodepart{one}\raisebox{0.6pt}{\scriptsize 2} \strut\nodepart{two}\scriptsize 3\strut
+        \nodepart{three}\scriptsize 1 \strut\nodepart{four}\scriptsize 5\strut
+        \nodepart{five}\scriptsize 6 \strut\nodepart{six}\scriptsize 7\strut
+        \nodepart{seven}\scriptsize 8 \strut\nodepart{eight}\scriptsize 4\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (node10.west) {\scriptsize $j = 3$};
+      \draw [black, -stealth] (node10.four south) to [bend left=45] (node10.three south);
+
+      \node (node11)[BLOCK=8, below=1 of node10, rectangle split part fill={sorted,sorting,sorting,sorted,sorted,sorted,sorted,unsorted}]{
+        \nodepart{one}\raisebox{0.6pt}{\scriptsize 2} \strut\nodepart{two}1\strut
+        \nodepart{three}3 \strut\nodepart{four}5\strut
+        \nodepart{five}6 \strut\nodepart{six}7\strut
+        \nodepart{seven}8 \strut\nodepart{eight}4\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (node11.west) {\footnotesize $j = 2$};
+      \draw [black, -stealth] (node11.three south) to [bend left=45] (node11.two south);
+
+      \node (node12)[BLOCK=8, below=1 of node11, rectangle split part fill={sorted,sorted,sorted,sorted,sorted,sorted,sorted,unsorted}]{
+        \nodepart{one}\raisebox{0.6pt}{1} \strut\nodepart{two}2\strut
+        \nodepart{three}3 \strut\nodepart{four}5\strut
+        \nodepart{five}6 \strut\nodepart{six}7\strut
+        \nodepart{seven}8 \strut\nodepart{eight}4\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (node12.west) {\footnotesize $j = 1$};
+      \draw [black, -stealth] (node12.two south) to [bend left=45] (node12.one south);
+
+    \end{tikzpicture}
+  \end{center}
+  \caption{i = 6}
+  \label{fig6}
+\end{figure}
+
+i = 7时：
+\begin{figure}[!htb]
+  \setlength{\abovecaptionskip}{0pt}
+  \definecolor{sorted}{RGB}{239,126,30}
+  \definecolor{unsorted}{RGB}{0,175,152}
+  \definecolor{sorting}{RGB}{127,191,51}
+  \begin{center}
+    \begin{tikzpicture}
+      \tikzset{
+        BLOCK/.style={
+          draw,
+          align=center,
+          text height=0.4cm,
+          text width=0.8cm,
+          draw=black,
+          rectangle split part fill={unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted},
+          rectangle split, 
+          rectangle split horizontal,
+          rectangle split parts=#1, 
+        }
+      }
+
+      \node (node13)[BLOCK=8, rectangle split part fill={sorted,sorted,sorted,sorted,sorted,sorted,sorting,sorting}]{
+        \nodepart{one}\raisebox{0.6pt}{1} \strut\nodepart{two}2\strut
+        \nodepart{three}3 \strut\nodepart{four}5\strut
+        \nodepart{five}6 \strut\nodepart{six}7\strut
+        \nodepart{seven}4 \strut\nodepart{eight}8\strut};
+
+      \node[xshift=-1cm,anchor=east] at (node13.west) {\footnotesize $j = 7$};
+      \draw [black, -stealth] (node13.eight south) to [bend left=45] (node13.seven south);
+
+      \node (node14)[BLOCK=8, below=1 of node13, rectangle split part fill={sorted,sorted,sorted,sorted,sorted,sorting,sorting,sorted}]{
+        \nodepart{one}\raisebox{0.6pt}{1} \strut\nodepart{two}2\strut
+        \nodepart{three}3 \strut\nodepart{four}5\strut
+        \nodepart{five}6 \strut\nodepart{six}4\strut
+        \nodepart{seven}7 \strut\nodepart{eight}8\strut};
+
+      \node[xshift=-1cm,anchor=east] at (node14.west) {\footnotesize $j = 6$};
+      \draw [black, -stealth] (node14.seven south) to [bend left=45] (node14.six south);
+
+      \node (node15)[BLOCK=8, below=1 of node14, rectangle split part fill={sorted,sorted,sorted,sorted,sorting,sorting,sorted,sorted}]{
+        \nodepart{one}\raisebox{0.6pt}{1} \strut\nodepart{two}2\strut
+        \nodepart{three}3 \strut\nodepart{four}5\strut
+        \nodepart{five}4 \strut\nodepart{six}6\strut
+        \nodepart{seven}7 \strut\nodepart{eight}8\strut};
+
+      \node[xshift=-1cm,anchor=east] at (node15.west) {\footnotesize $j = 5$};
+      \draw [black, -stealth] (node15.six south) to [bend left=45] (node15.five south);
+
+      \node (node16)[BLOCK=8, below=1 of node15, rectangle split part fill={sorted,sorted,sorted,sorted,sorted,sorted,sorted,sorted}]{
+        \nodepart{one}\raisebox{0.6pt}{1} \strut\nodepart{two}2\strut
+        \nodepart{three}3 \strut\nodepart{four}4\strut
+        \nodepart{five}5 \strut\nodepart{six}6\strut
+        \nodepart{seven}7 \strut\nodepart{eight}8\strut};
+
+      \node[xshift=-1cm,anchor=east] at (node16.west) {\footnotesize $j = 4$};
+      \draw [black, -stealth] (node16.five south) to [bend left=45] (node16.four south);
+
+    \end{tikzpicture}
+  \end{center}
+  \caption{i = 7}
+  \label{fig7}
+\end{figure}
+
+\subsection{冒泡排序}
+该场景一般是由于通信的一方异常终止，而另一方并没有感知到，这时候如果另一方继续在原有的连接上发送数据，对端就会直接将链路重置。该场景可通过down掉一台主机的网卡，然后再将该主机上的服务重启来构造，实际的网络环境中几乎不会出现。
+
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%% 正文部分结束%%%%%%%%%%%%%%%%%%%%%%
+
