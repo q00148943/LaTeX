@@ -672,7 +672,189 @@ i = 7时：
 \end{spacing}
 
 \subsection{冒泡排序}
-该场景一般是由于通信的一方异常终止，而另一方并没有感知到，这时候如果另一方继续在原有的连接上发送数据，对端就会直接将链路重置。该场景可通过down掉一台主机的网卡，然后再将该主机上的服务重启来构造，实际的网络环境中几乎不会出现。
+冒泡排序可以说是所有排序算法中最“有名”的一个，因为其名字好记、原理简单：循环对数组中相邻的元素两两比较，每次循环结束后，都会有一个元素在其正确的位置上，即已排序。代码\ref{lst4}给出其C语言的实现。
+\begin{spacing}{1.0}
+  \lstinputlisting[label=lst4,caption=冒泡排序]{list/bubble_sort.c}
+\end{spacing}
+
+从代码可以看出，冒泡排序的时间复杂度为O($n^2$)。同插入排序一样，排序过程中只需要一个额外的元素空间。算法虽然简单，我们还是通过对23、17、5、90、12这一组数排序来说明该算法的原理。
+
+i = 5\footnote{初始状态，实际从i = 4开始。}时：
+\begin{figure}[H]
+  \setlength{\abovecaptionskip}{0pt}
+  \definecolor{sorted}{RGB}{239,126,30}
+  \definecolor{unsorted}{RGB}{0,175,152}
+  \definecolor{sorting}{RGB}{127,191,51}
+  \begin{center}
+    \begin{tikzpicture}
+
+      \draw (2.75,2.5) node (node23) [circle, draw, fill=unsorted, minimum size=2em, line width=1.2] {\scriptsize 23};
+      \draw node (node17) [right=0.8 of node23, circle, draw, fill=unsorted, minimum size=2em, line width=1.2]{\scriptsize 17};
+      \draw node (node5) [right=0.8 of node17, circle, draw, fill=unsorted, minimum size=2em, line width=1.2]{\scriptsize 5};
+      \draw node (node90) [right=0.8 of node5, circle, draw, fill=unsorted, minimum size=2em, line width=1.2]{\scriptsize 90};
+      \draw node (node12) [right=0.8 of node90, circle, draw, fill=unsorted, minimum size=2em, line width=1.2]{\scriptsize 12};
+
+      \node [above=0.3 of node23]{\small [0]};
+      \node [above=0.3 of node17]{\small [1]};
+      \node [above=0.3 of node5]{\small [2]};
+      \node [above=0.3 of node90]{\small [3]};
+      \node [above=0.3 of node12]{\small [4]};
+      \node[xshift=-1cm,anchor=east] at (node23.west) {\scriptsize $j = 0$};
+    \end{tikzpicture}
+  \end{center}
+  \caption{}
+  \label{fig8}
+\end{figure}
+
+i = 4时：
+\begin{figure}[H]
+  \setlength{\abovecaptionskip}{0pt}
+  \definecolor{sorted}{RGB}{239,126,30}
+  \definecolor{unsorted}{RGB}{0,175,152}
+  \definecolor{sorting}{RGB}{127,191,51}
+  \begin{center}
+    \begin{tikzpicture}
+
+      \draw (2.75,2.5) node (node17) [circle, draw, fill=sorting, minimum size=2em, line width=1.2] {\scriptsize 17};
+      \draw node (node23) [right=0.8 of node17, circle, draw, fill=sorting, minimum size=2em, line width=1.2]{\scriptsize 23};
+      \draw node (node5) [right=0.8 of node23, circle, draw, fill=unsorted, minimum size=2em, line width=1.2]{\scriptsize 5};
+      \draw node (node90) [right=0.8 of node5, circle, draw, fill=unsorted, minimum size=2em, line width=1.2]{\scriptsize 90};
+      \draw node (node12) [right=0.8 of node90, circle, draw, fill=unsorted, minimum size=2em, line width=1.2]{\scriptsize 12};
+      \node[xshift=-1cm,anchor=east] at (node17.west) {\scriptsize $j = 0$};
+      \draw [black, -stealth] (node23.south) to [bend left=45] (node17.south);
+
+
+      \draw node (node171) [below=1 of node17, circle, draw, fill=unsorted, minimum size=2em, line width=1.2] {\scriptsize 17};
+      \draw node (node51) [right=0.8 of node171, circle, draw, fill=sorting, minimum size=2em, line width=1.2]{\scriptsize 5};
+      \draw node (node231) [right=0.8 of node51, circle, draw, fill=sorting, minimum size=2em, line width=1.2]{\scriptsize 23};
+      \draw node (node901) [right=0.8 of node231, circle, draw, fill=unsorted, minimum size=2em, line width=1.2]{\scriptsize 90};
+      \draw node (node121) [right=0.8 of node901, circle, draw, fill=unsorted, minimum size=2em, line width=1.2]{\scriptsize 12};
+      \node[xshift=-1cm,anchor=east] at (node171.west) {\scriptsize $j = 1$};
+      \draw [black, -stealth] (node231.south) to [bend left=45] (node51.south);
+
+
+      \draw node (node172) [below=1 of node171, circle, draw, fill=unsorted, minimum size=2em, line width=1.2] {\scriptsize 17};
+      \draw node (node52) [right=0.8 of node172, circle, draw, fill=unsorted, minimum size=2em, line width=1.2]{\scriptsize 5};
+      \draw node (node232) [right=0.8 of node52, circle, draw, fill=sorting, minimum size=2em, line width=1.2]{\scriptsize 23};
+      \draw node (node902) [right=0.8 of node232, circle, draw, fill=sorting, minimum size=2em, line width=1.2]{\scriptsize 90};
+      \draw node (node122) [right=0.8 of node902, circle, draw, fill=unsorted, minimum size=2em, line width=1.2]{\scriptsize 12};
+      \node[xshift=-1cm,anchor=east] at (node172.west) {\scriptsize $j = 2$};
+      \draw [black] (node902.south) to [bend left=45] (node232.south);
+
+
+      \draw node (node173) [below=1 of node172, circle, draw, fill=unsorted, minimum size=2em, line width=1.2] {\scriptsize 17};
+      \draw node (node53) [right=0.8 of node173, circle, draw, fill=unsorted, minimum size=2em, line width=1.2]{\scriptsize 5};
+      \draw node (node233) [right=0.8 of node53, circle, draw, fill=unsorted, minimum size=2em, line width=1.2]{\scriptsize 23};
+      \draw node (node123) [right=0.8 of node233, circle, draw, fill=unsorted, minimum size=2em, line width=1.2]{\scriptsize 12};
+      \draw node (node903) [right=0.8 of node123, circle, draw, fill=sorted, minimum size=2em, line width=1.2]{\scriptsize 90};
+
+      \node[xshift=-1cm,anchor=east] at (node173.west) {\scriptsize $j = 3$};
+      \draw [black, -stealth] (node903.south) to [bend left=45] (node123.south);
+
+    \end{tikzpicture}
+  \end{center}
+  \caption{}
+  \label{fig8}
+\end{figure}
+
+i = 3时：
+\begin{figure}[H]
+  \setlength{\abovecaptionskip}{0pt}
+  \definecolor{sorted}{RGB}{239,126,30}
+  \definecolor{unsorted}{RGB}{0,175,152}
+  \definecolor{sorting}{RGB}{127,191,51}
+  \begin{center}
+    \begin{tikzpicture}
+
+      \draw (2.75,2.5) node (node5) [circle, draw, fill=sorting, minimum size=2em, line width=1.2] {\scriptsize 5};
+      \draw node (node17) [right=0.8 of node5, circle, draw, fill=sorting, minimum size=2em, line width=1.2]{\scriptsize 17};
+      \draw node (node23) [right=0.8 of node17, circle, draw, fill=unsorted, minimum size=2em, line width=1.2]{\scriptsize 23};
+      \draw node (node12) [right=0.8 of node23, circle, draw, fill=unsorted, minimum size=2em, line width=1.2]{\scriptsize 12};
+      \draw node (node90) [right=0.8 of node12, circle, draw, fill=sorted, minimum size=2em, line width=1.2]{\scriptsize 90};
+      \node[xshift=-1cm,anchor=east] at (node5.west) {\scriptsize $j = 0$};
+      \draw [black, -stealth] (node17.south) to [bend left=45] (node5.south);
+
+
+      \draw node (node51) [below=1 of node5, circle, draw, fill=unsorted, minimum size=2em, line width=1.2] {\scriptsize 5};
+      \draw node (node171) [right=0.8 of node51, circle, draw, fill=sorting, minimum size=2em, line width=1.2]{\scriptsize 17};
+      \draw node (node231) [right=0.8 of node171, circle, draw, fill=sorting, minimum size=2em, line width=1.2]{\scriptsize 23};
+      \draw node (node121) [right=0.8 of node231, circle, draw, fill=unsorted, minimum size=2em, line width=1.2]{\scriptsize 12};
+      \draw node (node901) [right=0.8 of node121, circle, draw, fill=sorted, minimum size=2em, line width=1.2]{\scriptsize 90};
+      \node[xshift=-1cm,anchor=east] at (node51.west) {\scriptsize $j = 1$};
+      \draw [black] (node231.south) to [bend left=45] (node171.south);
+
+      \draw node (node52) [below=1 of node51, circle, draw, fill=unsorted, minimum size=2em, line width=1.2] {\scriptsize 5};
+      \draw node (node172) [right=0.8 of node52, circle, draw, fill=unsorted, minimum size=2em, line width=1.2]{\scriptsize 17};
+      \draw node (node122) [right=0.8 of node172, circle, draw, fill=unsorted, minimum size=2em, line width=1.2]{\scriptsize 12};
+      \draw node (node232) [right=0.8 of node122, circle, draw, fill=sorted, minimum size=2em, line width=1.2]{\scriptsize 23};
+      \draw node (node902) [right=0.8 of node232, circle, draw, fill=sorted, minimum size=2em, line width=1.2]{\scriptsize 90};
+      \node[xshift=-1cm,anchor=east] at (node52.west) {\scriptsize $j = 2$};
+      \draw [black, -stealth] (node232.south) to [bend left=45] (node122.south);
+
+    \end{tikzpicture}
+  \end{center}
+  \caption{}
+  \label{fig8}
+\end{figure}
+
+i = 2时：
+\begin{figure}[H]
+  \setlength{\abovecaptionskip}{0pt}
+  \definecolor{sorted}{RGB}{239,126,30}
+  \definecolor{unsorted}{RGB}{0,175,152}
+  \definecolor{sorting}{RGB}{127,191,51}
+  \begin{center}
+    \begin{tikzpicture}
+
+      \draw (2.75,2.5) node (node5) [circle, draw, fill=sorting, minimum size=2em, line width=1.2] {\scriptsize 5};
+      \draw node (node17) [right=0.8 of node5, circle, draw, fill=sorting, minimum size=2em, line width=1.2]{\scriptsize 17};
+      \draw node (node12) [right=0.8 of node17, circle, draw, fill=unsorted, minimum size=2em, line width=1.2]{\scriptsize 12};
+      \draw node (node23) [right=0.8 of node12, circle, draw, fill=sorted, minimum size=2em, line width=1.2]{\scriptsize 23};
+      \draw node (node90) [right=0.8 of node23, circle, draw, fill=sorted, minimum size=2em, line width=1.2]{\scriptsize 90};
+      \node[xshift=-1cm,anchor=east] at (node5.west) {\scriptsize $j = 0$};
+      \draw [black] (node17.south) to [bend left=45] (node5.south);
+
+      \draw node (node51) [below=1 of node5, circle, draw, fill=unsorted, minimum size=2em, line width=1.2] {\scriptsize 5};
+      \draw node (node121) [right=0.8 of node51, circle, draw, fill=unsorted, minimum size=2em, line width=1.2]{\scriptsize 12};
+      \draw node (node171) [right=0.8 of node121, circle, draw, fill=sorted, minimum size=2em, line width=1.2]{\scriptsize 17};
+      \draw node (node231) [right=0.8 of node171, circle, draw, fill=sorted, minimum size=2em, line width=1.2]{\scriptsize 23};
+      \draw node (node901) [right=0.8 of node231, circle, draw, fill=sorted, minimum size=2em, line width=1.2]{\scriptsize 90};
+      \node[xshift=-1cm,anchor=east] at (node51.west) {\scriptsize $j = 1$};
+      \draw [black, -stealth] (node171.south) to [bend left=45] (node121.south);
+
+    \end{tikzpicture}
+  \end{center}
+  \caption{}
+  \label{fig8}
+\end{figure}
+
+i = 1时：
+\begin{figure}[H]
+  \setlength{\abovecaptionskip}{0pt}
+  \definecolor{sorted}{RGB}{239,126,30}
+  \definecolor{unsorted}{RGB}{0,175,152}
+  \definecolor{sorting}{RGB}{127,191,51}
+  \begin{center}
+    \begin{tikzpicture}
+
+      \draw (2.75,2.5) node (node5) [circle, draw, fill=sorted, minimum size=2em, line width=1.2] {\scriptsize 5};
+      \draw node (node12) [right=0.8 of node5, circle, draw, fill=sorted, minimum size=2em, line width=1.2]{\scriptsize 12};
+      \draw node (node17) [right=0.8 of node12, circle, draw, fill=sorted, minimum size=2em, line width=1.2]{\scriptsize 17};
+      \draw node (node23) [right=0.8 of node17, circle, draw, fill=sorted, minimum size=2em, line width=1.2]{\scriptsize 23};
+      \draw node (node90) [right=0.8 of node23, circle, draw, fill=sorted, minimum size=2em, line width=1.2]{\scriptsize 90};
+      \node[xshift=-1cm,anchor=east] at (node5.west) {\scriptsize $j = 0$};
+      \draw [black] (node12.south) to [bend left=45] (node5.south);
+
+    \end{tikzpicture}
+  \end{center}
+  \caption{}
+  \label{fig8}
+\end{figure}
+
+冒泡排序是一种稳定的排序算法，前提是排序过程中如果两个元素相同，即array[j + 1] == array[j]，不对两个元素交换。最后同样给出冒泡排序的链表实现来作为本小结的结尾，见代码\ref{lst5}。
+\begin{spacing}{1.0}
+  \lstinputlisting[label=lst5,caption=冒泡排序]{list/list_bubble_sort.c}
+\end{spacing}
 
 \end{document}
 %%%%%%%%%%%%%%%%%%%%%%%%% 正文部分结束%%%%%%%%%%%%%%%%%%%%%%
