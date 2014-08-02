@@ -252,6 +252,7 @@ urlcolor=seco%
 \end{spacing}
 
 \subsection{插入排序}
+\label{subsec:labelsub1}
 插入排序的一个非常形象的说明就是打牌。起牌的过程中，每次我们摸起一张牌后，都会和手中已有的牌做比较，然后将牌插到相应的位置，如图\ref{fig00}所示。
 \begin{figure}[!htbp]
   \setlength{\abovecaptionskip}{0pt}
@@ -1006,8 +1007,297 @@ i = 3时：
 
 选择排序是不稳定的排序算法，如排序48、38、65、97、76、13、27、48这一组元素，排序完成后，48这两个元素的顺序会发生交换。
 
-% \subsection{SHELL排序}
+\subsection{希尔排序}
+希尔排序，又称递减增量排序算法，是一种改进的插入排序。其排序过程如下：
 
+先取一个正整数$g_1 < n$\footnote{n为待排序元素的个数。}，把所有序号相隔$g_1$的元素作为一组进行直接插入排序；然后取$g_2 < g_1$，重复上述分组和排序操作，直至$g_i = 1$，即对所有记录进行一次插入排序。
+
+代码\ref{lst7}给出了希尔排序的C语言实现。
+\begin{spacing}{1.0}
+  \lstinputlisting[label=lst7,caption=希尔排序]{list/shell_sort.c}
+\end{spacing}
+
+同样，我们以排序一组实际的元素为例来说明希尔排序的排序过程。这次排序的元素为81、94、11、96、12、35、17、95。
+
+step = 4时：
+\begin{figure}[H]
+  \setlength{\abovecaptionskip}{0pt}
+  \definecolor{sorted}{RGB}{239,126,30}
+  \definecolor{unsorted}{RGB}{0,175,152}
+  \definecolor{sorting}{RGB}{127,191,51}
+  \begin{center}
+    \begin{tikzpicture}
+      \tikzset{
+        BLOCK/.style={
+          draw,
+          align=center,
+          text height=0.2cm,
+          text width=0.4cm,
+          draw=black,
+          rectangle split part fill={unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted},
+          rectangle split, 
+          rectangle split horizontal,
+          rectangle split parts=#1, 
+        }
+      }
+
+      \node (a) [BLOCK=8,rectangle split part fill={sorting,unsorted,unsorted,unsorted,sorting,unsorted,unsorted,unsorted}]{
+        \nodepart{one}\raisebox{-3.50pt}{\scriptsize 81}\strut
+        \nodepart{two}\scriptsize 94\strut
+        \nodepart{three}\scriptsize 11\strut
+        \nodepart{four}\scriptsize 96\strut
+        \nodepart{five}\scriptsize 12\strut
+        \nodepart{six}\scriptsize 35\strut
+        \nodepart{seven}\scriptsize 17\strut
+        \nodepart{eight}\scriptsize 95\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (a.west) {\scriptsize $i = 4\ \&\&\ j = 4$};
+      \draw [<->] (a.five south) -- +(0,-.5) -| (a.one south);
+
+      \node [single arrow, minimum height=0.4cm, single arrow head extend=0.16cm, fill=blue!50, rotate=-90]
+      at ($(a.four split south) + (0,-0.75)$) {};
+
+      \node (b) [BLOCK=8, below=1.5 of a, rectangle split part fill={sorted,unsorted,unsorted,unsorted,sorted,unsorted,unsorted,unsorted}]{
+        \nodepart{one}\raisebox{-3.50pt}{\scriptsize 12}\strut
+        \nodepart{two}\scriptsize 94\strut
+        \nodepart{three}\scriptsize 11\strut
+        \nodepart{four}\scriptsize 96\strut
+        \nodepart{five}\scriptsize 81\strut
+        \nodepart{six}\scriptsize 35\strut
+        \nodepart{seven}\scriptsize 17\strut
+        \nodepart{eight}\scriptsize 95\strut};
+
+      \node (c) [BLOCK=8,below=2.0 of b,rectangle split part fill={sorted,sorting,unsorted,unsorted,sorted,sorting,unsorted,unsorted}]{
+        \nodepart{one}\raisebox{-3.50pt}{\scriptsize 12}\strut
+        \nodepart{two}\scriptsize 94\strut
+        \nodepart{three}\scriptsize 11\strut
+        \nodepart{four}\scriptsize 96\strut
+        \nodepart{five}\scriptsize 81\strut
+        \nodepart{six}\scriptsize 35\strut
+        \nodepart{seven}\scriptsize 17\strut
+        \nodepart{eight}\scriptsize 95\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (c.west) {\scriptsize $i = 5\ \&\&\ j = 5$};
+      \draw [<->] (c.six south) -- +(0,-.5) -| (c.two south);
+
+      \node [single arrow, minimum height=0.4cm, single arrow head extend=0.16cm, fill=blue!50, rotate=-90]
+      at ($(c.four split south) + (0,-0.75)$) {};
+
+      \node (d) [BLOCK=8, below=1.5 of c, rectangle split part fill={sorted,sorted,unsorted,unsorted,sorted,sorted,unsorted,unsorted}]{
+        \nodepart{one}\raisebox{-3.50pt}{\scriptsize 12}\strut
+        \nodepart{two}\scriptsize 35\strut
+        \nodepart{three}\scriptsize 11\strut
+        \nodepart{four}\scriptsize 96\strut
+        \nodepart{five}\scriptsize 81\strut
+        \nodepart{six}\scriptsize 94\strut
+        \nodepart{seven}\scriptsize 17\strut
+        \nodepart{eight}\scriptsize 95\strut};
+
+      \node (e) [BLOCK=8,below=2.0 of d,rectangle split part fill={sorted,sorted,sorting,unsorted,sorted,sorted,sorting,unsorted}]{
+        \nodepart{one}\raisebox{-3.50pt}{\scriptsize 12}\strut
+        \nodepart{two}\scriptsize 35\strut
+        \nodepart{three}\scriptsize 11\strut
+        \nodepart{four}\scriptsize 96\strut
+        \nodepart{five}\scriptsize 81\strut
+        \nodepart{six}\scriptsize 94\strut
+        \nodepart{seven}\scriptsize 17\strut
+        \nodepart{eight}\scriptsize 95\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (e.west) {\scriptsize $i = 6\ \&\&\ j = 6$};
+      \draw [<->] (e.seven south) -- +(0,-.5) -| (e.three south);
+
+      \node [single arrow, minimum height=0.4cm, single arrow head extend=0.16cm, fill=blue!50, rotate=-90]
+      at ($(e.four split south) + (0,-0.75)$) {};
+
+      \node (f) [BLOCK=8, below=1.5 of e, rectangle split part fill={sorted,sorted,sorted,unsorted,sorted,sorted,sorted,unsorted}]{
+        \nodepart{one}\raisebox{-3.50pt}{\scriptsize 12}\strut
+        \nodepart{two}\scriptsize 35\strut
+        \nodepart{three}\scriptsize 11\strut
+        \nodepart{four}\scriptsize 96\strut
+        \nodepart{five}\scriptsize 81\strut
+        \nodepart{six}\scriptsize 94\strut
+        \nodepart{seven}\scriptsize 17\strut
+        \nodepart{eight}\scriptsize 95\strut};
+
+      \node (g) [BLOCK=8,below=2.0 of f,rectangle split part fill={sorted,sorted,sorted,sorting,sorted,sorted,sorted,sorting}]{
+        \nodepart{one}\raisebox{-3.50pt}{\scriptsize 12}\strut
+        \nodepart{two}\scriptsize 35\strut
+        \nodepart{three}\scriptsize 11\strut
+        \nodepart{four}\scriptsize 96\strut
+        \nodepart{five}\scriptsize 81\strut
+        \nodepart{six}\scriptsize 94\strut
+        \nodepart{seven}\scriptsize 17\strut
+        \nodepart{eight}\scriptsize 95\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (g.west) {\scriptsize $i = 7\ \&\&\ j = 7$};
+      \draw [<->] (g.eight south) -- +(0,-.5) -| (g.four south);
+
+      \node [single arrow, minimum height=0.4cm, single arrow head extend=0.16cm, fill=blue!50, rotate=-90]
+      at ($(g.four split south) + (0,-0.75)$) {};
+
+      \node (h) [BLOCK=8, below=1.5 of g, rectangle split part fill={sorted,sorted,sorted,sorted,sorted,sorted,sorted,sorted}]{
+        \nodepart{one}\raisebox{-3.50pt}{\scriptsize 12}\strut
+        \nodepart{two}\scriptsize 35\strut
+        \nodepart{three}\scriptsize 11\strut
+        \nodepart{four}\scriptsize 95\strut
+        \nodepart{five}\scriptsize 81\strut
+        \nodepart{six}\scriptsize 94\strut
+        \nodepart{seven}\scriptsize 17\strut
+        \nodepart{eight}\scriptsize 96\strut};
+    \end{tikzpicture}
+  \end{center}
+  \caption{}
+  \label{fig0}
+\end{figure}
+
+step = 2时：
+\begin{figure}[H]
+  \setlength{\abovecaptionskip}{0pt}
+  \definecolor{sorted}{RGB}{239,126,30}
+  \definecolor{unsorted}{RGB}{0,175,152}
+  \definecolor{sorting}{RGB}{127,191,51}
+  \begin{center}
+    \begin{tikzpicture}
+      \tikzset{
+        BLOCK/.style={
+          draw,
+          align=center,
+          text height=0.2cm,
+          text width=0.4cm,
+          draw=black,
+          rectangle split part fill={unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted},
+          rectangle split, 
+          rectangle split horizontal,
+          rectangle split parts=#1, 
+        }
+      }
+
+      \node (g) [BLOCK=8,rectangle split part fill={sorting,unsorted,sorting,unsorted,sorting,unsorted,sorting,unsorted}]{
+        \nodepart{one}\raisebox{-3.50pt}{\scriptsize 12}\strut
+        \nodepart{two}\scriptsize 35\strut
+        \nodepart{three}\scriptsize 11\strut
+        \nodepart{four}\scriptsize 96\strut
+        \nodepart{five}\scriptsize 81\strut
+        \nodepart{six}\scriptsize 94\strut
+        \nodepart{seven}\scriptsize 17\strut
+        \nodepart{eight}\scriptsize 95\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (g.west) {\scriptsize $odd\ element$};
+      \draw [<->] (g.one south) -- +(0,-.5) -| (g.seven south);
+      \draw [->] (g.three south) -- +(0,-.5) to (g.three south);
+      \draw [->] (g.five south) -- +(0,-.5) to (g.five south);
+
+      \node [single arrow, minimum height=0.4cm, single arrow head extend=0.16cm, fill=blue!50, rotate=-90]
+      at ($(g.four split south) + (0,-0.75)$) {};
+
+      \node (h) [BLOCK=8, below=1.5 of g, rectangle split part fill={sorted,unsorted,sorted,unsorted,sorted,unsorted,sorted,unsorted}]{
+        \nodepart{one}\raisebox{-3.50pt}{\scriptsize 11}\strut
+        \nodepart{two}\scriptsize 35\strut
+        \nodepart{three}\scriptsize 12\strut
+        \nodepart{four}\scriptsize 95\strut
+        \nodepart{five}\scriptsize 17\strut
+        \nodepart{six}\scriptsize 94\strut
+        \nodepart{seven}\scriptsize 81\strut
+        \nodepart{eight}\scriptsize 96\strut};
+
+
+      \node (a) [BLOCK=8, below=2 of h, rectangle split part fill={sorted,sorting,sorted,sorting,sorted,sorting,sorted,sorting}]{
+        \nodepart{one}\raisebox{-3.50pt}{\scriptsize 11}\strut
+        \nodepart{two}\scriptsize 35\strut
+        \nodepart{three}\scriptsize 12\strut
+        \nodepart{four}\scriptsize 95\strut
+        \nodepart{five}\scriptsize 17\strut
+        \nodepart{six}\scriptsize 94\strut
+        \nodepart{seven}\scriptsize 81\strut
+        \nodepart{eight}\scriptsize 96\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (a.west) {\scriptsize $even\ element$};
+
+      \draw [<->] (a.two south) -- +(0,-.5) -| (a.eight south);
+      \draw [->] (a.four south) -- +(0,-.5) to (a.four south);
+      \draw [->] (a.six south) -- +(0,-.5) to (a.six south);
+
+      \node [single arrow, minimum height=0.4cm, single arrow head extend=0.16cm, fill=blue!50, rotate=-90]
+      at ($(a.four split south) + (0,-0.75)$) {};
+
+      \node (b) [BLOCK=8, below=1.5 of a, rectangle split part fill={sorted,sorted,sorted,sorted,sorted,sorted,sorted,sorted}]{
+        \nodepart{one}\raisebox{-3.50pt}{\scriptsize 11}\strut
+        \nodepart{two}\scriptsize 35\strut
+        \nodepart{three}\scriptsize 12\strut
+        \nodepart{four}\scriptsize 94\strut
+        \nodepart{five}\scriptsize 17\strut
+        \nodepart{six}\scriptsize 95\strut
+        \nodepart{seven}\scriptsize 81\strut
+        \nodepart{eight}\scriptsize 96\strut};
+    \end{tikzpicture}
+  \end{center}
+  \caption{}
+  \label{fig0}
+\end{figure}
+
+step = 1时：
+\begin{figure}[H]
+  \setlength{\abovecaptionskip}{0pt}
+  \definecolor{sorted}{RGB}{239,126,30}
+  \definecolor{unsorted}{RGB}{0,175,152}
+  \definecolor{sorting}{RGB}{127,191,51}
+  \begin{center}
+    \begin{tikzpicture}
+      \tikzset{
+        BLOCK/.style={
+          draw,
+          align=center,
+          text height=0.2cm,
+          text width=0.4cm,
+          draw=black,
+          rectangle split part fill={unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted},
+          rectangle split, 
+          rectangle split horizontal,
+          rectangle split parts=#1, 
+        }
+      }
+
+      \node (a) [BLOCK=8, below=2 of h, rectangle split part fill={sorting,sorting,sorting,sorting,sorting,sorting,sorting,sorting}]{
+        \nodepart{one}\raisebox{-3.50pt}{\scriptsize 11}\strut
+        \nodepart{two}\scriptsize 35\strut
+        \nodepart{three}\scriptsize 12\strut
+        \nodepart{four}\scriptsize 94\strut
+        \nodepart{five}\scriptsize 17\strut
+        \nodepart{six}\scriptsize 95\strut
+        \nodepart{seven}\scriptsize 81\strut
+        \nodepart{eight}\scriptsize 96\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (a.west) {\scriptsize $all\ element$};
+
+      \draw [<->] (a.one south) -- +(0,-.5) -| (a.eight south);
+      \draw [->] (a.two south) -- +(0,-.5) to (a.two south);
+      \draw [->] (a.three south) -- +(0,-.5) to (a.three south);
+      \draw [->] (a.four south) -- +(0,-.5) to (a.four south);
+      \draw [->] (a.five south) -- +(0,-.5) to (a.five south);
+      \draw [->] (a.six south) -- +(0,-.5) to (a.six south);
+      \draw [->] (a.seven south) -- +(0,-.5) to (a.seven south);
+
+      \node [single arrow, minimum height=0.4cm, single arrow head extend=0.16cm, fill=blue!50, rotate=-90]
+      at ($(a.four split south) + (0,-0.75)$) {};
+
+      \node (b) [BLOCK=8, below=1.5 of a, rectangle split part fill={sorted,sorted,sorted,sorted,sorted,sorted,sorted,sorted}]{
+        \nodepart{one}\raisebox{-3.50pt}{\scriptsize 11}\strut
+        \nodepart{two}\scriptsize 35\strut
+        \nodepart{three}\scriptsize 12\strut
+        \nodepart{four}\scriptsize 94\strut
+        \nodepart{five}\scriptsize 17\strut
+        \nodepart{six}\scriptsize 95\strut
+        \nodepart{seven}\scriptsize 81\strut
+        \nodepart{eight}\scriptsize 96\strut};
+    \end{tikzpicture}
+  \end{center}
+  \caption{}
+  \label{fig0}
+\end{figure}
+
+$step\ =\ 2$时，最终排序的效果等同于对所有奇数和所有的偶数进行的一次插入排序，但在程序的运行过程中，并不是先排序奇数元素，再排序偶数元素，整个过程和$step\ =\ 4$时一样，但$step\ =\ 2$和$step\ =\ 1$只给出了一个最终排序的效果，没再一一列举。更生动的演示点击\href{http://v.youku.com/v_show/id_XMjU4NTcwMDIw.html}{这里}，观看舞动的排序算法之希尔排序。
+
+影响希尔排序时间复杂度的一个关键因素是步长的选择。关于如何先取步长，请参考\href{http://zh.wikipedia.org/wiki/\%E5\%B8\%8C\%E5\%B0\%94\%E6\%8E\%92\%E5\%BA\%8F#.E6.AD.A5.E9.95.BF.E5.BA.8F.E5.88.97}{这里}。
 
 \section{总结}
 
