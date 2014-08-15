@@ -1,0 +1,129 @@
+\begin{figure}[H]
+  \setlength{\abovecaptionskip}{0pt}
+  \definecolor{sorted}{RGB}{239,126,30}
+  \definecolor{unsorted}{RGB}{0,175,152}
+  \definecolor{sorting}{RGB}{127,191,51}
+  \begin{center}
+    \begin{tikzpicture}
+      \tikzset{
+        BLOCK/.style={
+          draw,
+          align=center,
+          text height=0.2cm,
+          text width=0.4cm,
+          draw=black,
+          rectangle split part fill={unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted},
+          rectangle split, 
+          rectangle split horizontal,
+          rectangle split parts=#1, 
+        }
+      }
+
+      \node (a) [BLOCK=8,rectangle split part fill={sorting,unsorted,unsorted,unsorted,sorting,unsorted,unsorted,unsorted}]{
+        \nodepart{one}\raisebox{-3.50pt}{\scriptsize 81}\strut
+        \nodepart{two}\scriptsize 94\strut
+        \nodepart{three}\scriptsize 11\strut
+        \nodepart{four}\scriptsize 96\strut
+        \nodepart{five}\scriptsize 12\strut
+        \nodepart{six}\scriptsize 35\strut
+        \nodepart{seven}\scriptsize 17\strut
+        \nodepart{eight}\scriptsize 95\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (a.west) {\scriptsize $i = 4\ \&\&\ j = 4$};
+      \draw [<->] (a.five south) -- +(0,-.5) -| (a.one south);
+
+      \node [single arrow, minimum height=0.4cm, single arrow head extend=0.16cm, fill=blue!50, rotate=-90]
+      at ($(a.four split south) + (0,-0.75)$) {};
+
+      \node (b) [BLOCK=8, below=1.5 of a, rectangle split part fill={sorted,unsorted,unsorted,unsorted,sorted,unsorted,unsorted,unsorted}]{
+        \nodepart{one}\raisebox{-3.50pt}{\scriptsize 12}\strut
+        \nodepart{two}\scriptsize 94\strut
+        \nodepart{three}\scriptsize 11\strut
+        \nodepart{four}\scriptsize 96\strut
+        \nodepart{five}\scriptsize 81\strut
+        \nodepart{six}\scriptsize 35\strut
+        \nodepart{seven}\scriptsize 17\strut
+        \nodepart{eight}\scriptsize 95\strut};
+
+      \node (c) [BLOCK=8,below=2.0 of b,rectangle split part fill={sorted,sorting,unsorted,unsorted,sorted,sorting,unsorted,unsorted}]{
+        \nodepart{one}\raisebox{-3.50pt}{\scriptsize 12}\strut
+        \nodepart{two}\scriptsize 94\strut
+        \nodepart{three}\scriptsize 11\strut
+        \nodepart{four}\scriptsize 96\strut
+        \nodepart{five}\scriptsize 81\strut
+        \nodepart{six}\scriptsize 35\strut
+        \nodepart{seven}\scriptsize 17\strut
+        \nodepart{eight}\scriptsize 95\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (c.west) {\scriptsize $i = 5\ \&\&\ j = 5$};
+      \draw [<->] (c.six south) -- +(0,-.5) -| (c.two south);
+
+      \node [single arrow, minimum height=0.4cm, single arrow head extend=0.16cm, fill=blue!50, rotate=-90]
+      at ($(c.four split south) + (0,-0.75)$) {};
+
+      \node (d) [BLOCK=8, below=1.5 of c, rectangle split part fill={sorted,sorted,unsorted,unsorted,sorted,sorted,unsorted,unsorted}]{
+        \nodepart{one}\raisebox{-3.50pt}{\scriptsize 12}\strut
+        \nodepart{two}\scriptsize 35\strut
+        \nodepart{three}\scriptsize 11\strut
+        \nodepart{four}\scriptsize 96\strut
+        \nodepart{five}\scriptsize 81\strut
+        \nodepart{six}\scriptsize 94\strut
+        \nodepart{seven}\scriptsize 17\strut
+        \nodepart{eight}\scriptsize 95\strut};
+
+      \node (e) [BLOCK=8,below=2.0 of d,rectangle split part fill={sorted,sorted,sorting,unsorted,sorted,sorted,sorting,unsorted}]{
+        \nodepart{one}\raisebox{-3.50pt}{\scriptsize 12}\strut
+        \nodepart{two}\scriptsize 35\strut
+        \nodepart{three}\scriptsize 11\strut
+        \nodepart{four}\scriptsize 96\strut
+        \nodepart{five}\scriptsize 81\strut
+        \nodepart{six}\scriptsize 94\strut
+        \nodepart{seven}\scriptsize 17\strut
+        \nodepart{eight}\scriptsize 95\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (e.west) {\scriptsize $i = 6\ \&\&\ j = 6$};
+      \draw [<->] (e.seven south) -- +(0,-.5) -| (e.three south);
+
+      \node [single arrow, minimum height=0.4cm, single arrow head extend=0.16cm, fill=blue!50, rotate=-90]
+      at ($(e.four split south) + (0,-0.75)$) {};
+
+      \node (f) [BLOCK=8, below=1.5 of e, rectangle split part fill={sorted,sorted,sorted,unsorted,sorted,sorted,sorted,unsorted}]{
+        \nodepart{one}\raisebox{-3.50pt}{\scriptsize 12}\strut
+        \nodepart{two}\scriptsize 35\strut
+        \nodepart{three}\scriptsize 11\strut
+        \nodepart{four}\scriptsize 96\strut
+        \nodepart{five}\scriptsize 81\strut
+        \nodepart{six}\scriptsize 94\strut
+        \nodepart{seven}\scriptsize 17\strut
+        \nodepart{eight}\scriptsize 95\strut};
+
+      \node (g) [BLOCK=8,below=2.0 of f,rectangle split part fill={sorted,sorted,sorted,sorting,sorted,sorted,sorted,sorting}]{
+        \nodepart{one}\raisebox{-3.50pt}{\scriptsize 12}\strut
+        \nodepart{two}\scriptsize 35\strut
+        \nodepart{three}\scriptsize 11\strut
+        \nodepart{four}\scriptsize 96\strut
+        \nodepart{five}\scriptsize 81\strut
+        \nodepart{six}\scriptsize 94\strut
+        \nodepart{seven}\scriptsize 17\strut
+        \nodepart{eight}\scriptsize 95\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (g.west) {\scriptsize $i = 7\ \&\&\ j = 7$};
+      \draw [<->] (g.eight south) -- +(0,-.5) -| (g.four south);
+
+      \node [single arrow, minimum height=0.4cm, single arrow head extend=0.16cm, fill=blue!50, rotate=-90]
+      at ($(g.four split south) + (0,-0.75)$) {};
+
+      \node (h) [BLOCK=8, below=1.5 of g, rectangle split part fill={sorted,sorted,sorted,sorted,sorted,sorted,sorted,sorted}]{
+        \nodepart{one}\raisebox{-3.50pt}{\scriptsize 12}\strut
+        \nodepart{two}\scriptsize 35\strut
+        \nodepart{three}\scriptsize 11\strut
+        \nodepart{four}\scriptsize 95\strut
+        \nodepart{five}\scriptsize 81\strut
+        \nodepart{six}\scriptsize 94\strut
+        \nodepart{seven}\scriptsize 17\strut
+        \nodepart{eight}\scriptsize 96\strut};
+    \end{tikzpicture}
+  \end{center}
+  \caption{}
+  \label{fig0}
+\end{figure}

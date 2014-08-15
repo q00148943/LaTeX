@@ -1,0 +1,83 @@
+\begin{figure}[H]
+  \setlength{\abovecaptionskip}{0pt}
+  \definecolor{sorted}{RGB}{239,126,30}
+  \definecolor{unsorted}{RGB}{0,175,152}
+  \definecolor{sorting}{RGB}{127,191,51}
+  \begin{center}
+    \begin{tikzpicture}
+      \tikzset{
+        BLOCK/.style={
+          draw,
+          align=center,
+          text height=0.2cm,
+          text width=0.4cm,
+          draw=black,
+          rectangle split part fill={unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted},
+          rectangle split, 
+          rectangle split horizontal,
+          rectangle split parts=#1, 
+        }
+      }
+
+      \node (g) [BLOCK=8,rectangle split part fill={sorting,unsorted,sorting,unsorted,sorting,unsorted,sorting,unsorted}]{
+        \nodepart{one}\raisebox{-3.50pt}{\scriptsize 12}\strut
+        \nodepart{two}\scriptsize 35\strut
+        \nodepart{three}\scriptsize 11\strut
+        \nodepart{four}\scriptsize 96\strut
+        \nodepart{five}\scriptsize 81\strut
+        \nodepart{six}\scriptsize 94\strut
+        \nodepart{seven}\scriptsize 17\strut
+        \nodepart{eight}\scriptsize 95\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (g.west) {\scriptsize $odd\ element$};
+      \draw [<->] (g.one south) -- +(0,-.5) -| (g.seven south);
+      \draw [->] (g.three south) -- +(0,-.5) to (g.three south);
+      \draw [->] (g.five south) -- +(0,-.5) to (g.five south);
+
+      \node [single arrow, minimum height=0.4cm, single arrow head extend=0.16cm, fill=blue!50, rotate=-90]
+      at ($(g.four split south) + (0,-0.75)$) {};
+
+      \node (h) [BLOCK=8, below=1.5 of g, rectangle split part fill={sorted,unsorted,sorted,unsorted,sorted,unsorted,sorted,unsorted}]{
+        \nodepart{one}\raisebox{-3.50pt}{\scriptsize 11}\strut
+        \nodepart{two}\scriptsize 35\strut
+        \nodepart{three}\scriptsize 12\strut
+        \nodepart{four}\scriptsize 95\strut
+        \nodepart{five}\scriptsize 17\strut
+        \nodepart{six}\scriptsize 94\strut
+        \nodepart{seven}\scriptsize 81\strut
+        \nodepart{eight}\scriptsize 96\strut};
+
+
+      \node (a) [BLOCK=8, below=2 of h, rectangle split part fill={sorted,sorting,sorted,sorting,sorted,sorting,sorted,sorting}]{
+        \nodepart{one}\raisebox{-3.50pt}{\scriptsize 11}\strut
+        \nodepart{two}\scriptsize 35\strut
+        \nodepart{three}\scriptsize 12\strut
+        \nodepart{four}\scriptsize 95\strut
+        \nodepart{five}\scriptsize 17\strut
+        \nodepart{six}\scriptsize 94\strut
+        \nodepart{seven}\scriptsize 81\strut
+        \nodepart{eight}\scriptsize 96\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (a.west) {\scriptsize $even\ element$};
+
+      \draw [<->] (a.two south) -- +(0,-.5) -| (a.eight south);
+      \draw [->] (a.four south) -- +(0,-.5) to (a.four south);
+      \draw [->] (a.six south) -- +(0,-.5) to (a.six south);
+
+      \node [single arrow, minimum height=0.4cm, single arrow head extend=0.16cm, fill=blue!50, rotate=-90]
+      at ($(a.four split south) + (0,-0.75)$) {};
+
+      \node (b) [BLOCK=8, below=1.5 of a, rectangle split part fill={sorted,sorted,sorted,sorted,sorted,sorted,sorted,sorted}]{
+        \nodepart{one}\raisebox{-3.50pt}{\scriptsize 11}\strut
+        \nodepart{two}\scriptsize 35\strut
+        \nodepart{three}\scriptsize 12\strut
+        \nodepart{four}\scriptsize 94\strut
+        \nodepart{five}\scriptsize 17\strut
+        \nodepart{six}\scriptsize 95\strut
+        \nodepart{seven}\scriptsize 81\strut
+        \nodepart{eight}\scriptsize 96\strut};
+    \end{tikzpicture}
+  \end{center}
+  \caption{}
+  \label{fig0}
+\end{figure}

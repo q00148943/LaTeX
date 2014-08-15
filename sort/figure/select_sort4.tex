@@ -1,0 +1,31 @@
+\begin{figure}[H]
+  \setlength{\abovecaptionskip}{0pt}
+  \definecolor{sorted}{RGB}{239,126,30}
+  \definecolor{unsorted}{RGB}{0,175,152}
+  \definecolor{sorting}{RGB}{127,191,51}
+  \begin{center}
+    \begin{tikzpicture}
+
+      \draw (2.5,2.5) node (node5ed) [circle, draw, fill=sorted, minimum size=2em, line width=1.2] {\scriptsize 5};
+      \draw node (node17ed) [right=0.8 of node5ed, circle, draw, fill=sorted, minimum size=2em, line width=1.2]{\scriptsize 12};
+      \draw node (node23ed) [right=0.8 of node17ed, circle, draw, fill=sorted, minimum size=2em, line width=1.2]{\scriptsize 17};
+      \draw node (node90ed) [right=0.8 of node23ed, circle, draw, fill=unsorted, minimum size=2em, line width=1.2]{\scriptsize 90};
+      \draw node (node12ed) [right=0.8 of node90ed, circle, draw, fill=sorting, minimum size=2em, line width=1.2]{\scriptsize 23};
+
+      \node[xshift=-1cm,anchor=east] at (node5ed.west) {\scriptsize $find:$};
+
+      \draw (2.5,2.5) node (node5) [below=1 of node5ed, circle, draw, fill=sorted, minimum size=2em, line width=1.2] {\scriptsize 5};
+      \draw node (node12) [right=0.8 of node5, circle, draw, fill=sorted, minimum size=2em, line width=1.2]{\scriptsize 12};
+      \draw node (node17) [right=0.8 of node12, circle, draw, fill=sorted, minimum size=2em, line width=1.2]{\scriptsize 17};
+      \draw node (node23) [right=0.8 of node17, circle, draw, fill=sorted, minimum size=2em, line width=1.2]{\scriptsize 23};
+      \draw node (node90) [right=0.8 of node23, circle, draw, fill=sorted, minimum size=2em, line width=1.2]{\scriptsize 90};
+
+      \node[xshift=-1cm,anchor=east] at (node5.west) {\scriptsize $swap:$};
+
+      \draw [black, -stealth] (node90.south) to [bend left=45] (node23.south);
+
+    \end{tikzpicture}
+  \end{center}
+  \caption{}
+  \label{fig13}
+\end{figure}

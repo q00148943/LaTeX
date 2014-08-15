@@ -1,0 +1,63 @@
+\begin{figure}[H]
+  \setlength{\abovecaptionskip}{0pt}
+
+  \definecolor{sorted}{RGB}{239,126,30}
+  \definecolor{unsorted}{RGB}{0,175,152}
+  \definecolor{sorting}{RGB}{127,191,51}
+  \begin{center}
+    \begin{tikzpicture}
+      \tikzset{
+        BLOCK/.style={
+          draw,
+          align=center,
+          text height=0.2cm,
+          text width=0.4cm,
+          draw=black,
+          rectangle split part fill={unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted},
+          rectangle split, 
+          rectangle split horizontal,
+          rectangle split parts=#1, 
+        }
+      }
+
+      \node (node13)[BLOCK=8, rectangle split part fill={sorted,sorted,sorted,sorted,sorted,sorted,sorting,sorting}]{
+        \nodepart{one}\raisebox{-3.5pt}{\scriptsize 1} \strut\nodepart{two}\scriptsize 2\strut
+        \nodepart{three}\scriptsize 3 \strut\nodepart{four}\scriptsize 5\strut
+        \nodepart{five}\scriptsize 6 \strut\nodepart{six}\scriptsize 7\strut
+        \nodepart{seven}\scriptsize 4 \strut\nodepart{eight}\scriptsize 8\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (node13.west) {\scriptsize $j = 7$};
+      \draw [black, -stealth] (node13.eight south) to [bend left=45] (node13.seven south);
+
+      \node (node14)[BLOCK=8, right=1.8 of node13, rectangle split part fill={sorted,sorted,sorted,sorted,sorted,sorting,sorting,sorted}]{
+        \nodepart{one}\raisebox{-3.5pt}{\scriptsize 1} \strut\nodepart{two}\scriptsize 2\strut
+        \nodepart{three}\scriptsize 3 \strut\nodepart{four}\scriptsize 5\strut
+        \nodepart{five}\scriptsize 6 \strut\nodepart{six}\scriptsize 4\strut
+        \nodepart{seven}\scriptsize 7 \strut\nodepart{eight}\scriptsize 8\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (node14.west) {\scriptsize $j = 6$};
+      \draw [black, -stealth] (node14.seven south) to [bend left=45] (node14.six south);
+
+      \node (node15)[BLOCK=8, below=1 of node13, rectangle split part fill={sorted,sorted,sorted,sorted,sorting,sorting,sorted,sorted}]{
+        \nodepart{one}\raisebox{-3.5pt}{\scriptsize 1} \strut\nodepart{two}\scriptsize 2\strut
+        \nodepart{three}\scriptsize 3 \strut\nodepart{four}\scriptsize 5\strut
+        \nodepart{five}\scriptsize 4 \strut\nodepart{six}\scriptsize 6\strut
+        \nodepart{seven}\scriptsize 7 \strut\nodepart{eight}\scriptsize 8\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (node15.west) {\scriptsize $j = 5$};
+      \draw [black, -stealth] (node15.six south) to [bend left=45] (node15.five south);
+
+      \node (node16)[BLOCK=8, below=1 of node14, rectangle split part fill={sorted,sorted,sorted,sorted,sorted,sorted,sorted,sorted}]{
+        \nodepart{one}\raisebox{-3.5pt}{\scriptsize 1} \strut\nodepart{two}\scriptsize 2\strut
+        \nodepart{three}\scriptsize 3 \strut\nodepart{four}\scriptsize 4\strut
+        \nodepart{five}\scriptsize 5 \strut\nodepart{six}\scriptsize 6\strut
+        \nodepart{seven}\scriptsize 7 \strut\nodepart{eight}\scriptsize 8\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (node16.west) {\scriptsize $j = 4$};
+      \draw [black, -stealth] (node16.five south) to [bend left=45] (node16.four south);
+
+    \end{tikzpicture}
+  \end{center}
+  \caption{}
+  \label{fig7}
+\end{figure}

@@ -1,0 +1,44 @@
+\begin{figure}[H]
+  \setlength{\abovecaptionskip}{0pt}
+  \definecolor{sorted}{RGB}{239,126,30}
+  \definecolor{unsorted}{RGB}{0,175,152}
+  \definecolor{sorting}{RGB}{127,191,51}
+  \begin{center}
+    \begin{tikzpicture}
+      \tikzset{
+        BLOCK/.style={
+          draw,
+          align=center,
+          text height=0.2cm,
+          text width=0.4cm,
+          draw=black,
+          rectangle split part fill={unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted},
+          rectangle split, 
+          rectangle split horizontal,
+          rectangle split parts=#1, 
+        }
+      }
+
+      \node (node2)[BLOCK=8, rectangle split part fill={sorted,sorting,sorting,unsorted,unsorted,unsorted,unsorted,unsorted}]{
+        \nodepart{one}\raisebox{-3.5pt}{\scriptsize 5} \strut\nodepart{two}\scriptsize 3\strut
+        \nodepart{three}\scriptsize 6 \strut\nodepart{four}\scriptsize 2\strut
+        \nodepart{five}\scriptsize 8 \strut\nodepart{six}\scriptsize 7\strut
+        \nodepart{seven}\scriptsize 1 \strut\nodepart{eight}\scriptsize 4\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (node2.west) {\scriptsize $j = 2$};
+      \draw [black, -stealth] (node2.three south) to [bend left=45] (node2.two south);
+
+      \node (node3)[BLOCK=8, right=1.8 of node2, rectangle split part fill={sorted,sorted,sorted,unsorted,unsorted,unsorted,unsorted,unsorted}]{
+        \nodepart{one}\raisebox{-3.5pt}{\scriptsize 3} \strut\nodepart{two}\scriptsize 5\strut
+        \nodepart{three}\scriptsize 6 \strut\nodepart{four}\scriptsize 2\strut
+        \nodepart{five}\scriptsize 8 \strut\nodepart{six}\scriptsize 7\strut
+        \nodepart{seven}\scriptsize 1 \strut\nodepart{eight}\scriptsize 4\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (node3.west) {\scriptsize $j = 1$};
+      \draw [black, -stealth] (node3.two south) to [bend left=45] (node3.one south);
+
+    \end{tikzpicture}
+  \end{center}
+  \caption{}
+  \label{fig2}
+\end{figure}

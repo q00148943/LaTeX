@@ -1,0 +1,33 @@
+\begin{figure}[H]
+  \setlength{\abovecaptionskip}{0pt}
+  \definecolor{sorted}{RGB}{239,126,30}
+  \definecolor{unsorted}{RGB}{0,175,152}
+  \definecolor{sorting}{RGB}{127,191,51}
+  \begin{center}
+    \begin{tikzpicture}
+      \tikzset{
+        BLOCK/.style={
+          draw,
+          align=center,
+          text height=0.2cm,
+          text width=0.4cm,
+          draw=black,
+          rectangle split part fill={unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted},
+          rectangle split, 
+          rectangle split horizontal,
+          rectangle split parts=#1, 
+        }
+      }
+
+      \node (node7)[BLOCK=8, rectangle split part fill={sorted,sorted,sorted,sorted,sorted,unsorted,unsorted,unsorted}]{
+        \nodepart{one}\raisebox{-3.5pt}{\scriptsize2} \strut\nodepart{two}\scriptsize3\strut
+        \nodepart{three}\scriptsize 5 \strut\nodepart{four}\scriptsize 6\strut
+        \nodepart{five}\scriptsize 8 \strut\nodepart{six}\scriptsize 7\strut
+        \nodepart{seven}\scriptsize 1 \strut\nodepart{eight}\scriptsize 4\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (node7.west) {\scriptsize $j = 4$};
+    \end{tikzpicture}
+  \end{center}
+  \caption{}
+  \label{fig4}
+\end{figure}

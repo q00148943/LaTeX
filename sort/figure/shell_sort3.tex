@@ -1,0 +1,58 @@
+\begin{figure}[H]
+  \setlength{\abovecaptionskip}{0pt}
+  \definecolor{sorted}{RGB}{239,126,30}
+  \definecolor{unsorted}{RGB}{0,175,152}
+  \definecolor{sorting}{RGB}{127,191,51}
+  \begin{center}
+    \begin{tikzpicture}
+      \tikzset{
+        BLOCK/.style={
+          draw,
+          align=center,
+          text height=0.2cm,
+          text width=0.4cm,
+          draw=black,
+          rectangle split part fill={unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted},
+          rectangle split, 
+          rectangle split horizontal,
+          rectangle split parts=#1, 
+        }
+      }
+
+      \node (a) [BLOCK=8, below=2 of h, rectangle split part fill={sorting,sorting,sorting,sorting,sorting,sorting,sorting,sorting}]{
+        \nodepart{one}\raisebox{-3.50pt}{\scriptsize 11}\strut
+        \nodepart{two}\scriptsize 35\strut
+        \nodepart{three}\scriptsize 12\strut
+        \nodepart{four}\scriptsize 94\strut
+        \nodepart{five}\scriptsize 17\strut
+        \nodepart{six}\scriptsize 95\strut
+        \nodepart{seven}\scriptsize 81\strut
+        \nodepart{eight}\scriptsize 96\strut};
+
+      \node[xshift=-0.3cm,anchor=east] at (a.west) {\scriptsize $all\ element$};
+
+      \draw [<->] (a.one south) -- +(0,-.5) -| (a.eight south);
+      \draw [->] (a.two south) -- +(0,-.5) to (a.two south);
+      \draw [->] (a.three south) -- +(0,-.5) to (a.three south);
+      \draw [->] (a.four south) -- +(0,-.5) to (a.four south);
+      \draw [->] (a.five south) -- +(0,-.5) to (a.five south);
+      \draw [->] (a.six south) -- +(0,-.5) to (a.six south);
+      \draw [->] (a.seven south) -- +(0,-.5) to (a.seven south);
+
+      \node [single arrow, minimum height=0.4cm, single arrow head extend=0.16cm, fill=blue!50, rotate=-90]
+      at ($(a.four split south) + (0,-0.75)$) {};
+
+      \node (b) [BLOCK=8, below=1.5 of a, rectangle split part fill={sorted,sorted,sorted,sorted,sorted,sorted,sorted,sorted}]{
+        \nodepart{one}\raisebox{-3.50pt}{\scriptsize 11}\strut
+        \nodepart{two}\scriptsize 35\strut
+        \nodepart{three}\scriptsize 12\strut
+        \nodepart{four}\scriptsize 94\strut
+        \nodepart{five}\scriptsize 17\strut
+        \nodepart{six}\scriptsize 95\strut
+        \nodepart{seven}\scriptsize 81\strut
+        \nodepart{eight}\scriptsize 96\strut};
+    \end{tikzpicture}
+  \end{center}
+  \caption{}
+  \label{fig0}
+\end{figure}
