@@ -141,8 +141,8 @@ urlcolor=seco%
 \usepackage{listings}                % 方便粘贴源代码，部分代码高亮功能
 \lstloadlanguages{}                  % 所要粘贴代码的编程语言
 
-\newfontfamily\listingsfont{Consolas}
-\newfontfamily\listingsfontinline{Consolas}
+\newfontfamily\listingsfont{Calibri}
+\newfontfamily\listingsfontinline{Calibri}
 
 \definecolor{sh_keyword}{rgb}{0.06, 0.10, 0.98}   % #101AF9
 \definecolor{shadecolor}{rgb}{0.83, 0.83, 0.83}
@@ -159,9 +159,9 @@ urlcolor=seco%
 \definecolor{seco}{RGB}{0,175,152}
 \definecolor{main}{RGB}{127,191,51}
 
-\makeatletter
-  \newcommand\listingfont{\@setfontsize\listingfont{11pt}{13.2pt}}
-\makeatother
+% \makeatletter
+%   \newcommand\listingfont{\@setfontsize\listingfont{11pt}{13.2pt}}
+% \makeatother
 
 \renewcommand{\lstlistingname}{代码}
 
@@ -173,7 +173,8 @@ urlcolor=seco%
   % rulesepcolor=\color{red!20!green!20!blue!20},
   showspaces=false,showtabs=false,tabsize=4,
   numberstyle=\tiny\color{black},numbers=left,
-  basicstyle= \listingfont\listingsfont\color{monokai-yellow-light},
+  % basicstyle= \listingfont\listingsfont\color{monokai-yellow-light},
+  basicstyle= \small\listingsfont\color{monokai-yellow-light},
   stringstyle=\color{dark green},
   keywordstyle = \color{monokai-green}\bfseries,
   commentstyle=\footnotesize\color{forest green}\itshape,
@@ -262,7 +263,7 @@ urlcolor=seco%
 \subsection{插入排序}
 \label{subsec:labelsub1}
 插入排序的一个非常形象的说明就是打牌。起牌的过程中，每次我们摸起一张牌后，都会和手中已有的牌做比较，然后将牌插到相应的位置，如图\ref{fig00}所示。
-\begin{figure}[!htbp]
+\begin{figure}[H]
   \setlength{\abovecaptionskip}{0pt}
   \centering
   \includegraphics[width=0.6\textwidth]{playing_cards.jpg}
