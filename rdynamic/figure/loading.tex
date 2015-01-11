@@ -1,0 +1,63 @@
+\begin{figure}[!htb]
+  \setlength{\abovecaptionskip}{0pt}
+  \begin{center}
+    \begin{singlespace}
+      \begin{tikzpicture}[auto, node distance = 5.5cm]
+        \node (link) [rect,rectangle split parts=5,
+        text width=2.5cm,
+        rectangle split part fill={black!20!white,green!30!white,white!30!orange,white!30!orange,white!30!orange,white!30!orange,white!30!orange,white!30!orange,blue!40!green}] {
+          \nodepart[height=2cm]{text}     {\footnotesize call}
+          \nodepart[height=1cm]{two}    {\footnotesize PLT}
+          \nodepart[height=0.5cm]{three}  {}
+          \nodepart[height=0.5cm]{four}   {\footnotesize GOT}
+          \nodepart[height=0.5cm]{five}   {}
+        };
+
+
+        \node[yshift=0.5cm] at (link.north) {\textbf{program}};
+
+        \node[draw,minimum width=0.3cm, minimum height=0.1cm] (a) at ($(link.one east) + (-0.21cm,0)$) {};
+        \node[draw,minimum width=0.3cm, minimum height=0.1cm] (b) at ($(link.two east) + (-0.21cm,0)$) {};
+        \node[draw,minimum width=0.3cm, minimum height=0.1cm] (c) at ($(link.four east) + (-0.21cm,0)$) {};
+
+        \draw [decorate,decoration={brace,amplitude=8pt,mirror}]
+        ($(link.north west) + (-0.1cm,0)$) -- ($(link.two split west) + (-0.1cm,0)$) node [black,midway,xshift=-1.2cm,align=center]
+        {\footnotesize text};
+
+        \draw [decorate,decoration={brace,amplitude=8pt,mirror}]
+        ($(link.two split west) + (-0.1cm,0)$) -- ($(link.south west) + (-0.1cm,0)$) node [black,midway,xshift=-1.2cm,align=center]
+        {\footnotesize data};
+
+        \draw[->] (a.center) to [bend left=50] (b.center);
+        \draw[->] (b.center) to [bend left=50] (c.center);
+
+        \node (exe) [right=2.5 of link,rect,rectangle split parts=5, text width=2.5cm,
+        rectangle split part fill={black!20!white,green!30!white,white!30!orange,white!30!orange,white!30!orange,white!30!orange,white!30!orange,white!30!orange,blue!40!green}]
+        {
+          \nodepart[height=2cm]{text}     {\footnotesize routine}
+          \nodepart[height=1cm]{two}      {\footnotesize PLT}
+          \nodepart[height=0.5cm]{three}  {}
+          \nodepart[height=0.5cm]{four}     {\footnotesize GOT}
+          \nodepart[height=0.5cm]{five}     {}
+        };
+
+        \node[yshift=0.5cm] at (exe.north) {\textbf{library}};
+        \node[draw,minimum width=0.3cm, minimum height=0.1cm] (h) at ($(exe.one west) + (+0.21cm,0)$) {};
+
+        \draw [decorate,decoration={brace,amplitude=8pt}]
+        ($(exe.north east) + (0.1cm,0)$) -- ($(exe.two split east) + (0.1cm,0)$) node [black,midway,xshift=0.4cm,align=center]
+        {\footnotesize text};
+
+        \draw [decorate,decoration={brace,amplitude=8pt}]
+        ($(exe.two split east) + (0.1cm,0)$) -- ($(exe.south east) + (0.1cm,0)$) node [black,midway,xshift=0.4cm,align=center]
+        {\footnotesize data};
+
+        \draw [-latex,thick,rounded corners] (c.center) -| ($(link.two east) + (1cm,0)$) -| ($(link.two east) + (2cm,0)$) |- (h.center);
+
+      \end{tikzpicture}
+    \end{singlespace}
+  \end{center}
+  \caption{Loading}
+  \label{fig35}
+\end{figure}
+

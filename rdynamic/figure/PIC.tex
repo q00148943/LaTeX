@@ -1,0 +1,70 @@
+\begin{figure}[!htb]
+  \setlength{\abovecaptionskip}{0pt}
+  \begin{center}
+    \begin{singlespace}
+      \begin{tikzpicture}[auto, node distance = 5.5cm]
+        \node (link) [rect,rectangle split parts=8,
+        text width=2cm,
+        rectangle split part fill={black!20!white,white,green!50!white,white,white!30!orange,white!30!orange,white!30!orange,white}] {
+          \nodepart[height=1.2cm]{text}     {\footnotesize kernel}
+          \nodepart[height=0.3cm]{two}    {}
+          \nodepart[height=1.0cm]{three}    {\footnotesize .so}
+          \nodepart[height=0.5cm]{four}    {}
+          \nodepart[height=0.3cm]{five}  {\footnotesize bss}
+          \nodepart[height=0.4cm]{six}  {\footnotesize data}
+          \nodepart[height=0.6cm]{seven}   {\footnotesize text}
+          \nodepart[height=0.1cm]{eight}   {}
+        };
+
+        \node[yshift=0.5cm] at (link.north) {\textbf{\footnotesize virtual mem}};
+
+        \draw [decorate,decoration={brace,amplitude=8pt,mirror}]
+        ($(link.north west) + (-0.1cm,0)$) -- ($(link.text split west) + (-0.1cm,0)$) node [black,midway,xshift=-1.2cm,align=center]
+        {\footnotesize 1GB};
+
+        \draw [decorate,decoration={brace,amplitude=8pt,mirror}]
+        ($(link.text split west) + (-0.1cm,0)$) -- ($(link.south west) + (-0.1cm,0)$) node [black,midway,xshift=-1.2cm,align=center]
+        {\footnotesize 3GB};
+
+        \node (exe) [right=4 of link,rect,rectangle split parts=8, text width=2cm,
+        rectangle split part fill={black!20!white,white,green!50!white,white,white!30!orange,white!30!orange,white!30!orange,white}]
+        {
+          \nodepart[height=1.2cm]{text}     {\footnotesize kernel}
+          \nodepart[height=0.3cm]{two}    {}
+          \nodepart[height=1.0cm]{three}    {\footnotesize .so}
+          \nodepart[height=0.5cm]{four}    {}
+          \nodepart[height=0.3cm]{five}  {\footnotesize bss}
+          \nodepart[height=0.4cm]{six}  {\footnotesize data}
+          \nodepart[height=0.6cm]{seven}   {\footnotesize text}
+          \nodepart[height=0.1cm]{eight}   {}
+        };
+
+        \node[yshift=0.5cm] at (exe.north) {\textbf{\footnotesize virtual mem}};
+
+        \draw [decorate,decoration={brace,amplitude=8pt}]
+        ($(exe.north east) + (0.1cm,0)$) -- ($(exe.text split east) + (0.1cm,0)$) node [black,midway,xshift=0.4cm,align=center]
+        {\footnotesize 1GB};
+
+        \draw [decorate,decoration={brace,amplitude=8pt}]
+        ($(exe.text split east) + (0.1cm,0)$) -- ($(exe.south east) + (0.1cm,0)$) node [black,midway,xshift=0.4cm,align=center]
+        {\footnotesize 3GB};
+
+
+        \gettikzxy{(link.center)}{\linkx}{\linky}
+        \gettikzxy{(exe.center)}{\exex}{\exey}
+
+        \node[draw,minimum width=2cm, minimum height=1cm,fill=white!60!red] (so) at ($(\linkx/2+\exex/2,\exey)$) {\footnotesize .so};
+        \node[yshift=0.5cm] at (so.north) {\textbf{\footnotesize physical mem}};
+
+        \draw [dashed] (link.two split east) -- (so.north west);
+        \draw [dashed] (link.three split east) -- (so.south west);
+
+        \draw [dashed] (exe.two split west) -- (so.north east);
+        \draw [dashed] (exe.three split west) -- (so.south east);
+      \end{tikzpicture}
+    \end{singlespace}
+  \end{center}
+  \caption{position independent code}
+  \label{fig37}
+\end{figure}
+
