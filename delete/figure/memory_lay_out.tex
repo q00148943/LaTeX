@@ -1,0 +1,56 @@
+\begin{figure}[H]
+  \setlength{\abovecaptionskip}{0pt}
+  \definecolor{sorted}{RGB}{239,126,30}
+  \definecolor{unsorted}{RGB}{0,175,152}
+  \definecolor{sorting}{RGB}{127,191,51}
+  \begin{center}
+    \begin{tikzpicture}
+      \tikzset{
+        BLOCK/.style={
+          draw,
+          align=center,
+          text height=0.2cm,
+          text width=0.6cm,
+          draw=black,
+          rectangle split part fill={unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted},
+          rectangle split, 
+          rectangle split horizontal,
+          rectangle split parts=#1, 
+        }
+      }
+
+      \node (node2)[BLOCK=3, rectangle split part fill={sorted,sorting,unsorted,unsorted,unsorted,unsorted,unsorted,unsorted}]{
+        \nodepart{one}\raisebox{-3.5pt}{} \strut\nodepart{two}\strut
+        \nodepart[text width=7.2cm]{three}\strut\nodepart{four}\scriptsize 2\strut
+        \nodepart{five}\scriptsize 8 \strut\nodepart{six}\scriptsize 7\strut
+        \nodepart{seven}\scriptsize 1 \strut\nodepart{eight}\scriptsize 4\strut};
+
+      % \node[xshift=-0.3cm,anchor=east] at (node2.west) {\scriptsize $j = 2$};
+      % \draw [black, -stealth] (node2.three south) to [bend left=45] (node2.two south);
+
+        \draw [decorate,decoration={brace,amplitude=5pt}]
+        ($(node2.one split north) + (0,1.0cm)$) -- ($(node2.north east) + (0,1.0cm)$) node [black,midway,yshift=0.4cm,align=center]
+        {\footnotesize C++ new[]: (0x10 * 4 + 4) bytes};
+
+        \draw [decorate,decoration={brace,amplitude=5pt}]
+        ($(node2.one split north) + (0,0.1cm)$) -- ($(node2.two split north) + (0,0.1cm)$) node [black,midway,yshift=0.4cm,align=center]
+        {\footnotesize C++ new[] objects count: 0x10};
+
+        \draw[->] ($(node2.two split north) + (0,2.4cm)$) -- ($(node2.two split north) + (0cm,0)$)node [black,midway,yshift=1.6cm,align=center]{\footnotesize address new[] return to user};
+
+        \draw [decorate,decoration={brace,amplitude=5pt,mirror}]
+        ($(node2.south west) + (0,-1.0cm)$) -- ($(node2.south east) + (0,-1.0cm)$) node [black,midway,yshift=-0.4cm,align=center]
+        {\footnotesize C malloc: (4 + 0x10 * 4 + 4) bytes};
+
+        \draw [decorate,decoration={brace,amplitude=5pt,mirror}]
+        ($(node2.south west) + (0,-0.1cm)$) -- ($(node2.one split south) + (0,-0.1cm)$) node [black,midway,yshift=-0.4cm,align=center]
+        {\footnotesize C malloc size: (0x10 * 4 + 4)};
+
+        \draw[->] ($(node2.one split south) + (0,-2.4cm)$) -- ($(node2.one split south) + (0cm,0)$)node [black,midway,yshift=-1.6cm,align=center]{\footnotesize address malloc return to new};
+
+    \end{tikzpicture}
+  \end{center}
+  \caption{}
+  \label{fig02}
+\end{figure}
+

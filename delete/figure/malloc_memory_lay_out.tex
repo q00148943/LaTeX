@@ -1,0 +1,44 @@
+\begin{figure}[!htb]
+  \setlength{\abovecaptionskip}{0pt}
+  \definecolor{sorted}{RGB}{239,126,30}
+  \definecolor{unsorted}{RGB}{0,175,152}
+  \definecolor{sorting}{RGB}{127,191,51}
+  \begin{center}
+    \begin{singlespace}
+      \begin{tikzpicture}[auto, node distance = 5.5cm]
+        \node (chunk) [rect,rectangle split parts=3,
+        text width=10cm,
+        rectangle split part fill={sorted,sorting,unsorted}] {
+          \nodepart[height=0.8cm]{text}  {\footnotesize size of previous chunk, if allocated}
+          \nodepart[height=0.8cm]{two}  {\footnotesize size of chunk, in bytes}
+          \nodepart[height=3cm]{three}   {\footnotesize user data}
+        };
+
+        \draw [decorate,decoration={brace,amplitude=8pt,mirror}]
+        ($(chunk.north west) + (-0.1cm,0)$) -- ($(chunk.text split west) + (-0.1cm,0)$) node [black,midway,xshift=-1.7cm,align=center]
+        {\footnotesize 4 bytes};
+
+        \draw [decorate,decoration={brace,amplitude=8pt,mirror}]
+        ($(chunk.text split west) + (-0.1cm,0)$) -- ($(chunk.two split west) + (-0.1cm,0)$) node [black,midway,xshift=-1.7cm,align=center]
+        {\footnotesize 4 bytes};
+
+        \draw [decorate,decoration={brace,amplitude=8pt,mirror}]
+        ($(chunk.two split west) + (-0.1cm,0)$) -- ($(chunk.south west) + (-0.1cm,0)$) node [black,midway,xshift=-4.7cm,align=center]
+        {\footnotesize malloc\_usable\_size() bytes};
+
+        \draw [decorate,decoration={brace,amplitude=8pt}]
+        ($(chunk.text split east) + (0.1cm,0)$) -- ($(chunk.south east) + (0.1cm,0)$) node [black,midway,xshift=0.2cm,align=center]
+        {\footnotesize request2size bytes};
+
+        \draw[->,thick] ($(chunk.two split west) + (-2cm,0)$) -- ($(chunk.two split west) + (0cm,0)$)node [black,midway,xshift=-2.0cm,yshift=-0.25cm,align=center]{\footnotesize user data starts here};
+
+        \draw [] ($(chunk.text split east) + (-0.5cm,0)$) -- ($(chunk.two split east) + (-0.5cm,0)$)node [black,midway,xshift=0.0cm,align=center]{\footnotesize P};
+        \draw [] ($(chunk.text split east) + (-1cm,0)$) -- ($(chunk.two split east) + (-1cm,0)$)node [black,midway,xshift=-0.04cm,align=center]{\footnotesize M};
+        \draw [] ($(chunk.text split east) + (-1.5cm,0)$) -- ($(chunk.two split east) + (-1.5cm,0)$)node [black,midway,xshift=0.0cm,align=center]{\footnotesize A};
+      \end{tikzpicture}
+    \end{singlespace}
+  \end{center}
+  \caption{内存布局}
+  \label{fig01}
+\end{figure}
+
