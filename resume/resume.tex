@@ -1,0 +1,104 @@
+\documentclass[11pt,a4paper]{moderncv}
+
+% moderncv themes
+%\moderncvtheme[blue]{casual}                % optional argument are 'blue' (default), 'orange', 'red', 'green', 'grey' and 'roman' (for roman fonts, instead of sans serif fonts)
+\moderncvtheme[blue]{classic}                % idem
+\usepackage{xunicode, xltxtra}
+\XeTeXlinebreaklocale "zh"
+\widowpenalty=10000
+
+% character encoding
+%\usepackage[utf8]{inputenc}                 % replace by the encoding you are using
+\usepackage{CJKutf8}
+
+% adjust the page margins
+\usepackage[scale=0.8]{geometry}
+\recomputelengths                            % required when changes are made to page layout lengths
+\setmainfont[Mapping=tex-text]{Hiragino Sans GB}
+\setsansfont[Mapping=tex-text]{Hiragino Sans GB}
+\CJKtilde
+
+%% Copyright 2006-2012 Xavier Danaux (xdanaux@gmail.com).
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
+
+% 个人信息
+\firstname{秦}
+\familyname{新良}
+\title{个人简历}                      % 可选项、如不需要可删除本行
+\address{龙岗区松源路1号}{518000 深圳}             % 可选项、如不需要可删除本行
+\mobile{+86~185 8821 0985}                         % 可选项、如不需要可删除本行
+%\phone{+2~(345)~678~901}                          % 可选项、如不需要可删除本行
+%\fax{+3~(456)~789~012}                            % 可选项、如不需要可删除本行
+\email{q00148943@icloud.com}                    % 可选项、如不需要可删除本行
+%\homepage{dinever.com}                  % 可选项、如不需要可删除本行
+%\extrainfo{附加信息 (可选项)}                  % 可选项、如不需要可删除本行
+\photo[64pt]{qinxinliang.eps}                  % ‘64pt’是图片必须压缩至的高度、‘0.4pt‘是图片边框的宽度 (如不需要可调节至0pt)、’picture‘ 是图片文件的名字;可选项、如不需要可删除本行
+%\quote{引言(可选项)}                           % 可选项、如不需要可删除本行
+
+\begin{document}
+\maketitle
+
+\section{教育背景}
+\cventry{2003 -- 2007}{本科}{重庆邮电大学}{计算机科学与技术学院}{信息与计算科学专业}{}  % 第3到第6编码可留白
+
+\section{社区}
+\cventry{GitHub}{\url{https://github.com/q00148943}}{}{}{}{}
+
+\section{项目经历}
+\renewcommand{\baselinestretch}{1.6}
+
+\cventry{2014}
+{USCDBV100R007C20}
+{}
+{公司项目}{}
+{该版本的主要特点的用户容量大、可靠性要求高。在该版本中主要承担问题攻关解决的工作。主要收获是通过一系列经疑难杂症的解决，对可靠性有了更直观深刻的认识，不管是任何缺卸，无论出现概率多低，在现网运行的环境上，都是会发生的。平时在编码过程中一定要慎之又慎，多注意异常的保护。}\\
+
+\cventry{2014}
+{USCDBV500R008C00}
+{}
+{公司项目}{}
+{该版本是产品切换平台的一个版本，产品的运行环境从物理机切换到虚拟机。在该版本中主要承担平台适配、问题定位及性能调优等工作。主要收获是学会了使用perf工具解决版本的性能问题。}\\
+
+\cventry{2013}
+{USCDBV100R005C00}
+{}
+{公司项目}{}
+{参与USCDBV100R005C00版本的开发，主要完成DPU均衡分发业务消息的开发工作，期间出差支撑项目交付。}\\
+
+\cventry{2012}
+{USCDBV100R006C00}
+{}
+{}{}
+{在些期间参与USCDBV100R006C00、USCDBV100R006C01和USCDBV100R007C00三个版本的开发。主要完成统一营帐、三方适配增强、营帐话统、业务容灾支持sftp、订阅通知支持HTTP和TCP等特性的开发。完成SFTP、HTTP和VCOM组件的适配及开发。}\\
+
+\cventry{2011}
+{USCDBV100R002C03}
+{}
+{公司项目}{}
+{参与USCDBV100R002C03版本的开发，主要完成第三方营帐指令到华为营帐指令转换的开发及该版本的维护工作。}\\
+
+\cventry{2010}
+{USCDBV100R002C02}
+{}
+{公司项目}{}
+{参与USCDBV100R002C02版本的开发，主要完成营帐指令的批处理和营帐SOAP接口的开发（SOAP组件的适配及业务逻辑的实现）。}
+
+\section{语言技能}
+\cvline{英语}{\textbf{CET-6: 523}，擅长读写，可阅读英文影印版技术类书籍。}
+\cvline{普通话}{母语}
+
+\section{计算机技能}
+\cvline{操作系统}{Linux}
+\cvline{编程语言}{Assembly/C/C++/SHELL}
+\cvline{Web服务器}{Nginx}
+\cvline{协议}{TCP/IP, HTTP, SOAP, LDAP}
+\cvline{工具}{vim, emacs, gdb, valgrind, tcpdump, wireshark, \LaTeX}
+
+\closesection{}                   % needed to renewcommands
+\renewcommand{\listitemsymbol}{-} % change the symbol for lists
+
+\end{document}
+
