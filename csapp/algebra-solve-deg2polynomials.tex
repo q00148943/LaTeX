@@ -1,0 +1,350 @@
+\documentclass[20150903-160354-rs2.2-MarksMathNotebook.tex]{subfiles}
+
+\begin{document}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%
+%	CHAPTER
+%
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\chapter{Solving Quadratic Equations}
+
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	SECTION:
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\section{Mutiliplicative Inverse}\index{Solving Quadratic Equations! Multiplicative Inverse}
+%-=-=-= EXAMPLE
+\begin{example}[id:20141107-131748] \label{20141107-131748} \index{Example!20141107-131748} \hfill \\
+
+Solve the equation $2-x^2=0$ for $x$
+
+\soln
+
+\solnsteps
+\begin{align*}
+2-1x^2 &= 0 && \text{MId} \eqref{eq:mid1} \\
+2+\neg 1 x^2 &= 0 && \text{DOS} \eqref{eq:dos1} \\
+\left[\alert{2+\neg 1x^2} \right] + 1x^2 &= \left[\alert{0}\right]+ 1x^2 && \text{SPE} \eqref{eq:spe} + \text{AI} \eqref{eq:ai} \\
+2 + \left(\neg 1x^2 + 1x^2 \right) &= 0 + 1x^2 && \text{APA} \eqref{eq:apa1} \\
+2 + 0 &= 0 + 1x^2 && \text{OOA} \eqref{eq:ooa} \\
+2 &= 1x^2 && \text{AId} \eqref{eq:aid1} \\
+2 &= x^2 && \text{MId} \eqref{eq:mid2} \\
+\alert{\pm} \left[\alert{2} \right]^{\frac{1}{2}} &= \left[\alert{x^2}\right]^{\frac{1}{2}} && \text{SPE} \eqref{eq:spe} + \text{MI} \eqref{eq:mi1} \\
+\pm 2^{\frac{1}{2}} &= x && \text{PoPo} \eqref{eq:popo1} \\
+\pm \sqrt{2} &= x && \text{PoTR} \eqref{eq:potr} \\
+x &= \pm \sqrt{2} && \text{SyPE} \eqref{eq:sype}
+\end{align*}
+\end{example}
+
+%-=-=-= EXAMPLE
+\begin{example}[id:20151012-192313] \label{20151012-192313}\index{Example!20151012-192313} \hfill \\
+
+Solve the equation $6x^2 - 6x - 12 = 0$
+
+\soln
+
+\solnsteps
+\begin{align*}
+6x^2+\neg 6x + \neg 12 &= 0 && \text{DOS} \eqref{eq:dos1} \\
+6(1x^2 \neg 1x + \neg 2) &= 0 && \text{DPF} \eqref{eq:dpf2} \\
+\end{align*}
+
+Using the factor orgnanizer,
+
+
+\begin{center}
+\begin{tikzpicture}[scale=1, auto]
+
+% Place nodes
+
+\node[firstterm](11){$x$}; \node[factoradd,right=of 11](plus1){$+$}; \node[secondterm, right=of plus1](12){$\neg 2$};
+\node[firstterm, below=of 11](21){$x$}; \node[factoradd,right=of 21](plus2){$+$}; \node[secondterm, right=of plus2](22){$1$};
+
+\node[multiply, below=of 21](31){$x^2$};
+\node[multiply, below=of 22](32){$\neg 2$};
+
+\node[multiply, right=of 12](13){$\neg 2 x$};
+\node[multiply, right=of 22](23){$1 x$};
+
+\node[add, below=of 23](33){$\neg 2x$};
+
+\path [line](11) edge[bend right=30]node[color=black, midway, left]{$\times$}(21);
+\path [line](12) edge[bend left=30]node[color=black,, midway, right]{$\times$}(22);
+\path [line](21)--(31);
+
+\path [line](21) edge[bend left=30]node[color=black, pos=0.37, below]{$\times$}(12);
+\path [line](11) edge[bend right=30](22);
+\path [line](22)--(32);
+
+\path [line](12)--(13);
+\path [line](22)--(23);
+
+\path [line](13)--node[color=black, midway, right]{$+$}(23);
+\path [line](23)--(33);
+
+\end{tikzpicture}
+\end{center}
+
+Solving the linear equations using \text{ZPr} \eqref{eq:zpr} \\ \\
+\begin{align*}
+x_1+\neg 2& = 0  &&\text{\alert{Case I}} \\
+\farg{x_1 +\neg 2}  + 2 &= \farg{0} + \neg 2 && \text{AI} \eqref{eq:ai},\text{SPE} \eqref{eq:spe}  \\
+x_1+(\neg 2 + 2) &= 0 + \neg 2 && \text{APA} \eqref{eq:apa1} \\
+x_1+0 &= \neg 2 && \text{OOA} \eqref{eq:ooa} \\
+x_1&= \neg 2 && \text{AId} \eqref{eq:aid2} \\
+x_1 &= -2 && \text{ONeg} \eqref{eq:oneg2} 
+\end{align*}
+\vspace{-0.5cm}
+\begin{align*}
+x_2+1 &= 0  &&\text{\alert{Case II}} \\
+\farg{x_2+1} + \neg 1 &= \farg{0} + \neg 1 && \text{AI} \eqref{eq:ai},\text{SPE} \eqref{eq:spe}  \\
+x_2 + (1 + \neg 1) &= 0+ \neg 1 && \text{APA} \eqref{eq:apa1} \\
+x_2 + 0 &= \neg 2 && \text{OOA} \eqref{eq:ooa} \\
+x_2 &= \neg 2 && \text{AId} \eqref{eq:aid2} \\
+x_2 &= -2 && \text{ONeg} \eqref{eq:oneg2} 
+\end{align*}
+
+\qdepend
+
+\qdependlist
+example \ref{20151012-190708}-20151012-190708
+
+\end{example}
+
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	SECTION:
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\section{Completing The Square}\index{Solving Quadratic Equations! Completing the Square}
+
+Completing the square is an algebraic process used to find the roots of quadratic equations of the form, $ax^2+bx+c=0$.   Essentially, we want to manipulate this equation such that $x=\frac{-  b  \pm \sqrt{b^2 - 4ac}}{2a}$.  
+
+\begin{proof}
+
+Let's begin with a quadratic equation in the general form: $ax^2+bx+c=0$.  Since we are trying to manipulate the equation  $ax^2+bx+c=0$ such that $x=\text{some value(s)}$, we first want the coefficient factor $a$ to be equal to 1.
+
+\begin{align*}
+\dfrac{1}{a} \farg{ax^2 + bx +c} & = \dfrac{1}{a} \farg{0} && \text{SPE} \eqref{eq:spe} + \text{MI} \eqref{eq:mi1} \\
+\dfrac{1}{a} \cdot ax^2 + \dfrac{1}{a} \cdot bx + \dfrac{1}{a} \cdot c  & = \dfrac{1}{a} \left[ 0\right] && \text{DPE} \eqref{eq:dpe1} \\
+\dfrac{1}{a} \cdot a \cdot x^2 + \dfrac{1}{a} \cdot b \cdot x + \dfrac{1}{a} \cdot c  & = \dfrac{1}{a} \left[ 0\right] && \text{JTC} \eqref{eq:jtc} \\
+x^2 + \dfrac{b}{a} \cdot x + \dfrac{c}{a} & = 0 && \text{OOM} \eqref{eq:oom} \\
+x^2 +\dfrac{b}{a}x + \dfrac{c}{a}  & = 0 && \text{CTJ} \eqref{eq:ctj}
+\end{align*}
+
+We now have three summands in the left hand expression where the first two summands have $x^2$ and $x$ terms respectively.  The goal is to have $x=\text{some value}$, so the next step is focused on removing the  $\dfrac{c}{a}$ summand.\\
+
+\begin{align*}
+\farg{x^2 +\dfrac{b}{a}x + \dfrac{c}{a}}  + \neg \dfrac{c}{a}  & = \farg{ 0 } + \neg \dfrac{c}{a} &&  \text{SPE} \eqref{eq:spe} + \text{AI} \eqref{eq:ai} \\
+x^2 +\dfrac{b}{a}x + \left(\dfrac{c}{a} + \neg \dfrac{c}{a} \right)  & = 0  + \neg \dfrac{c}{a} && \text{APA} \eqref{eq:apa1} \\
+x^2 +\dfrac{b}{a}x + 0 & = \neg \dfrac{c}{a} && \text{OOA} \eqref{eq:ooa} \\
+x^2 +\dfrac{b}{a}x & = \neg \dfrac{c}{a} && \text{AId} \eqref{eq:aid2} 
+\end{align*}
+
+The next step is called completing the square - the creative step.  The idea is to add a \textit{NeW} constant, $\color{sthlmRed}k$, to the left-hand expression, $x^2 +\frac{b}{a}x+\color{sthlmRed}k$,  such that the quadratic expression can then be factored as two identical factors, $({\color{sthlmBlue}x}+{\color{sthlmRed}m})({\color{sthlmBlue}x}+{\color{sthlmRed}m}) = ({\color{sthlmBlue}x}+{\color{sthlmRed}m})^2$, where  ${{\color{sthlmRed}k}=\color{sthlmRed}m} \cdot {\color{sthlmRed}m}$.  
+
+\begin{figure}[h!]
+\begin{center}
+\begin{tikzpicture}[scale=1, auto]
+
+% Place nodes
+
+\node[firstterm](11){$x$}; \node[factoradd,right=of 11](plus1){$+$}; \node[secondterm, right=of plus1](12){$m$};
+\node[firstterm, below=of 11](21){$x$}; \node[factoradd,right=of 21](plus2){$+$}; \node[secondterm, right=of plus2](22){$m$};
+
+\node[multiply, below=of 21](31){$x^2$};
+\node[multiply, below=of 22](32){$k$};
+
+\node[multiply, right=of 12](13){$mx$};
+\node[multiply, right=of 22](23){$mx$};
+
+\node[add, below=of 23](33){$2m x$};
+
+\path [line](11) edge[bend right=30]node[color=black, midway, left]{$\times$}(21);
+\path [line](12) edge[bend left=30]node[color=black, midway, right]{$\times$}(22);
+\path [line](21)--(31);
+
+\path [line](21) edge[bend left=30]node[color=black, pos=0.37, below]{$\times$}(12);
+\path [line](11) edge[bend right=30](22);
+\path [line](22)--(32);
+
+\path [line](12)--(13);
+\path [line](22)--(23);
+
+\path [line](13)--node[color=black, midway, right]{$+$}(23);
+\path [line](23)--(33);
+
+\end{tikzpicture}
+\caption{The Organization of the Distributive Property}
+\end{center}
+\end{figure}
+
+Adding $\cRed{k}$ to the right-hand expression is a consequence of adding $\cRed{k}$ to the left-hand expression to get what we want (a perfect square), $\farg{x^2 +\frac{b}{a}x}+\cRed{k} = \farg{\neg \frac{c}{a}}+\cRed{k}$.  
+
+To determine the values of both $\cRed{m}$ and $\cRed{k}$ we should refer to the the organisation of the two factors, $(\cBlue{x}+\cRed{m})^2$, that make up the product of the quadratic expression, $x^2 +\frac{b}{a}x+\cRed{k}$.\\
+
+Since both factors of this new quadratic expression are the same, both terms that make up the middle term,  must also be the same.  We know that $\cRed{m}\cBlue{x} + \cRed{m}\cBlue{x}=\dfrac{b}{a}x$, so we should be able to determine the value of $\cRed{m}$ from this equation.    If we can determine the value of $\cRed{m}$, then we can determine the value of  $\cRed{k}$.
+
+\begin{align*}
+\dfrac{b}{a}x 	& = \cRed{m}\cBlue{x} + \cRed{m}\cBlue{x}\\
+				& = 2mx && \text{OOA} \eqref{eq:ooa} 
+\end{align*}
+
+Solving for $m$,
+
+\begin{align*}
+2mx & = \dfrac{b}{a}x \\
+\dfrac{1}{2} \farg{2mx} &= \dfrac{1}{2} \farg{\dfrac{b}{a}x }  && \text{SPE} \eqref{eq:spe} + \text{MI} \eqref{eq:mi1} \\
+\left(\dfrac{1}{2} \cdot 2 \right)mx &= \left(\dfrac{1}{2} \dfrac{b}{a} \right)x && \text{APA} \eqref{eq:apa1} \\ 
+1mx &= \dfrac{b}{2a}x  && \text{OOM} \eqref{eq:oom} \\
+mx &= \dfrac{b}{2a}x && \text{MId} \eqref{eq:mid2} \\
+\farg{mx}\dfrac{1}{x}  &= \farg{\dfrac{b}{2a}x} \dfrac{1}{x}  && \text{SPE} \eqref{eq:spe} + \text{MI} \eqref{eq:mi1} \\
+m \left(x \cdot \dfrac{1}{x}\right)  &= \dfrac{b}{2a}\left(x \cdot \dfrac{1}{x}\right) && \text{APM} \eqref{eq:apm2} \\ 
+m \cdot 1 &= \dfrac{b}{2a} \cdot 1  && \text{OOM} \eqref{eq:oom}\\
+m &= \dfrac{b}{2a} && \text{MId} \eqref{eq:mid2} 
+\end{align*}
+
+\begin{figure}[h!]
+\begin{center}
+\begin{tikzpicture}[scale=1, auto]
+
+% Place nodes
+
+\node[firstterm](11){$x$}; \node[factoradd,right=of 11](plus1){$+$}; \node[secondterm, right=of plus1](12){$\frac{b}{2a}$};
+\node[firstterm, below=of 11](21){$x$}; \node[factoradd,right=of 21](plus2){$+$}; \node[secondterm, right=of plus2](22){$\frac{b}{2a}$};
+
+\node[multiply, below=of 21](31){$x^2$};
+\node[multiply, below=of 22](32){$\frac{b^2}{4a}$};
+
+\node[multiply, right=of 12](13){$\frac{b}{2a}x$};
+\node[multiply, right=of 22](23){$\frac{b}{2a}x$};
+
+\node[add, below=of 23](33){$\frac{b}{a}x$};
+
+\path [line](11) edge[bend right=30]node[color=black, midway, left]{$\times$}(21);
+\path [line](12) edge[bend left=30]node[color=black, midway, right]{$\times$}(22);
+\path [line](21)--(31);
+
+\path [line](21) edge[bend left=30]node[color=black, pos=0.37, below]{$\times$}(12);
+\path [line](11) edge[bend right=30](22);
+\path [line](22)--(32);
+
+\path [line](12)--(13);
+\path [line](22)--(23);
+
+\path [line](13)--node[color=black, midway, right]{$+$}(23);
+\path [line](23)--(33);
+
+\end{tikzpicture}
+\caption{The Organization of the Distributive Property}
+\end{center}
+\end{figure}
+
+\begin{align*}
+\farg{x^2+\dfrac{b}{a}x}+\left( \dfrac{b}{2a} \right)^2 &= \farg{\neg \dfrac{c}{a}} + \left( \dfrac{b}{2a} \right)^2 && \text{SPE} \eqref{eq:spe}+ \text{Completing the Square} \\
+x^2+\dfrac{b}{a}x +\left( \dfrac{b}{2a} \right)^2 &= \neg \dfrac{c}{a}+ \left( \dfrac{b}{2a} \right)^2 && \text{APA} \eqref{eq:apa1} \\
+\left( x+ \dfrac{b}{2a} \right) \left( x+ \dfrac{b}{2a} \right)& = \neg \dfrac{c}{a} + \left( \dfrac{b}{2a} \right)^2 && \text{DPF} \eqref{eq:dpf2} \\
+\left( x+ \dfrac{b}{2a} \right)^2 &=\neg \dfrac{c}{a} + \left( \dfrac{b}{2a} \right)^2 && \text{PoTF} \eqref{eq:potf} \\
+\left( x+ \dfrac{b}{2a} \right)^2 &=\neg \dfrac{c}{a} +  \dfrac{\left(b \right)^2}{\left(2a \right)^2}  && \text{PoQPo} \eqref{eq:poqpo1} \\
+\left( x+ \dfrac{b}{2a} \right)^2 &=\neg \dfrac{c}{a} +  \dfrac{b^2}{2^2a^2} && \text{PoPrPo} \eqref{eq:poprpo1} \\
+\left( x+ \dfrac{b}{2a} \right)^2 &=\neg \dfrac{c}{a} +  \dfrac{b^2}{4a^2} && \text{OOE} \eqref{eq:ooe} \\
+\left( x+ \dfrac{b}{2a} \right)^2 &=\neg \dfrac{c}{a} \cdot {\color{sthlmRed}\dfrac{4a}{4a}} +  \dfrac{b^2}{4a^2}  && \text{MId} \eqref{eq:mid1} \\
+\left( x+ \dfrac{b}{2a} \right)^2 &=\neg \dfrac{c \cdot 4 \cdot a}{a \cdot 4 \cdot a} +  \dfrac{b^2}{4a^2} && \text{JTC} \eqref{eq:jtc} \\
+\left( x+ \dfrac{b}{2a} \right)^2 &=\neg \dfrac{4 \cdot a \cdot c}{4 \cdot a \cdot a} +  \dfrac{b^2}{4a^2}  && \text{CPM} \eqref{eq:cpm} \\
+\left( x+ \dfrac{b}{2a} \right)^2 &=\neg \dfrac{4 \cdot a \cdot c}{4 \cdot a^2} +  \dfrac{b^2}{4a^2} && \text{PrCBPo} \eqref{eq:prcbpo1} \\
+\left( x+ \dfrac{b}{2a} \right)^2 &=\neg \dfrac{4 a c}{4a^2} +  \dfrac{b^2}{4a^2} && \text{CTJ} \eqref{eq:ctj} \\
+\left( x+ \dfrac{b}{2a} \right)^2 &= \dfrac{\neg 4ac+b^2}{4a^2} && \text{CD} \eqref{eq:cd1} \\
+\left( x+ \dfrac{b}{2a} \right)^2 &= \dfrac{b^2+ \neg 4ac}{4a^2} && \text{CPM} \eqref{eq:cpm} \\
+\farg{\left( x+ \dfrac{b}{2a} \right)^2}^{\frac{1}{2}} &=\pm \farg{\dfrac{b^2+ \neg 4ac}{4a^2}}^{\frac{1}{2}} && \text{SPE} \eqref{eq:spe} \\
+ x+ \dfrac{b}{2a}  &=\pm \left[\dfrac{b^2+ \neg 4ac}{4a^2}\right]^{\frac{1}{2}} && \text{PoPrPo} \eqref{eq:poprpo1} \\
+x+ \dfrac{b}{2a}  &=\pm \dfrac{\left[b^2+ \neg 4ac \right]^{\frac{1}{2}}}{\left[4a^2\right]^{\frac{1}{2}}} && \text{PoQPo} \eqref{eq:poqpo1} \\
+x+ \dfrac{b}{2a}  &=\pm \dfrac{\left[b^2+ \neg 4ac \right]^{\frac{1}{2}}}{4^{\frac{1}{2}} a} && \text{PoPrPo} \eqref{eq:poprpo1} \\
+x+ \dfrac{b}{2a}  &=\pm \dfrac{\left[b^2+ \neg 4ac \right]^{\frac{1}{2}}}{2a} && \text{OOE} \eqref{eq:ooe} \\
+\displaybreak
+x+ \dfrac{b}{2a}  &=\pm \dfrac{\sqrt{b^2 - 4ac}}{2a} && \text{RTPo} \eqref{eq:rtpo} \\
+\farg{x+ \dfrac{b}{2a}} +  \neg   \dfrac{b}{2a} &= \farg{\pm\dfrac{\sqrt{b^2 - 4ac}}{2a}} + \neg \dfrac{b}{2a} && \text{SPE} \eqref{eq:spe}+ \text{AI} \eqref{eq:ai} \\
+x+ \left(\dfrac{b}{2a} +  \neg   \dfrac{b}{2a}\right) &= \pm\dfrac{\sqrt{b^2 - 4ac}}{2a} + \neg \dfrac{b}{2a} && \text{APA} \eqref{eq:apa2} \\
+x+ \left(\dfrac{b}{2a} + \neg   \dfrac{b}{2a}\right) &=\neg   \dfrac{b}{2a} \pm\dfrac{\sqrt{b^2 - 4ac}}{2a} && \text{CPM} \eqref{eq:cpm} \\
+x + 0 &=\neg   \dfrac{b}{2a}  \pm\dfrac{\sqrt{b^2 - 4ac}}{2a} && \text{OOA} \eqref{eq:ooa} \\
+x &=\neg   \dfrac{b}{2a}  \pm\dfrac{\sqrt{b^2 - 4ac}}{2a} && \text{AId} \eqref{eq:aid2} \\
+x &= \dfrac{\neg  b  \pm \sqrt{b^2 - 4ac}}{2a} && \text{CD} \eqref{eq:cd1} \\
+x &= \dfrac{\neg  b  \pm \sqrt{b^2 - 4ac}}{2a} && \text{DOS} \eqref{eq:dos2} \\
+x &= \dfrac{-  b  \pm \sqrt{b^2 - 4ac}}{2a} && \text{ONeg} \eqref{eq:oneg2} 
+\end{align*}
+
+\end{proof}
+
+The previous proof starts with choosing to multiply both expressions by the multiplicative inverse of the coefficient of the degree two term such that $ax^2$ becomes $x^2$.  It is easier to manually complete the square, guess the two binomial factors, when the coefficient of the degree 2 term is 1.  However, as a consequence, the coefficients of the degree one and degree zero terms become fractions $\frac{b}{a}$ and $\frac{c}{a}$ respectively.  All that it means is that we have to work with fractions throughout the procedure.  \\
+
+\begin{proof}
+\begin{align*}
+ax^2+bx+c & = 0 \\
+4a \farg{ax^2+bx+c} &= 4a \farg{0} && \text{SPE} \eqref{eq:spe} \\
+4ax^2+4abx+4ac &= 4a(0) && \text{DPE} \eqref{eq:dpe1} \\
+4ax^2+4abx+4ac &= 0 && \text{OOM} \eqref{eq:oom} \\
+\farg{4ax^2+4abx+4ac}+\neg 4ac &= \farg{0}+\neg 4ac && \text{AI} \eqref{eq:ai},\text{SPE} \eqref{eq:spe}  \\
+4ax^2+4abx+(4ac+ \neg 4ac) &= 0+\neg 4ac && \text{APA} \eqref{eq:apa1} \\
+4ax^2+4abx+0 &= 0+\neg 4ac && \text{OOA} \eqref{eq:ooa} \\
+4ax^2+4abx &= \neg 4ac && \text{AId} \eqref{eq:aid2} \\
+\end{align*}	
+
+Completing the square
+\begin{center}
+\begin{tikzpicture}[scale=1, auto]
+
+% Place nodes
+
+\node[firstterm](11){$2ax$}; \node[factoradd,right=of 11](plus1){$+$}; \node[secondterm, right=of plus1](12){$b$};
+\node[firstterm, below=of 11](21){$2ax$}; \node[factoradd,right=of 21](plus2){$+$}; \node[secondterm, right=of plus2](22){$b$};
+
+\node[multiply, below=of 21](31){$4ax^2$};
+\node[multiply, below=of 22](32){$b^2$};
+
+\node[multiply, right=of 12](13){$2abx$};
+\node[multiply, right=of 22](23){$2abx$};
+
+\node[add, below=of 23](33){$4abx$};
+
+\path [line](11) edge[bend right=30]node[color=black, midway, left]{$\times$}(21);
+\path [line](12) edge[bend left=30]node[color=black, midway, right]{$\times$}(22);
+\path [line](21)--(31);
+
+\path [line](21) edge[bend left=30]node[color=black, pos=0.37, below]{$\times$}(12);
+\path [line](11) edge[bend right=30](22);
+\path [line](22)--(32);
+
+\path [line](12)--(13);
+\path [line](22)--(23);
+
+\path [line](13)--node[color=black, midway, right]{$+$}(23);
+\path [line](23)--(33);
+
+\end{tikzpicture}
+\end{center}
+
+\begin{align*}
+\farg{4ax^2+4abx}+b^2 & = \farg{-4ac}+b^2 && \text{SPE} \eqref{eq:spe} \\
+4ax^2+4abx+b^2 &= b^2 + \neg 4ac && \text{CPA} \eqref{eq:cpa} \\
+(2ax+b)(2ax+b) &= b^2 + \neg 4ac && \text{DPF} \eqref{eq:dpf1} \\
+(2ax+b)^2 &= b^2 + \neg 4ac && \text{PoTF} \eqref{eq:potf} \\
+\farg{(2ax+b)^2}^{\frac{1}{2}} &= \pm \farg{b^2 + \neg 4ac}^{\frac{1}{2}} && \text{SPE} \eqref{eq:spe} \\
+2ax+b &=  \pm (b^2 + \neg 4ac)^{\frac{1}{2}} && \text{PoPo} \eqref{eq:popo1} \\
+2ax+b &= \pm \sqrt{b^2+\neg 4ac} && \text{PoTR} \eqref{eq:potr} \\
+\farg{2ax+b}+\neg b &= \farg{ \pm \sqrt{b^2+\neg 4ac}}+\neg b && \text{AI} \eqref{eq:ai},\text{SPE} \eqref{eq:spe}  \\
+(2ax+b)+\neg b &= \neg b \pm \sqrt{b^2+\neg 4ac} && \text{CPA} \eqref{eq:cpa} \\
+2ax+(b+\neg b) &= \neg b \pm \sqrt{b^2+\neg 4ac}  && \text{APA} \eqref{eq:apa2} \\
+2ax+0 &= \neg b \pm \sqrt{b^2+\neg 4ac} && \text{OOA} \eqref{eq:ooa} \\
+2ax &= \neg b \pm \sqrt{b^2+\neg 4ac} && \text{AId} \eqref{eq:aid2} \\
+\dfrac{1}{2a} \farg{2ax} &= \dfrac{1}{2a} \farg{\neg b \pm \sqrt{b^2+\neg 4ac}}  && \text{MI} \eqref{eq:ai},\text{SPE} \eqref{eq:spe}  \\
+\left(\dfrac{1}{2a}\cdot 2a\right)x &= \dfrac{1}{2a} \left( \neg b \pm \sqrt{b^2+\neg 4ac} \right) && \text{APM} \eqref{eq:apm1} \\
+\dfrac{2a}{2a}x &= \dfrac{\neg b \pm \sqrt{b^2+\neg 4ac}}{2a} && \text{OOM} \eqref{eq:oom} \\
+1x &=\dfrac{\neg b \pm \sqrt{b^2+\neg 4ac}}{2a} && \text{RF} \eqref{eq:rf}\\
+1x &=\dfrac{\neg b \pm \sqrt{b^2-4ac}}{2a} && \text{DOS} \eqref{eq:dos2} \\
+1x &=\dfrac{- b \pm \sqrt{b^2-4ac}}{2a} && \text{ONeg} \eqref{eq:oneg2} \\
+x &=\dfrac{- b \pm \sqrt{b^2-4ac}}{2a} && \text{MId} \eqref{eq:mid2} \\
+\end{align*}
+
+\end{proof}   
+
+
+
+\end{document}
+

@@ -1,0 +1,269 @@
+\documentclass[20150903-160354-rs2.2-MarksMathNotebook.tex]{subfiles}
+
+\begin{document}
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%
+%	CHAPTER
+%
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\chapter{Properties}
+
+\section{Summary of Field Properties}\index{Properties!Summary of Field Properties}
+
+\begin{table}[h]
+\begin{tabular}{|l|c|c|c|c|c}
+\hline
+Name 								& Addition 	                & Multiplication  \\
+\hline
+Commutative							& $a+b=b+a$		            & $a \cdot b = b \cdot a$   \\
+\hline
+Associative						    & $(a+b)+c = a+(b+c)$ 		& $(a \cdot b) \cdot c = a \cdot(b \cdot c)$ \\
+\hline
+Distributive	                   &  $a(b+c)=ab+ac$            & $(a+b)c=ac+bc$ \\
+\hline
+Identity 	                       & $a + \cRed{0} = a = \cRed{0}+a$		        & $a \cdot \cRed{1} = a = \cRed{1} \cdot a$ \\
+\hline
+Inverse                            & $a + (-a) = 0 = (-a)+a$             & $a \cdot a^{-1}=1 = a^{-1} \cdot a$ \\
+\hline
+\end{tabular}
+\caption{Summary of the Field Properties}\label{tab:tableoffieldproperties}
+\end{table}
+
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	SECTION:
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\section{Properties of Addition}\index{Properties of Addition}
+
+%-=-=-= DEFINITION
+\begin{property}[Commutative Property of Addition (CPA)]\index{Property!Commutative Property of Addition}
+
+\begin{align}
+\alert{a}b &= b\alert{a} \label{eq:cpa}
+\end{align}
+\end{property}
+
+%-=-=-= DEFINITION
+\begin{property}[Associative Property of Addition (APA)]\index{Property!Associative Property of Addition}
+\begin{subequations}
+\begin{align}
+a+b+c &= (a+b)+c \label{eq:apa1} \\
+a+b+c &= a+(b+c) \label{eq:apa2}
+\end{align}
+\end{subequations}
+\end{property}
+
+%-=-=-= DEFINITION
+\begin{property}[Distributive Property Factoring (DPF)]\index{Property!Distributive Property Factoring}
+\begin{subequations}
+\begin{align}
+b\alert{a} + c\alert{a} &= (b+c)\alert{a} \label{eq:dpf1} \\
+\alert{a}b + \alert{a}c &= \alert{a}(b+c) \label{eq:dpf2}
+\end{align}
+\end{subequations}
+\end{property}
+
+%-=-=-= DEFINITION
+\begin{property}[Additive Identity (AId)]\index{Additive Identity}
+\begin{subequations}
+\begin{align}
+a+\alert{0} &= a \label{eq:aid1} \\
+a &= a+\alert{0} \label{eq:aid2}
+\end{align}
+\end{subequations}
+\end{property}
+
+%-=-=-= DEFINITION
+\begin{property}[Additive Inverse (AI)]\index{Additive Inverse}
+\begin{subequations}
+\begin{align}
+a + \alert{(-a)} &= 0 \label{eq:ai}
+\end{align}
+\end{subequations}
+\end{property}
+
+
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	SECTION:
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\section{Properties of Multiplication}\index{Property!Properties of Multiplication}
+
+%-=-=-= DEFINITION
+\begin{property}[Commutative Property of Multiplication (CPM)]\index{Property!Commutative Property of Multiplication}
+\begin{align}
+\alert{a} \cdot b &= b \cdot \alert{a} \label{eq:cpm}
+\end{align}
+\end{property}
+
+%-=-=-= DEFINITION
+\begin{property}[Associative Property of Multiplication (APM)]\index{Property!Associative Property of Multiplication}
+\begin{subequations}
+\begin{align}
+a\cdot b\cdot c &= (a\cdot b)\cdot c \label{eq:apm1} \\
+a\cdot b\cdot c &= a\cdot (b\cdot c) \label{eq:apm2}
+\end{align}
+\end{subequations}
+\end{property}
+
+%-=-=-= DEFINITION
+\begin{property}[Distributive Property Expanding (DPE)]\index{Property!Distributive Property Factoring}
+\begin{subequations}
+\begin{align}
+\alert{a}(b+c) &= \alert{a}b + \alert{a}c \label{eq:dpe1} \\
+ (b+c)\alert{a} &= b\alert{a} + c\alert{a}  \label{eq:dpe2}
+\end{align}
+\end{subequations}
+\end{property}
+
+%-=-=-= DEFINITION
+\begin{property}[Multiplicative Identity (MId)]\index{Multiplicative Identity}
+\begin{subequations}
+\begin{align}
+\alert{1}a &= a \label{eq:mid1} \\
+a &= \alert{1}a \label{eq:mid2}
+\end{align}
+\end{subequations}
+\end{property}
+
+\begin{remark}
+If the coefficient of a univariate monomial is the multiplicative identity \ref{eq:mid1}, 1, then it is not shown in it's canonical form.
+\begin{align*}
+ \cBlue{C_{k}}\cRed{x^{k}}	& = \cBlue{C_{k}} \cRed{x^{k}} \\
+ 							& = \cBlue{1} \cRed{x^{k}} \\
+                            & = \cRed{x^{k}}
+\end{align*}
+\end{remark}
+
+%-=-=-= DEFINITION
+\begin{property}[Multiplicative Inverse (MI)]\index{Multiplicative Inverse}
+\begin{subequations}
+\begin{align}
+a \cdot \alert{\dfrac{1}{a}} &= 1 \label{eq:mi1} \\
+a \cdot \alert{a^{-1}} &= 1 \label{eq:mi2}
+\end{align}
+\end{subequations}
+\end{property}
+
+%-=-=-= DEFINITION
+\begin{property}[Zero Product (ZPr)]\index{Property!Zero Product}
+\begin{subequations}
+\begin{align}
+\text{if} a \cdot b =0, \,\text{then} a=0 \,\text{or} b=0 \label{eq:zpr}
+\end{align}
+\end{subequations}
+\end{property}
+
+
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	SECTION:
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+\section{Properties of Subtraction}\index{Property!Properties of Subtraction}
+
+%-=-=-= DEFINITION
+\begin{definition}[Definition of Subtraction (DOS)]\index{Definition of Subtraction}
+\begin{subequations}
+\begin{align}
+a-b &= a+\neg b \label{eq:dos1} \\
+a+\neg b &= a-b \label{eq:dos2}
+\end{align}
+\end{subequations}
+\end{definition}
+
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	SECTION:
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\section{Properties of Powers}\index{Property!Properties of Powers}
+
+
+%-=-=-= DEFINITION
+\begin{property}[Power Inverse (PoId)]\index{Power Identity}
+\begin{subequations}
+\begin{align}
+1&= b^0  \label{eq:poid1} \\
+b^{0}&= 1  \label{eq:poid2}
+\end{align}
+\end{subequations}
+\end{property}
+
+
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	SECTION:
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\section{Properties of Equality}\index{Property!Properties of Equality}
+
+%-=-=-= PROPERTY
+\begin{property}[Reflexive Property of Equality (RPE)]\index{Reflexive Property of Equality}
+\begin{subequations}
+\begin{align}
+a &= a \label{eq:rpe}
+\end{align}
+\end{subequations}
+\end{property}
+
+%-=-=-= PROPERTY
+\begin{property}[Substitution Property of Equality (SPE)]\index{Substitution Property of Equality} \hfill \\
+
+Given $a=b$, then
+\begin{align}
+E(a) &= E(b) \label{eq:spe}
+\end{align}
+$E(x)$ represents any expression.
+\end{property}
+
+%-=-=-= PROPERTY
+\begin{property}[Symmetric Property of Equality (SyPE)]\index{Symmetric Property of Equality}
+\begin{subequations}
+\begin{align}
+a =b \quad \text{then} \quad b=a \label{eq:sype}
+\end{align}
+\end{subequations}
+\end{property}
+
+%-=-=-= PROPERTY
+\begin{property}[Transitive Property of Equality (TPE)]\index{Transitive Property of Equality}
+\begin{subequations}
+\begin{align}
+\text{if} \quad a=b \quad \text{and} \quad b=c \quad \text{then} \quad a =c \label{eq:tpe}
+\end{align}
+\end{subequations}
+\end{property}
+
+%-=-=-= PROPERTY
+\begin{property}[Zero Factor Property (ZFP)]\index{Zero Factor Property}
+\begin{subequations}
+\begin{align}
+\text{if} \quad a \cdot b=0 \quad \text{then} \quad a=0 \quad \text{or} \quad b=0 \label{eq:zfp}
+\end{align}
+\end{subequations}
+\end{property}
+
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+%	SECTION:
+%-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+\section{Properties of Inequality}\index{Property!Properties of Inequality}
+
+%-=-=-= PROPERTY
+\begin{property}[Substitution Property of Inequality (SPIn)]\index{Substitution Property of Inequality}
+\begin{subequations}
+\begin{align}
+a<b \quad \text{then} \quad a + c < b + c \label{eq:spin1} \\
+a<b \quad \text{and} c>0 ,\quad\text{then} \quad ca<cb \label{eq:spin2} \\
+a<b \quad \text{and} c<0 ,\quad\text{then} \quad ca>cb \label{eq:spin3} 
+\end{align}
+\end{subequations}
+\end{property}
+
+%-=-=-= PROPERTY
+\begin{property}[Transitive Property of Inequality (TPIn)]\index{Transitive Property of Inequality}
+\begin{subequations}
+\begin{align}
+\text{if} \quad a<b \quad \text{and} \quad b<c \quad \text{then} \quad a>c \label{eq:tpin}
+\end{align}
+\end{subequations}
+\end{property}
+
+\end{document}
+
